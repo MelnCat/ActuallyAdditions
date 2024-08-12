@@ -12,12 +12,18 @@ package de.ellpeck.actuallyadditions.mod.inventory.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.ellpeck.actuallyadditions.mod.inventory.SackContainer;
+import de.ellpeck.actuallyadditions.mod.network.PacketClientToServer;
+import de.ellpeck.actuallyadditions.mod.network.PacketHandler;
 import de.ellpeck.actuallyadditions.mod.util.AssetUtil;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraftforge.network.PacketDistributor;
 
 import javax.annotation.Nonnull;
 
@@ -42,22 +48,29 @@ public class SackGui extends AAScreen<SackContainer> {
     public void init() {
         super.init();
 
-        this.filter = new FilterSettingsGui(this.container.filter, this.leftPos + 138, this.topPos + 10, this.renderables);
-//
-//        this.buttonAutoInsert = new Button(0, this.leftPos - 21, this.topPos + 8, 20, 20, (this.container.autoInsert
-//            ? TextFormatting.DARK_GREEN
-//            : TextFormatting.RED) + "I");
-        //this.addButton(this.buttonAutoInsert);
+        this.filter = new FilterSettingsGui(this.container.filter, this.leftPos + 138, this.topPos + 10, this);
+
+        this.buttonAutoInsert = Button.builder(
+                Component.literal(this.container.autoInsert? "I" : "O")
+                    .withStyle(this.container.autoInsert? ChatFormatting.DARK_GREEN : ChatFormatting.RED),
+                (button) -> {
+                    this.container.autoInsert = !this.container.autoInsert;
+                    this.buttonAutoInsert.setMessage(Component.literal(this.container.autoInsert? "I" : "O")
+                        .withStyle(this.container.autoInsert? ChatFormatting.DARK_GREEN : ChatFormatting.RED));
+                    this.buttonClicked(0);
+                }).pos(leftPos - 21, topPos + 8).size(20, 20)
+            .build();
+
+        this.addRenderableWidget(this.buttonAutoInsert);
     }
 
-//    @Override
-//    protected void actionPerformed(Button button) throws IOException {
-//        CompoundNBT data = new CompoundNBT();
-//        data.putInt("ButtonID", button.id);
-//        data.putInt("PlayerID", Minecraft.getInstance().player.getId());
-//        data.putInt("WorldID", Minecraft.getInstance().level.provider.getDimension());
-//        PacketHandler.THE_NETWORK.sendToServer(new PacketClientToServer(data, PacketHandler.GUI_BUTTON_TO_CONTAINER_HANDLER));
-//    }
+    public void buttonClicked(int id) {
+        CompoundTag data = new CompoundTag();
+        data.putInt("ButtonID", id);
+        data.putInt("PlayerID", Minecraft.getInstance().player.getId());
+        data.putString("WorldID", Minecraft.getInstance().level.dimension().location().getPath());
+        PacketHandler.sendToServer(new PacketClientToServer(data, PacketHandler.GUI_BUTTON_TO_CONTAINER_HANDLER));
+    }
 
     @Override
     public void containerTick() {

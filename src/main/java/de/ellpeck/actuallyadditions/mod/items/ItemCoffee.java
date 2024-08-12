@@ -123,7 +123,7 @@ public class ItemCoffee extends ItemBase {
     public boolean isEnchantable(ItemStack stack) {
         return false;
     }
-F
+
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
         return false;
