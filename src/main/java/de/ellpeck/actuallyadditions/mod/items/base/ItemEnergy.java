@@ -89,7 +89,7 @@ public abstract class ItemEnergy extends ItemBase {
     @Override
     public int getBarWidth(ItemStack stack) {
         if (stack.hasTag() && stack.getTag().contains("Energy")) {
-            return (int)(1 - (stack.getTag().getDouble("Energy") / this.maxPower));
+            return (int)((stack.getTag().getDouble("Energy") / this.maxPower) * MAX_BAR_WIDTH);
         }
         return 1;
     }
