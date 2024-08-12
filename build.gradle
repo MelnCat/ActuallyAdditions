@@ -25,6 +25,8 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
                 actuallyadditions {
@@ -35,6 +37,8 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             mods {
                 actuallyadditions {
                     source sourceSets.main
@@ -44,6 +48,8 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             args '--mod', 'actuallyadditions', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
@@ -102,7 +108,7 @@ processResources {
     inputs.property('minecraft_version_range', project.minecraft_version_range)
 
     filesMatching(['META-INF/mods.toml'])  {
-        expand 'version': project.version, 'neo_version_range': project.forge_version_range, 'minecraft_version_range': project.minecraft_version_range
+        expand 'version': project.version, 'forge_version_range': project.forge_version_range, 'minecraft_version_range': project.minecraft_version_range
     }
 }
 

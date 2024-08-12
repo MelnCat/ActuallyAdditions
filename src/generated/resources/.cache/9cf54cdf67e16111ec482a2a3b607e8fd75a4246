@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-03T00:40:33.0175516	Item Recipes
+// 1.20.1	2024-08-12T03:15:50.5539183	Item Recipes
 04119c9f71a93d6c45d47246706fa224822959f0 data/actuallyadditions/recipes/advanced_coil.json
 3b2562135f11981fa20bc3588e2cb884a9307c3e data/actuallyadditions/recipes/advanced_leaf_blower.json
 03e73d9726655a6ad8cb23f8e214ac278aadf0f2 data/actuallyadditions/recipes/basic_coil.json
@@ -55,9 +55,11 @@ c0e69d8b79573ea3113616df9dbbac0b29be4705 data/actuallyadditions/recipes/laser_wr
 4f0543a9b5ad596d431a59698abfb3fb6491255b data/actuallyadditions/recipes/player_probe.json
 e9b5284d33da974b44353a6402ac31e30b4a1b8f data/actuallyadditions/recipes/quadruple_battery.json
 bf5f14cffc4a2f37a6c34e28689648af3823e445 data/actuallyadditions/recipes/quintuple_battery.json
+c6ff81ba878c02651a9353e490b3a8f9897a5410 data/actuallyadditions/recipes/rice_dough.json
 5958ff2fb37430660fb22012212336320ee83dd8 data/actuallyadditions/recipes/rice_seeds.json
 4149bde5189fb77a22862be333b5f417e41d00aa data/actuallyadditions/recipes/rice_slime.json
 db9511393131da1f0636eff597dac3f9e8028f4c data/actuallyadditions/recipes/rice_slime_potion.json
+7b044ae0589e8fb5fc9a9d966508a9f7925ec22a data/actuallyadditions/recipes/ring.json
 168badc19bde6446959c4f4992359fb270b3e0a2 data/actuallyadditions/recipes/ring_of_growth.json
 8fd9da4c145cec21d1be3aef6c8025dc07eb6984 data/actuallyadditions/recipes/ring_of_magnetizing.json
 fa1b04e4806c6b02b56bfe2eb3fea2f9292afca5 data/actuallyadditions/recipes/single_battery.json

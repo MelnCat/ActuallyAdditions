@@ -19,6 +19,7 @@ import de.ellpeck.actuallyadditions.mod.data.WorldData;
 import de.ellpeck.actuallyadditions.mod.inventory.gui.EnergyDisplay;
 import de.ellpeck.actuallyadditions.mod.tile.IEnergyDisplay;
 import de.ellpeck.actuallyadditions.mod.tile.TileEntityBase;
+import de.ellpeck.actuallyadditions.mod.util.AssetUtil;
 import de.ellpeck.actuallyadditions.mod.util.StackUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -226,5 +227,12 @@ public class ClientEvents {
             }
         }
     }
+
+/*    @SubscribeEvent //TODO someday move the laser rendering to a new system
+    public void onRenderStage(final RenderLevelStageEvent event) {
+        if(event.getStage() == RenderLevelStageEvent.Stage.AFTER_SOLID_BLOCKS) {
+            AssetUtil.renderLaser();
+        }
+    }*/
 
 }
