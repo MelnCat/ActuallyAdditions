@@ -12,9 +12,12 @@ package de.ellpeck.actuallyadditions.mod.items.base;
 
 import de.ellpeck.actuallyadditions.mod.items.ActuallyItems;
 import de.ellpeck.actuallyadditions.mod.tile.CustomEnergyStorage;
+import de.ellpeck.actuallyadditions.mod.util.AssetUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -26,6 +29,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -92,9 +96,14 @@ public abstract class ItemEnergy extends ItemBase {
 
     @Override
     public int getBarColor(ItemStack stack) {
-        //float[] color = AssetUtil.getWheelColor(player.level().getGameTime() % 256);
-        //return MathHelper.color(color[0] / 255F, color[1] / 255F, color[2] / 255F);
-        return super.getBarColor(stack);
+        int defaultColor = super.getBarColor(stack);
+        if (FMLEnvironment.dist.isClient()) {
+            Minecraft mc = Minecraft.getInstance();
+            if (mc.player == null) return defaultColor;
+            float[] color = AssetUtil.getWheelColor(mc.player.level().getGameTime() % 256);
+            return Mth.color(color[0] / 255F, color[1] / 255F, color[2] / 255F);
+        }
+        return defaultColor;
     }
 
     public void setEnergy(ItemStack stack, int energy) {
