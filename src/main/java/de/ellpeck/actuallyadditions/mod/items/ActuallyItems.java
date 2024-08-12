@@ -36,7 +36,7 @@ public final class ActuallyItems {
 
     // MISC ITEMS
     public static final RegistryObject<Item> CANOLA = ITEMS.register("canola", ItemBase::new);
-    public static final RegistryObject<Item> COFFEE_CUP = ITEMS.register("coffee_cup", ItemBase::new);
+    public static final RegistryObject<ItemCoffee> COFFEE_CUP = ITEMS.register("coffee_cup", ItemCoffee::new);
     public static final RegistryObject<Item> PAPER_CONE = ITEMS.register("paper_cone", ItemBase::new);
     public static final RegistryObject<Item> DOUGH = ITEMS.register("dough", ItemBase::new);
     public static final RegistryObject<Item> RING = ITEMS.register("ring", ItemBase::new);
@@ -178,7 +178,7 @@ public final class ActuallyItems {
     public static final RegistryObject<Item> DIAMOND_AIOT = ITEMS.register("diamond_aiot", () -> new AllInOneTool(Tiers.DIAMOND));
     public static final RegistryObject<Item> NETHERITE_AIOT = ITEMS.register("netherite_aiot", () -> new AllInOneTool(Tiers.NETHERITE));
 
-    public static final Set<Supplier<Item>> SIMPLE_ITEMS = ImmutableSet.of(
+    public static final Set<Supplier<? extends Item>> SIMPLE_ITEMS = ImmutableSet.of(
         // Crystals
         BLACK_QUARTZ, RESTONIA_CRYSTAL, PALIS_CRYSTAL, DIAMATINE_CRYSTAL,
         VOID_CRYSTAL, EMERADIC_CRYSTAL, ENORI_CRYSTAL, EMPOWERED_RESTONIA_CRYSTAL,

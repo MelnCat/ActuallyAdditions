@@ -1,0 +1,15 @@
+{
+  "type": "actuallyadditions:coffee_ingredient",
+  "effects": [
+    {
+      "amplifier": 0,
+      "duration": 15,
+      "effect": "minecraft:strength"
+    }
+  ],
+  "extraText": "",
+  "ingredient": {
+    "item": "minecraft:blaze_powder"
+  },
+  "maxAmplifier": 4
+}

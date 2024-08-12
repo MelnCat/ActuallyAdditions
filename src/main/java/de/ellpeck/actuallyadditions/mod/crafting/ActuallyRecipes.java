@@ -8,6 +8,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.function.Supplier;
+
 public class ActuallyRecipes {
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, ActuallyAdditions.MODID);
 
@@ -26,6 +28,7 @@ public class ActuallyRecipes {
     public static final RegistryObject<RecipeSerializer<?>> FERMENTING_RECIPE = SERIALIZERS.register(FermentingRecipe.NAME, FermentingRecipe.Serializer::new);
     public static final RegistryObject<RecipeSerializer<?>> COLOR_CHANGE_RECIPE = SERIALIZERS.register(ColorChangeRecipe.NAME, ColorChangeRecipe.Serializer::new);
     public static final RegistryObject<RecipeSerializer<?>> MINING_LENS_RECIPE = SERIALIZERS.register(MiningLensRecipe.NAME, MiningLensRecipe.Serializer::new);
+    public static final RegistryObject<RecipeSerializer<?>> COFFEE_INGREDIENT_RECIPE = SERIALIZERS.register(CoffeeIngredientRecipe.NAME, CoffeeIngredientRecipe.Serializer::new);
 
 
 
@@ -41,5 +44,6 @@ public class ActuallyRecipes {
         public static final RegistryObject<RecipeType<FermentingRecipe>> FERMENTING = RECIPE_TYPES.register("fermenting", () -> new RecipeType<>() {});
         public static final RegistryObject<RecipeType<ColorChangeRecipe>> COLOR_CHANGE = RECIPE_TYPES.register("color_change", () -> new RecipeType<>() {});
         public static final RegistryObject<RecipeType<MiningLensRecipe>> MINING_LENS = RECIPE_TYPES.register("mining_lens", () -> new RecipeType<>() {});
+        public static final RegistryObject<RecipeType<CoffeeIngredientRecipe>> COFFEE_INGREDIENT = RECIPE_TYPES.register("coffee_ingredient", () -> new RecipeType<>() {});
     }
 }

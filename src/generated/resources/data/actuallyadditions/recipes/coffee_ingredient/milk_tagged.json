@@ -1,0 +1,25 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:milk"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "actuallyadditions:coffee_ingredient",
+        "effects": [],
+        "extraText": "jei.actuallyadditions.coffee.extra.milk",
+        "ingredient": {
+          "tag": "forge:milk"
+        },
+        "maxAmplifier": 0
+      }
+    }
+  ]
+}

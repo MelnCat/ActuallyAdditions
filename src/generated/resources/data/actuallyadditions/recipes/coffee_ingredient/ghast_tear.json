@@ -1,0 +1,15 @@
+{
+  "type": "actuallyadditions:coffee_ingredient",
+  "effects": [
+    {
+      "amplifier": 0,
+      "duration": 5,
+      "effect": "minecraft:regeneration"
+    }
+  ],
+  "extraText": "",
+  "ingredient": {
+    "item": "minecraft:ghast_tear"
+  },
+  "maxAmplifier": 3
+}

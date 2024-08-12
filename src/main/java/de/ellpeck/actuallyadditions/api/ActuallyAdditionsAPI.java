@@ -20,15 +20,7 @@ import de.ellpeck.actuallyadditions.api.lens.Lens;
 import de.ellpeck.actuallyadditions.api.lens.LensConversion;
 import de.ellpeck.actuallyadditions.api.recipe.CoffeeIngredient;
 import de.ellpeck.actuallyadditions.api.recipe.WeightedOre;
-import de.ellpeck.actuallyadditions.mod.crafting.ColorChangeRecipe;
-import de.ellpeck.actuallyadditions.mod.crafting.CrushingRecipe;
-import de.ellpeck.actuallyadditions.mod.crafting.EmpowererRecipe;
-import de.ellpeck.actuallyadditions.mod.crafting.FermentingRecipe;
-import de.ellpeck.actuallyadditions.mod.crafting.LaserRecipe;
-import de.ellpeck.actuallyadditions.mod.crafting.LiquidFuelRecipe;
-import de.ellpeck.actuallyadditions.mod.crafting.MiningLensRecipe;
-import de.ellpeck.actuallyadditions.mod.crafting.PressingRecipe;
-import de.ellpeck.actuallyadditions.mod.crafting.SolidFuelRecipe;
+import de.ellpeck.actuallyadditions.mod.crafting.*;
 import de.ellpeck.actuallyadditions.mod.items.lens.LensColor;
 import de.ellpeck.actuallyadditions.mod.items.lens.LensDeath;
 import de.ellpeck.actuallyadditions.mod.items.lens.LensDetonation;
@@ -62,7 +54,7 @@ public final class ActuallyAdditionsAPI {
      * Farmer behaviors are sorted when first accessed, this will not be done until after loading, but do not add behaviors at runtime.
      */
     public static final List<IFarmerBehavior> FARMER_BEHAVIORS = new ArrayList<>();
-    public static final List<CoffeeIngredient> COFFEE_MACHINE_INGREDIENTS = new ArrayList<>();
+    public static final List<CoffeeIngredientRecipe> COFFEE_MACHINE_INGREDIENTS = new ArrayList<>();
     //    public static final List<CompostRecipe> COMPOST_RECIPES = new ArrayList<>();
     public static final List<IBookletEntry> BOOKLET_ENTRIES = new ArrayList<>();
     //This is added to automatically, you don't need to add anything to this list
@@ -234,7 +226,7 @@ public final class ActuallyAdditionsAPI {
      * @param ingredient The ingredient to add
      */
     public static void addCoffeeMachineIngredient(CoffeeIngredient ingredient) {
-        COFFEE_MACHINE_INGREDIENTS.add(ingredient);
+//        COFFEE_MACHINE_INGREDIENTS.add(ingredient);
     }
 
     /**

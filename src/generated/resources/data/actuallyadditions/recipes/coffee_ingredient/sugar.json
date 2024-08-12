@@ -1,0 +1,15 @@
+{
+  "type": "actuallyadditions:coffee_ingredient",
+  "effects": [
+    {
+      "amplifier": 0,
+      "duration": 30,
+      "effect": "minecraft:speed"
+    }
+  ],
+  "extraText": "",
+  "ingredient": {
+    "item": "minecraft:sugar"
+  },
+  "maxAmplifier": 4
+}
