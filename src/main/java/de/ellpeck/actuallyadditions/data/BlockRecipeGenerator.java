@@ -236,6 +236,89 @@ public class BlockRecipeGenerator extends RecipeProvider {
             .define('X', ActuallyItems.BASIC_COIL.get())
             .define('V', ActuallyItems.VOID_CRYSTAL.get())
             .save(consumer);
+
+        //Canola Press
+        Recipe.shaped(ActuallyBlocks.CANOLA_PRESS.getItem())
+            .pattern("CEC","CXC","CAC")
+            .define('C', Tags.Items.COBBLESTONE)
+            .define('E', ActuallyItems.ENORI_CRYSTAL.get())
+            .define('X', ActuallyItems.CANOLA.get())
+            .define('A', ActuallyItems.ADVANCED_COIL.get())
+            .save(consumer);
+
+        //Fermenting Barrel
+        Recipe.shaped(ActuallyBlocks.FERMENTING_BARREL.getItem())
+            .pattern("LAL","LCL","LWL")
+            .define('L', ItemTags.LOGS)
+            .define('A', ActuallyItems.ENORI_CRYSTAL.get())
+            .define('C', ActuallyItems.CANOLA.get())
+            .define('W', ActuallyBlocks.WOOD_CASING.getItem())
+            .save(consumer);
+
+        //Oil Generator
+        Recipe.shaped(ActuallyBlocks.OIL_GENERATOR.getItem())
+            .pattern("CIC","CAC","CIC")
+            .define('C', Tags.Items.COBBLESTONE)
+            .define('A', ActuallyItems.CANOLA.get())
+            .define('I', ActuallyBlocks.IRON_CASING.getItem())
+            .save(consumer);
+
+        //Coal generator.
+        Recipe.shaped(ActuallyBlocks.COAL_GENERATOR.getItem())
+            .pattern("CIC","CAC","CIC")
+            .define('C', Tags.Items.COBBLESTONE)
+            .define('A', Items.COAL)
+            .define('I', ActuallyBlocks.IRON_CASING.getItem())
+            .save(consumer);
+
+        // Auto breaker.
+        Recipe.shaped(ActuallyBlocks.BREAKER.getItem())
+            .pattern("CCC","CXV","CCC")
+            .define('C', Tags.Items.COBBLESTONE)
+            .define('V', ActuallyItems.VOID_CRYSTAL.get())
+            .define('X', ActuallyItems.BASIC_COIL.get())
+            .save(consumer);
+
+        // Auto placer.
+        Recipe.shaped(ActuallyBlocks.PLACER.getItem())
+            .pattern("CCC", "CXP", "CCC")
+            .define('C', Tags.Items.COBBLESTONE)
+            .define('P', ActuallyItems.PALIS_CRYSTAL.get())
+            .define('X', ActuallyItems.BASIC_COIL.get())
+            .save(consumer);
+
+        // Dropper
+        Recipe.shaped(ActuallyBlocks.DROPPER.getItem())
+            .pattern("CPC", "CDA", "CPC")
+            .define('C', Tags.Items.COBBLESTONE)
+            .define('P', ActuallyItems.PALIS_CRYSTAL.get())
+            .define('D', Items.DROPPER)
+            .define('A', ActuallyItems.ADVANCED_COIL.get())
+            .save(consumer);
+
+        // Fluid Placer
+        Recipe.shaped(ActuallyBlocks.FLUID_PLACER.getItem())
+            .pattern("BPB")
+            .define('B', Items.BUCKET)
+            .define('P', ActuallyBlocks.PLACER.get())
+            .save(consumer);
+
+        // Fluid Collector
+        Recipe.shaped(ActuallyBlocks.FLUID_COLLECTOR.getItem())
+            .pattern("BFB")
+            .define('B', Items.BUCKET)
+            .define('F', ActuallyBlocks.BREAKER.get())
+            .save(consumer);
+
+        // Powered furnace.
+        Recipe.shaped(ActuallyBlocks.POWERED_FURNACE.getItem())
+            .pattern("EXC", "FIF", "CXE")
+            .define('E', ActuallyItems.ENORI_CRYSTAL.get())
+            .define('X', ActuallyItems.BASIC_COIL.get())
+            .define('C', Tags.Items.COBBLESTONE)
+            .define('F', Items.FURNACE)
+            .define('I', ActuallyBlocks.IRON_CASING.getItem())
+            .save(consumer);
     }
 
     @Override
