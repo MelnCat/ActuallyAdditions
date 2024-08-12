@@ -515,13 +515,13 @@ public class ItemRecipeGenerator extends RecipeProvider {
                 .pattern("R", "P")
                 .define('R', ActuallyItems.RICE_SLIMEBALL.get())
                 .define('P', Items.PISTON)
-                .save(recipeOutput);
+                .save(consumer);
 
         // Slime block from rice slime balls
         Recipe.shaped(Items.SLIME_BLOCK)
                 .pattern("RRR", "RRR", "RRR")
                 .define('R', ActuallyItems.RICE_SLIMEBALL.get())
-                .save(recipeOutput);
+                .save(consumer);
 
         //Shards
         addShard(consumer, ActuallyItems.VOID_CRYSTAL_SHARD, ActuallyItems.VOID_CRYSTAL);
