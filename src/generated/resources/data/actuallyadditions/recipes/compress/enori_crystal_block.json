@@ -2,17 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "Q": {
-      "item": "actuallyadditions:restonia_crystal"
+    "x": {
+      "item": "actuallyadditions:enori_crystal"
     }
   },
   "pattern": [
-    "QQQ",
-    "QQQ",
-    "QQQ"
+    "xxx",
+    "xxx",
+    "xxx"
   ],
   "result": {
-    "item": "actuallyadditions:restonia_crystal_block"
+    "item": "actuallyadditions:enori_crystal_block"
   },
   "show_notification": true
 }

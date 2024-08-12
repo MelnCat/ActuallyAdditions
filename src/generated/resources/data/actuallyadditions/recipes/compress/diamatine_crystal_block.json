@@ -2,17 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "Q": {
-      "item": "actuallyadditions:void_crystal"
+    "x": {
+      "item": "actuallyadditions:diamatine_crystal"
     }
   },
   "pattern": [
-    "QQQ",
-    "QQQ",
-    "QQQ"
+    "xxx",
+    "xxx",
+    "xxx"
   ],
   "result": {
-    "item": "actuallyadditions:void_crystal_block"
+    "item": "actuallyadditions:diamatine_crystal_block"
   },
   "show_notification": true
 }

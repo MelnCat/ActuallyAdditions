@@ -2,17 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "Q": {
-      "item": "actuallyadditions:diamatine_crystal"
+    "x": {
+      "item": "actuallyadditions:emeradic_crystal"
     }
   },
   "pattern": [
-    "QQQ",
-    "QQQ",
-    "QQQ"
+    "xxx",
+    "xxx",
+    "xxx"
   ],
   "result": {
-    "item": "actuallyadditions:diamatine_crystal_block"
+    "item": "actuallyadditions:emeradic_crystal_block"
   },
   "show_notification": true
 }
