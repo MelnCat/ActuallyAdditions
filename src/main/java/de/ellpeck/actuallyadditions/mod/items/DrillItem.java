@@ -237,11 +237,9 @@ public class DrillItem extends ItemEnergy {
                             : 1);
                 }
             }
-
             //Block hit
-            HitResult ray = player.pick(8f, 1f, false);
-            if (ray != null && ray.getType() == HitResult.Type.BLOCK) {
-                BlockHitResult trace = (BlockHitResult) ray;
+            HitResult ray = player.pick(Util.getReachDistance(player), 1f, false);
+            if (ray instanceof BlockHitResult trace) {
                 //Breaks the Blocks
                 if (!player.isShiftKeyDown() && this.getHasUpgrade(stack, ItemDrillUpgrade.UpgradeType.THREE_BY_THREE)) {
                     if (this.getHasUpgrade(stack, ItemDrillUpgrade.UpgradeType.FIVE_BY_FIVE)) {
