@@ -7,9 +7,9 @@ import net.minecraft.world.level.block.CropBlock;
 import java.util.function.Supplier;
 
 public class AACrops extends CropBlock {
-    Supplier<Item> itemSupplier;
-    public AACrops(Properties p_i48421_1_, Supplier<Item> seedSupplier) {
-        super(p_i48421_1_);
+    Supplier<? extends Item> itemSupplier;
+    public AACrops(Properties properties, Supplier<? extends Item> seedSupplier) {
+        super(properties);
         this.itemSupplier = seedSupplier;
     }
 
