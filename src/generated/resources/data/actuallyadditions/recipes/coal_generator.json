@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "actuallyadditions:coal_generator"
-  }
+  },
+  "show_notification": true
 }

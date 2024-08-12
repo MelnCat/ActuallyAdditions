@@ -22,5 +22,6 @@
   ],
   "result": {
     "item": "actuallyadditions:canola_press"
-  }
+  },
+  "show_notification": true
 }

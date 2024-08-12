@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "actuallyadditions:breaker"
-  }
+  },
+  "show_notification": true
 }

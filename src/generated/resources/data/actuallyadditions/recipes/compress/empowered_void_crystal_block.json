@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "actuallyadditions:empowered_void_crystal_block"
-  }
+  },
+  "show_notification": true
 }

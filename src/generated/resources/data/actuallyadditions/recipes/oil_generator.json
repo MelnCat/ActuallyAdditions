@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "actuallyadditions:oil_generator"
-  }
+  },
+  "show_notification": true
 }

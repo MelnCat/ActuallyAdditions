@@ -14,5 +14,6 @@
   ],
   "result": {
     "item": "actuallyadditions:fluid_collector"
-  }
+  },
+  "show_notification": true
 }

@@ -25,5 +25,6 @@
   ],
   "result": {
     "item": "actuallyadditions:powered_furnace"
-  }
+  },
+  "show_notification": true
 }

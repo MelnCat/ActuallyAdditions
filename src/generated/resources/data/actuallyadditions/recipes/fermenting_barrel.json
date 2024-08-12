@@ -22,5 +22,6 @@
   ],
   "result": {
     "item": "actuallyadditions:fermenting_barrel"
-  }
+  },
+  "show_notification": true
 }
