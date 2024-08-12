@@ -13,6 +13,7 @@ package de.ellpeck.actuallyadditions.mod.util;
 import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.fml.loading.FMLLoader;
 
 public final class Util {
@@ -44,7 +45,7 @@ public final class Util {
     }
 
     public static double getReachDistance(Player player) {
-        AttributeInstance attribute = player.getAttribute(NeoForgeMod.BLOCK_REACH.value());
+        AttributeInstance attribute = player.getAttribute(ForgeMod.BLOCK_REACH.get());
         return attribute == null ? 4.5d : attribute.getValue();
     }
 }
