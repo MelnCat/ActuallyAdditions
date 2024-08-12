@@ -27,7 +27,7 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-        
+
             mods {
                 actuallyadditions {
                     source sourceSets.main
@@ -75,6 +75,11 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${game_version}-forge-api:${jei_version}")
 
     runtimeOnly fg.deobf("mezz.jei:jei-${game_version}-forge:${jei_version}")
+
+    compileOnly "vazkii.patchouli:Patchouli:${patchouli_version}"
+    runtimeOnly "vazkii.patchouli:Patchouli:${patchouli_version}"
+    compileOnly "xyz.brassgoggledcoders:PatchouliProvider:${patchouli_provider_version}"
+    runtimeOnly "xyz.brassgoggledcoders:PatchouliProvider:${patchouli_provider_version}"
 
     runtimeOnly fg.deobf("curse.maven:the-one-probe-245211:4629624")
     runtimeOnly fg.deobf("curse.maven:mekanism-268560:5125665")
