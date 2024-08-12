@@ -48,10 +48,10 @@ public class SackGui extends AAScreen<SackContainer> {
     public void init() {
         super.init();
 
-        this.filter = new FilterSettingsGui(this.container.filter, this.leftPos + 138, this.topPos + 10, this);
+        this.filter = new FilterSettingsGui(this.container.filter, this.leftPos + 138, this.topPos + 10, this::addRenderableWidget, 1);
 
         this.buttonAutoInsert = Button.builder(
-                Component.literal(this.container.autoInsert? "I" : "O")
+                Component.literal("I")
                     .withStyle(this.container.autoInsert? ChatFormatting.DARK_GREEN : ChatFormatting.RED),
                 (button) -> {
                     this.container.autoInsert = !this.container.autoInsert;
@@ -68,7 +68,7 @@ public class SackGui extends AAScreen<SackContainer> {
         CompoundTag data = new CompoundTag();
         data.putInt("ButtonID", id);
         data.putInt("PlayerID", Minecraft.getInstance().player.getId());
-        data.putString("WorldID", Minecraft.getInstance().level.dimension().location().getPath());
+        data.putString("WorldID", Minecraft.getInstance().level.dimension().location().toString());
         PacketHandler.sendToServer(new PacketClientToServer(data, PacketHandler.GUI_BUTTON_TO_CONTAINER_HANDLER));
     }
 
