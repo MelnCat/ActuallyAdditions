@@ -129,9 +129,9 @@ public class ActuallyAdditions {
         eventBus.addListener(this::setup);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-            eventBus.addListener(this::clientSetup);
+            eventBus.addListener(ActuallyAdditionsClient::setup);
             eventBus.addListener(ActuallyAdditionsClient::setupSpecialRenders);
-            eventBus.addListener(this::particleFactoryRegister);
+            eventBus.addListener(ActuallyAdditionsClient::registerParticleFactories);;
             eventBus.register(new ClientRegistryHandler());
         });
         IFarmerBehavior.initBehaviors();
@@ -170,14 +170,6 @@ public class ActuallyAdditions {
         Item item2 = ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.Other.RELAYCONFIGURATOR.get()));
         CommonConfig.Other.redstoneConfigureItem = item1 != null?item1: Items.AIR;
         CommonConfig.Other.relayConfigureItem = item2 != null?item2: Items.AIR;
-    }
-
-    private void clientSetup(FMLClientSetupEvent event) {
-        ActuallyAdditionsClient.setup(event);
-    }
-
-    private void particleFactoryRegister(RegisterParticleProvidersEvent event) {
-        ActuallyAdditionsClient.registerParticleFactories();
     }
 
     public void serverStarted(ServerStartedEvent event) {
