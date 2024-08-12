@@ -4,8 +4,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 
 import java.util.ArrayList;
 
@@ -33,7 +33,7 @@ public class RecipeUnlocker {
             MinecraftServer server = player.getServer();
             if (server != null) {
                 var recipes = new ArrayList<>(server.getRecipeManager().getRecipes());
-                recipes.removeIf((recipe -> !recipe.id().getNamespace().contains(MODID)));
+                recipes.removeIf((recipe -> !recipe.getId().getNamespace().contains(MODID)));
                 player.awardRecipes(recipes);
                 tag.putInt(modtag, version);
             }

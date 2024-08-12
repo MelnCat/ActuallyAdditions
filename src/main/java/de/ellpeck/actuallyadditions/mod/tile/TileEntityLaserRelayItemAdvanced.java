@@ -100,7 +100,7 @@ public class TileEntityLaserRelayItemAdvanced extends TileEntityLaserRelayItem i
 
     private void addWhitelistSmart(boolean output) {
         for (SlotlessableItemHandlerWrapper handler : this.handlersAround.values()) {
-            Optional.ofNullable(handler.getNormalHandler()).ifPresent(itemHandler -> {
+            handler.getNormalHandler().ifPresent(itemHandler -> {
                 for (int i = 0; i < itemHandler.getSlots(); i++) {
                     ItemStack stack = itemHandler.getStackInSlot(i);
                     if (!stack.isEmpty()) {
