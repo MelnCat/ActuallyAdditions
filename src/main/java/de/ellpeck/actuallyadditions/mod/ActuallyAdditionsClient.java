@@ -94,7 +94,6 @@ public class ActuallyAdditionsClient {
         MenuScreens.register(ActuallyContainers.XPSOLIDIFIER_CONTAINER.get(), GuiXPSolidifier::new);
         // From old proxy
         MinecraftForge.EVENT_BUS.register(new ClientEvents());
-        MinecraftForge.EVENT_BUS.register(new ClientRegistryHandler());
         MinecraftForge.EVENT_BUS.register(new SpecialRenderInit());
 
         event.enqueueWork(() ->
