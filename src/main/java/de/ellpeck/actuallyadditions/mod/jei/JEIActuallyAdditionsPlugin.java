@@ -56,6 +56,7 @@ public class JEIActuallyAdditionsPlugin implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
         registry.addRecipeCatalyst(new ItemStack(ActuallyItems.CRAFTER_ON_A_STICK.get()), RecipeTypes.CRAFTING);
+        registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.POWERED_FURNACE.getItem()), RecipeTypes.SMELTING);
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.FERMENTING_BARREL.getItem()), FERMENTING); //TODO: re-enable after refactor jei compat
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.ATOMIC_RECONSTRUCTOR.getItem()), LASER); //TODO: re-enable after refactor jei compat
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.EMPOWERER.getItem()), EMPOWERER); //TODO: re-enable after refactor jei compat
