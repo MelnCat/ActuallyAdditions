@@ -189,6 +189,8 @@ public class LootTableGenerator extends LootTableProvider {
 
             //TODO temp
             dropSelf(ActuallyBlocks.BLACK_QUARTZ_ORE.get());
+			add(ActuallyBlocks.BLACK_QUARTZ_ORE.get(), createOreDrop(ActuallyBlocks.BLACK_QUARTZ_ORE.getBlock(), ActuallyItems.BLACK_QUARTZ.get()));
+
 
             //this.add(ActuallyBlocks.BLACK_QUARTZ_ORE.get(), ore -> droppingItemWithFortune(ore, ActuallyItems.BLACK_QUARTZ.get()));
 
