@@ -17,6 +17,9 @@ import de.ellpeck.actuallyadditions.mod.crafting.EmpowererRecipe;
 import de.ellpeck.actuallyadditions.mod.crafting.FermentingRecipe;
 import de.ellpeck.actuallyadditions.mod.crafting.LaserRecipe;
 import de.ellpeck.actuallyadditions.mod.items.ActuallyItems;
+import de.ellpeck.actuallyadditions.mod.jei.empowerer.EmpowererRecipeCategory;
+import de.ellpeck.actuallyadditions.mod.jei.fermenting.FermentingCategory;
+import de.ellpeck.actuallyadditions.mod.jei.laser.LaserRecipeCategory;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
@@ -46,9 +49,9 @@ public class JEIActuallyAdditionsPlugin implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registry) {
         IJeiHelpers helpers = registry.getJeiHelpers();
 
-        registry.addRecipeCategories(new FermentingCategory(helpers.getGuiHelper())); //TODO: re-enable after refactor jei compat
-        registry.addRecipeCategories(new LaserRecipeCategory(helpers.getGuiHelper())); //TODO: re-enable after refactor jei compat
-        registry.addRecipeCategories(new EmpowererRecipeCategory(helpers.getGuiHelper())); //TODO: re-enable after refactor jei compat
+        registry.addRecipeCategories(new FermentingCategory(helpers.getGuiHelper()));//TODO: re-enable after refactor jei compat
+        registry.addRecipeCategories(new LaserRecipeCategory(helpers.getGuiHelper()));//TODO: re-enable after refactor jei compat
+        registry.addRecipeCategories(new EmpowererRecipeCategory(helpers.getGuiHelper()));//TODO: re-enable after refactor jei compat
 
         //registry.addRecipeCategories(new CoffeeMachineRecipeCategory(helpers.getGuiHelper()), new CompostRecipeCategory(helpers.getGuiHelper()), new CrusherRecipeCategory(helpers.getGuiHelper()), new ReconstructorRecipeCategory(helpers.getGuiHelper()), new EmpowererRecipeCategory(helpers.getGuiHelper()), new BookletRecipeCategory(helpers.getGuiHelper()));
     }
