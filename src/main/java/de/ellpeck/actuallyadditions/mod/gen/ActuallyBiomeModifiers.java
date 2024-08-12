@@ -12,11 +12,11 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.neoforged.neoforge.common.world.BiomeModifier;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.minecraftforge.common.world.BiomeModifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ActuallyBiomeModifiers {
-	protected static final ResourceKey<BiomeModifier> ADD_BLACK_QUARTZ_ORE_MODIFIER = ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS,
+	protected static final ResourceKey<BiomeModifier> ADD_BLACK_QUARTZ_ORE_MODIFIER = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS,
 			new ResourceLocation(ActuallyAdditions.MODID, "add_black_quartz"));
 
 	public static void bootstrap(BootstapContext<BiomeModifier> context) {

@@ -56,7 +56,7 @@ public class CommonConfig {
     }
 
     public static class Worldgen {
-        public static ModConfigSpec.BooleanValue GENERATE_QUARTZ;
+        public static ForgeConfigSpec.BooleanValue GENERATE_QUARTZ;
 
         public static void build() {
             BUILDER.comment("Worldgen Settings").push("worldgenSettings");
