@@ -239,7 +239,7 @@ public class DrillItem extends ItemEnergy {
             }
 
             //Block hit
-            HitResult ray = WorldUtil.getNearestBlockWithDefaultReachDistance(player.level(), player);
+            HitResult ray = player.pick(8f, 1f, false);
             if (ray != null && ray.getType() == HitResult.Type.BLOCK) {
                 BlockHitResult trace = (BlockHitResult) ray;
                 //Breaks the Blocks
@@ -413,7 +413,7 @@ public class DrillItem extends ItemEnergy {
         }
         if (side.getAxis() == Direction.Axis.X) {
             xRange = 0;
-            zRange = radius;
+w            zRange = radius;
         }
 
         //Not defined later because main Block is getting broken below
