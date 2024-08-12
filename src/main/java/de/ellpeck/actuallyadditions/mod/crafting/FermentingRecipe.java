@@ -148,32 +148,16 @@ public class FermentingRecipe implements Recipe<Container> {
 
         @Nullable
         @Override
-        public FermentingRecipe fromNetwork(@Nonnull ResourceLocation pRecipeId, @Nonnull FriendlyByteBuf pBuffer) {
-            ResourceLocation inputRes = new ResourceLocation(pBuffer.readUtf());
-            int inputAmount = pBuffer.readInt();
-            Fluid inputFluid = ForgeRegistries.FLUIDS.getValue(inputRes);
-            if(inputFluid == null)
-                throw new JsonParseException("Unknown input fluid '" + inputRes + "'");
-            FluidStack input = new FluidStack(inputFluid, inputAmount);
-
-            ResourceLocation outputRes = new ResourceLocation(pBuffer.readUtf());
-            int outputAmount = pBuffer.readInt();
-            Fluid outputFluid = ForgeRegistries.FLUIDS.getValue(outputRes);
-            if(outputFluid == null)
-                throw new JsonParseException("Unknown output fluid '" + outputRes + "'");
-            FluidStack output = new FluidStack(outputFluid, outputAmount);
-
+        public FermentingRecipe fromNetwork(@Nonnull ResourceLocation pRecipeId, @Nonnull FriendlyByteBuf pBuffer) {            FluidStack input = FluidStack.readFromPacket(pBuffer);
+            FluidStack output = FluidStack.readFromPacket(pBuffer);
             int time = pBuffer.readInt();
-
             return new FermentingRecipe(pRecipeId, input, output, time);
         }
 
         @Override
         public void toNetwork(@Nonnull FriendlyByteBuf pBuffer, @Nonnull FermentingRecipe pRecipe) {
-            pBuffer.writeUtf(ForgeRegistries.FLUIDS.getKey(pRecipe.input.getFluid()).toString());
-            pBuffer.writeInt(pRecipe.input.getAmount());
-            pBuffer.writeUtf(ForgeRegistries.FLUIDS.getKey(pRecipe.output.getFluid()).toString());
-            pBuffer.writeInt(pRecipe.output.getAmount());
+            pRecipe.input.writeToPacket(pBuffer);
+            pRecipe.output.writeToPacket(pBuffer);
             pBuffer.writeInt(pRecipe.time);
         }
     }

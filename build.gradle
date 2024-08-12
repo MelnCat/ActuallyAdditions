@@ -85,7 +85,7 @@ dependencies {
     compileOnly fg.deobf("xyz.brassgoggledcoders:PatchouliProvider:${patchouli_provider_version}")
     runtimeOnly fg.deobf("xyz.brassgoggledcoders:PatchouliProvider:${patchouli_provider_version}")
 
-    runtimeOnly fg.deobf("curse.maven:the-one-probe-245211:4629624")
+    runtimeOnly fg.deobf("curse.maven:jade-324717:5390389")
     runtimeOnly fg.deobf("curse.maven:mekanism-268560:5125665")
 }
 
