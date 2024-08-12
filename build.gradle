@@ -6,14 +6,12 @@ plugins {
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
-version = "$mod_version"
+def buildSuffix = System.getenv('BUILD_NUMBER') ? "-b${System.getenv('BUILD_NUMBER')}" : ""
+
+version = "$mod_version+mc${game_version}${buildSuffix}"
 group = "de.ellpeck.actuallyadditions"
 base {
     archivesName = "ActuallyAdditions-$game_version"
-}
-
-if (System.getenv('BUILD_NUMBER') != null) {
-    version += "." + System.getenv('BUILD_NUMBER')
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -85,20 +83,6 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:mekanism-268560:5125665")
 }
 
-// not sure if this is still needed
-//processResources {
-//    inputs.property('version', project.version)
-//
-//    from(sourceSets.main.resources.srcDirs) {
-//        include 'META-INF/mods.toml'
-//        expand 'version': project.version
-//    }
-//
-//    from(sourceSets.main.resources.srcDirs) {
-//        exclude 'META-INF/mods.toml'
-//    }
-//}
-
 jar {
     group = 'artifact'
     manifest {
@@ -110,6 +94,16 @@ jar {
     }
 
     from sourceSets.main.output
+}
+
+processResources {
+    inputs.property('version', project.version)
+    inputs.property('forge_version_range', project.forge_version_range)
+    inputs.property('minecraft_version_range', project.minecraft_version_range)
+
+    filesMatching(['META-INF/mods.toml'])  {
+        expand 'version': project.version, 'neo_version_range': project.forge_version_range, 'minecraft_version_range': project.minecraft_version_range
+    }
 }
 
 task deobfJar(type: Jar) {

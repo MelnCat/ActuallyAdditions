@@ -3,26 +3,26 @@ modLoader="javafml"
 loaderVersion="[47,)"
 license="MIT"
 [[mods]]
-modId="actuallyadditions"
-version="${file.jarVersion}"
-displayName="Actually Additions"
-#logoFile="logo.png"
-credits="Author: Ellpeck; Textures and Models: BootyToast, GlenthorLP, canitzp"
-authors="Ellpeck"
-description='''
+    modId="actuallyadditions"
+    version="${version}"
+    displayName="Actually Additions"
+    #logoFile="logo.png"
+    credits="Author: Ellpeck; Textures and Models: BootyToast, GlenthorLP, canitzp; Porters: Flanks, MrBysco, ErrorMikey; 1.20+ Textures: Ridanisaurus"
+    authors="Ellpeck"
+    description='''
 Do you want Automation? Wireless Transport? Better Machines? A cup o' Coffee? Chests? Better Hoppers? Leaf Blowers? Faster Growth? Plants? Well, Actually Additions has all that and a lot more!
 '''
 
 [[dependencies.actuallyadditions]]
     modId="forge"
     mandatory=true
-    versionRange="[47,)"
+    versionRange="${forge_version_range}"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.actuallyadditions]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.20.1,1.21)"
+    versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
