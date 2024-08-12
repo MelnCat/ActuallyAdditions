@@ -58,7 +58,6 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class DrillItem extends ItemEnergy {
-
     public static final int HARVEST_LEVEL = 4;
     private static final int ENERGY_USE = 100;
 
@@ -160,14 +159,12 @@ public class DrillItem extends ItemEnergy {
      * @return The Upgrade, if it's installed
      */
     public ItemStack getHasUpgradeAsStack(ItemStack stack, ItemDrillUpgrade.UpgradeType upgrade) {
-        CompoundTag compound = stack.getOrCreateTag();
-
         ItemStackHandlerAA inv = new ItemStackHandlerAA(ContainerDrill.SLOT_AMOUNT);
         loadSlotsFromNBT(inv, stack);
         for (int i = 0; i < inv.getSlots(); i++) {
             ItemStack slotStack = inv.getStackInSlot(i);
-            if (StackUtil.isValid(slotStack) && slotStack.getItem() instanceof ItemDrillUpgrade) {
-                if (((ItemDrillUpgrade) slotStack.getItem()).type == upgrade) {
+            if (StackUtil.isValid(slotStack) && slotStack.getItem() instanceof ItemDrillUpgrade drillUpgrade) {
+                if (drillUpgrade.type == upgrade) {
                     return slotStack;
                 }
             }
@@ -212,11 +209,8 @@ public class DrillItem extends ItemEnergy {
 
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
-        if(!state.is(ActuallyTags.Blocks.MINEABLE_WITH_DRILL))
-            return 1.0F;
-
         return this.getEnergyStored(stack) >= this.getEnergyUsePerBlock(stack)
-                ? (this.hasExtraWhitelist(state.getBlock()))
+                ? (this.hasExtraWhitelist(state.getBlock()) || state.is(ActuallyTags.Blocks.MINEABLE_WITH_DRILL))
                 ? this.getEfficiencyFromUpgrade(stack)
                 : 1.0F
                 : 0.1F;
