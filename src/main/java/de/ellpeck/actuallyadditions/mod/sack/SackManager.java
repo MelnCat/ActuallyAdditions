@@ -1,6 +1,7 @@
 package de.ellpeck.actuallyadditions.mod.sack;
 
 import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
+import de.ellpeck.actuallyadditions.mod.util.ItemStackHandlerAA;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.ItemStack;
@@ -69,6 +70,16 @@ public class SackManager extends SavedData {
         }
 
         return LazyOptional.empty();
+    }
+
+    public Optional<ItemStackHandlerAA> getHandler(ItemStack stack) {
+        if (stack.getOrCreateTag().contains("UUID")) {
+            UUID uuid = stack.getTag().getUUID("UUID");
+            if (data.containsKey(uuid))
+                return Optional.of(data.get(uuid).getSpecialHandler());
+        }
+
+        return Optional.empty();
     }
 
     public static SackManager load(CompoundTag nbt) {
