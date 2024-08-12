@@ -13,6 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class Buttons {
     @OnlyIn(Dist.CLIENT)
+    @Deprecated(forRemoval = true) //Vanilla's Button class can render small just fine and even allows text scrolling
     public static class SmallerButton extends Button {
 
         public final ResourceLocation resLoc = AssetUtil.getGuiLocation("gui_inputter");
