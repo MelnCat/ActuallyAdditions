@@ -12,7 +12,11 @@ package de.ellpeck.actuallyadditions.mod.jei;
 
 import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.blocks.ActuallyBlocks;
-import de.ellpeck.actuallyadditions.mod.crafting.*;
+import de.ellpeck.actuallyadditions.mod.crafting.ActuallyRecipes;
+import de.ellpeck.actuallyadditions.mod.crafting.CoffeeIngredientRecipe;
+import de.ellpeck.actuallyadditions.mod.crafting.EmpowererRecipe;
+import de.ellpeck.actuallyadditions.mod.crafting.FermentingRecipe;
+import de.ellpeck.actuallyadditions.mod.crafting.LaserRecipe;
 import de.ellpeck.actuallyadditions.mod.items.ActuallyItems;
 import de.ellpeck.actuallyadditions.mod.jei.coffee.CoffeeMachineCategory;
 import de.ellpeck.actuallyadditions.mod.jei.empowerer.EmpowererRecipeCategory;

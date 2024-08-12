@@ -10,7 +10,6 @@
 
 package de.ellpeck.actuallyadditions.mod.misc.apiimpl;
 
-import com.google.gson.Gson;
 import de.ellpeck.actuallyadditions.api.internal.IAtomicReconstructor;
 import de.ellpeck.actuallyadditions.api.internal.IMethodHandler;
 import de.ellpeck.actuallyadditions.api.lens.Lens;

@@ -31,7 +31,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
-import java.util.Optional;
 
 public class TileEntityLaserRelayItemAdvanced extends TileEntityLaserRelayItem implements IButtonReactor, MenuProvider {
 

@@ -2,7 +2,6 @@ package de.ellpeck.actuallyadditions.mod.jei.fermenting;
 
 import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.crafting.FermentingRecipe;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.FluidDisplay;
 import de.ellpeck.actuallyadditions.mod.jei.JEIActuallyAdditionsPlugin;
 import de.ellpeck.actuallyadditions.mod.util.AssetUtil;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -18,7 +17,6 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidType;
 
 public class FermentingCategory implements IRecipeCategory<FermentingRecipe> {
     private final IDrawableStatic background;
