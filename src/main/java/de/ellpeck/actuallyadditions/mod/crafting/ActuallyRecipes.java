@@ -1,12 +1,16 @@
 package de.ellpeck.actuallyadditions.mod.crafting;
 
 import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.Supplier;
 
 public class ActuallyRecipes {
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, ActuallyAdditions.MODID);
@@ -33,15 +37,19 @@ public class ActuallyRecipes {
     public static class Types {
         public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, ActuallyAdditions.MODID);
         
-        public static final RegistryObject<RecipeType<LaserRecipe>> LASER = RECIPE_TYPES.register("laser", () -> new RecipeType<>() {});
-        public static final RegistryObject<RecipeType<EmpowererRecipe>> EMPOWERING = RECIPE_TYPES.register("empower", () -> new RecipeType<>() {});
-        public static final RegistryObject<RecipeType<CrushingRecipe>> CRUSHING = RECIPE_TYPES.register("crushing", () -> new RecipeType<>() {});
-        public static final RegistryObject<RecipeType<SolidFuelRecipe>> SOLID_FUEL = RECIPE_TYPES.register("solid_fuel", () -> new RecipeType<>() {});
-        public static final RegistryObject<RecipeType<LiquidFuelRecipe>> LIQUID_FUEL = RECIPE_TYPES.register("liquid_fuel", () -> new RecipeType<>() {});
-        public static final RegistryObject<RecipeType<PressingRecipe>> PRESSING = RECIPE_TYPES.register("pressing", () -> new RecipeType<>() {});
-        public static final RegistryObject<RecipeType<FermentingRecipe>> FERMENTING = RECIPE_TYPES.register("fermenting", () -> new RecipeType<>() {});
-        public static final RegistryObject<RecipeType<ColorChangeRecipe>> COLOR_CHANGE = RECIPE_TYPES.register("color_change", () -> new RecipeType<>() {});
-        public static final RegistryObject<RecipeType<MiningLensRecipe>> MINING_LENS = RECIPE_TYPES.register("mining_lens", () -> new RecipeType<>() {});
-        public static final RegistryObject<RecipeType<CoffeeIngredientRecipe>> COFFEE_INGREDIENT = RECIPE_TYPES.register("coffee_ingredient", () -> new RecipeType<>() {});
+        public static final RegistryObject<RecipeType<LaserRecipe>> LASER = RECIPE_TYPES.register("laser", recipeType("laser"));
+        public static final RegistryObject<RecipeType<EmpowererRecipe>> EMPOWERING = RECIPE_TYPES.register("empower", recipeType("empower"));
+        public static final RegistryObject<RecipeType<CrushingRecipe>> CRUSHING = RECIPE_TYPES.register("crushing", recipeType("crushing"));
+        public static final RegistryObject<RecipeType<SolidFuelRecipe>> SOLID_FUEL = RECIPE_TYPES.register("solid_fuel", recipeType("solid_fuel"));
+        public static final RegistryObject<RecipeType<LiquidFuelRecipe>> LIQUID_FUEL = RECIPE_TYPES.register("liquid_fuel", recipeType("liquid_fuel"));
+        public static final RegistryObject<RecipeType<PressingRecipe>> PRESSING = RECIPE_TYPES.register("pressing", recipeType("pressing"));
+        public static final RegistryObject<RecipeType<FermentingRecipe>> FERMENTING = RECIPE_TYPES.register("fermenting", recipeType("fermenting"));
+        public static final RegistryObject<RecipeType<ColorChangeRecipe>> COLOR_CHANGE = RECIPE_TYPES.register("color_change", recipeType("color_change"));
+        public static final RegistryObject<RecipeType<MiningLensRecipe>> MINING_LENS = RECIPE_TYPES.register("mining_lens", recipeType("mining_lens"));
+        public static final RegistryObject<RecipeType<CoffeeIngredientRecipe>> COFFEE_INGREDIENT = RECIPE_TYPES.register("coffee_ingredient", recipeType("coffee_ingredient"));
     }
+
+    private static <T extends Recipe<?>> Supplier<RecipeType<T>> recipeType(String name) {
+        return () -> RecipeType.simple(new ResourceLocation(ActuallyAdditions.MODID, name));
+    } 
 }
