@@ -8,6 +8,7 @@ import de.ellpeck.actuallyadditions.mod.crafting.ActuallyRecipes;
 import de.ellpeck.actuallyadditions.mod.crafting.TargetNBTIngredient;
 import de.ellpeck.actuallyadditions.mod.crafting.WrappedRecipe;
 import de.ellpeck.actuallyadditions.mod.items.ActuallyItems;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -514,6 +515,14 @@ public class ItemRecipeGenerator extends RecipeProvider {
         addShard(consumer, ActuallyItems.DIAMATINE_CRYSTAL_SHARD, ActuallyItems.DIAMATINE_CRYSTAL);
         addShard(consumer, ActuallyItems.EMERADIC_CRYSTAL_SHARD, ActuallyItems.EMERADIC_CRYSTAL);
 
+        //Crystal Blocks
+        addCrystalBlock(consumer, ActuallyBlocks.VOID_CRYSTAL.getItem(), ActuallyItems.VOID_CRYSTAL);
+        addCrystalBlock(consumer, ActuallyBlocks.ENORI_CRYSTAL.getItem(), ActuallyItems.ENORI_CRYSTAL);
+        addCrystalBlock(consumer, ActuallyBlocks.RESTONIA_CRYSTAL.getItem(), ActuallyItems.RESTONIA_CRYSTAL);
+        addCrystalBlock(consumer, ActuallyBlocks.PALIS_CRYSTAL.getItem(), ActuallyItems.PALIS_CRYSTAL);
+        addCrystalBlock(consumer, ActuallyBlocks.DIAMATINE_CRYSTAL.getItem(), ActuallyItems.DIAMATINE_CRYSTAL);
+        addCrystalBlock(consumer, ActuallyBlocks.EMERADIC_CRYSTAL.getItem(), ActuallyItems.EMERADIC_CRYSTAL);
+
 
         //        //Quartz
         //        GameRegistry.addSmelting(new ItemStack(InitBlocks.blockMisc, 1, TheMiscBlocks.ORE_QUARTZ.ordinal()), new ItemStack(InitItems.itemMisc, 1, TheMiscItems.QUARTZ.ordinal()), 1F);
@@ -562,13 +571,25 @@ public class ItemRecipeGenerator extends RecipeProvider {
         ResourceLocation key = ForgeRegistries.ITEMS.getKey(output.get());
         Recipe.shapeless(output.get(), 9).requires(input.get()).save(consumer, new ResourceLocation(key.getNamespace(), "decompress/" + key.getPath()));
     }
-    public static void compress(Consumer<FinishedRecipe> consumer, RegistryObject<Item> output, RegistryObject<Item> input) {
+    public static void compress(Consumer<FinishedRecipe> consumer, RegistryObject<? extends Item> output, RegistryObject<? extends Item> input) {
         ResourceLocation key = ForgeRegistries.ITEMS.getKey(output.get());
         Recipe.shaped(output.get()).pattern("xxx","xxx", "xxx").define('x', input.get()).save(consumer, new ResourceLocation(key.getNamespace(), "compress/" + key.getPath()));
+    }
+    public static void decompress(Consumer<FinishedRecipe> consumer, ItemLike output, ItemLike input) {
+        ResourceLocation key = BuiltInRegistries.ITEM.getKey(output.asItem());
+        Recipe.shapeless(output, 9).requires(input).save(consumer, new ResourceLocation(key.getNamespace(), "decompress/" + key.getPath()));
+    }
+    public static void compress(Consumer<FinishedRecipe> consumer, ItemLike output, ItemLike input) {
+        ResourceLocation key = BuiltInRegistries.ITEM.getKey(output.asItem());
+        Recipe.shaped(output).pattern("xxx","xxx", "xxx").define('x', input).save(consumer, new ResourceLocation(key.getNamespace(), "compress/" + key.getPath()));
     }
     public static void addShard(Consumer<FinishedRecipe> consumer, RegistryObject<Item> shard, RegistryObject<Item> crystal) {
         compress(consumer, crystal, shard);
         decompress(consumer, shard, crystal);
+    }
+    public static void addCrystalBlock(Consumer<FinishedRecipe> consumer, ItemLike block, RegistryObject<? extends Item> crystal) {
+        compress(consumer, block, crystal.get());
+        decompress(consumer, crystal.get(), block);
     }
 
     @Override

@@ -236,15 +236,6 @@ public class BlockRecipeGenerator extends RecipeProvider {
             .define('X', ActuallyItems.BASIC_COIL.get())
             .define('V', ActuallyItems.VOID_CRYSTAL.get())
             .save(consumer);
-
-
-        // Crystal Blocks
-        Recipe.block(ActuallyBlocks.RESTONIA_CRYSTAL.getItem(), ActuallyItems.RESTONIA_CRYSTAL.get(), consumer);
-        Recipe.block(ActuallyBlocks.PALIS_CRYSTAL.getItem(), ActuallyItems.PALIS_CRYSTAL.get(), consumer);
-        Recipe.block(ActuallyBlocks.DIAMATINE_CRYSTAL.getItem(), ActuallyItems.DIAMATINE_CRYSTAL.get(), consumer);
-        Recipe.block(ActuallyBlocks.ENORI_CRYSTAL.getItem(), ActuallyItems.ENORI_CRYSTAL.get(), consumer);
-        Recipe.block(ActuallyBlocks.VOID_CRYSTAL.getItem(), ActuallyItems.VOID_CRYSTAL.get(), consumer);
-        Recipe.block(ActuallyBlocks.EMERADIC_CRYSTAL.getItem(), ActuallyItems.EMERADIC_CRYSTAL.get(), consumer);
     }
 
     @Override
@@ -280,10 +271,6 @@ public class BlockRecipeGenerator extends RecipeProvider {
 
         public static void slab(ItemLike result, ItemLike resource, Consumer<FinishedRecipe> consumer) {
             Recipe.shaped(result).patternSingleKey('Q', resource, "QQQ").save(consumer);
-        }
-
-        public static void block(ItemLike result, ItemLike resource, Consumer<FinishedRecipe> consumer) {
-            Recipe.shaped(result).patternSingleKey('Q', resource, "QQQ", "QQQ", "QQQ").save(consumer);
         }
 
         private static class Shapeless extends ShapelessRecipeBuilder {
