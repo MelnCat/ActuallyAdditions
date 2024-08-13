@@ -24,7 +24,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.network.PacketDistributor;
+import net.minecraftforge.network.PacketDistributor;
 
 import javax.annotation.Nonnull;
 
@@ -82,7 +82,7 @@ public class GuiRangedCollector extends AAScreen<ContainerRangedCollector> {
         data.putInt("X", this.collector.getBlockPos().getX());
         data.putInt("Y", this.collector.getBlockPos().getY());
         data.putInt("Z", this.collector.getBlockPos().getZ());
-        PacketDistributor.SERVER.noArg().send(new PacketClientToServer(data, PacketHandler.GUI_BUTTON_TO_TILE_HANDLER));
+        PacketHandler.sendToServer(new PacketClientToServer(data, PacketHandler.GUI_BUTTON_TO_TILE_HANDLER));
     }
 
 }

@@ -22,5 +22,6 @@
   ],
   "result": {
     "item": "actuallyadditions:lava_factory_controller"
-  }
+  },
+  "show_notification": true
 }

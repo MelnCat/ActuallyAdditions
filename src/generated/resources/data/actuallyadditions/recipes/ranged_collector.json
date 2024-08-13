@@ -22,5 +22,6 @@
   ],
   "result": {
     "item": "actuallyadditions:ranged_collector"
-  }
+  },
+  "show_notification": true
 }

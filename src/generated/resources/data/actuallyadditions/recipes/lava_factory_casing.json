@@ -15,5 +15,6 @@
   "result": {
     "count": 32,
     "item": "actuallyadditions:lava_factory_casing"
-  }
+  },
+  "show_notification": true
 }
