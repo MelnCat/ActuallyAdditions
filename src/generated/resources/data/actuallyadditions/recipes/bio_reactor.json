@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "actuallyadditions:bio_reactor"
-  }
+  },
+  "show_notification": true
 }

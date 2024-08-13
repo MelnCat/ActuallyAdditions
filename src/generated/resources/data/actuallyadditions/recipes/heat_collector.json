@@ -25,5 +25,6 @@
   ],
   "result": {
     "item": "actuallyadditions:heat_collector"
-  }
+  },
+  "show_notification": true
 }

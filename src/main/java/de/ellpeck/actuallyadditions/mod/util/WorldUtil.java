@@ -38,6 +38,7 @@ import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.level.BlockEvent.BreakEvent;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -264,7 +265,9 @@ public final class WorldUtil {
             BlockState state = level.getBlockState(pos);
 
             BreakEvent event = new BreakEvent(level, pos, state, fake);
-            if (!MinecraftForge.EVENT_BUS.post(event)) {
+            MinecraftForge.EVENT_BUS.post(event);
+            if (!event.isCanceled()) {
+                return ForgeEventFactory.doPlayerHarvestCheck(fake, state, true) ? 1F : 0F;
                 //return ForgeEventFactory.fireBlockHarvesting(drops, world, pos, state, 0, 1, false, fake); //TODO what?!
             }
         }

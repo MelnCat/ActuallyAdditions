@@ -147,7 +147,7 @@ public class TileEntityLongRangeBreaker extends TileEntityInventoryBase implemen
 
     @Override
     public Component getDisplayName() {
-        return Component.empty();
+        return Component.translatable("container.actuallyadditions.directionalBreaker");
     }
 
     @Nullable

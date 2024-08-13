@@ -22,5 +22,6 @@
   ],
   "result": {
     "item": "actuallyadditions:feeder"
-  }
+  },
+  "show_notification": true
 }
