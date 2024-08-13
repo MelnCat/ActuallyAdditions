@@ -35,9 +35,6 @@ public class ReconstructorRenderer implements BlockEntityRenderer<TileEntityAtom
         if(!tile.getLevel().getBlockState(tile.getBlockPos()).is(ActuallyBlocks.ATOMIC_RECONSTRUCTOR.get()))
             return; //TODO crash bandage
         ItemStack stack = tile.inv.getStackInSlot(0);
-        //default color 0x1b6dff
-        int color = tile.getBeamColor();
-        int length = 5;
         Direction direction = tile.getOrientation();
         float rot = 360.0f - direction.getOpposite().toYRot(); //Sigh...
         float pitch = 0;
@@ -47,14 +44,6 @@ public class ReconstructorRenderer implements BlockEntityRenderer<TileEntityAtom
             pitch = -90;
         }
 
-        if (stack.getItem() instanceof ILensItem) {
-            length = ((ILensItem) stack.getItem()).getLens().getDistance();
-        }
-
-        if (tile.getProgress() > 0) {
-            AssetUtil.renderLaser(matrices, buffer, 0, 0, 0, rot, pitch, length, 0, color, 0.8f * tile.getProgress(), 0.2f);
-            tile.decTTL();
-        }
         if (stack.isEmpty() || !(stack.getItem() instanceof ILensItem)) {
             return;
         }
