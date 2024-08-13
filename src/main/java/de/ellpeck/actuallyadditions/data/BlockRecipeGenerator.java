@@ -471,6 +471,16 @@ public class BlockRecipeGenerator extends RecipeProvider {
             .define('I', ActuallyBlocks.IRON_CASING.getItem())
             .define('S', ItemTags.SAPLINGS)
             .save(consumer);
+
+        // Heat Collector
+        Recipe.shaped(ActuallyBlocks.HEAT_COLLECTOR.getItem())
+            .pattern("IRI", "AEA", "ICI")
+            .define('I', Items.IRON_BARS)
+            .define('R', Items.REPEATER)
+            .define('A', ActuallyItems.ADVANCED_COIL.get())
+            .define('E', ActuallyItems.ENORI_CRYSTAL.get())
+            .define('C', ActuallyBlocks.IRON_CASING.get())
+            .save(consumer);
     }
 
     public static class Recipe {
