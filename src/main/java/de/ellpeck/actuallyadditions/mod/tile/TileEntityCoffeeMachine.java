@@ -185,7 +185,7 @@ public class TileEntityCoffeeMachine extends TileEntityInventoryBase implements 
         }
 
         ItemStack input = this.inv.getStackInSlot(SLOT_INPUT);
-        if (!input.isEmpty() && input.is(ActuallyItems.EMPTY_CUP) && this.inv.getStackInSlot(SLOT_OUTPUT).isEmpty() && this.coffeeCacheAmount >= CACHE_USE && this.tank.getFluid().getFluid() == Fluids.WATER && this.tank.getFluidAmount() >= WATER_USE) {
+        if (!input.isEmpty() && input.is(ActuallyItems.EMPTY_CUP.get()) && this.inv.getStackInSlot(SLOT_OUTPUT).isEmpty() && this.coffeeCacheAmount >= CACHE_USE && this.tank.getFluid().getFluid() == Fluids.WATER && this.tank.getFluidAmount() >= WATER_USE) {
             if (this.storage.getEnergyStored() >= ENERGY_USED) {
                 if (this.brewTime % 30 == 0) {
                     this.level.playSound(null, this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ(), AASounds.COFFEE_MACHINE.get(), SoundSource.BLOCKS, 0.1F, 1.0F);

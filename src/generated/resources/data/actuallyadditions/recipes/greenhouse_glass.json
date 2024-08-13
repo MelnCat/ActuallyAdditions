@@ -20,5 +20,6 @@
   "result": {
     "count": 2,
     "item": "actuallyadditions:greenhouse_glass"
-  }
+  },
+  "show_notification": true
 }

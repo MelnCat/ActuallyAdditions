@@ -11,7 +11,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.RandomBlockMa
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleProcessor;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
-import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
+import net.minecraftforge.event.server.ServerAboutToStartEvent;
 
 import java.util.ArrayList;
 import java.util.List;
