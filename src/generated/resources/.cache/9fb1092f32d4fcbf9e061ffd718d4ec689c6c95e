@@ -1,4 +1,4 @@
-// 1.20.1	2024-08-13T15:22:31.4947306	Recipes
+// 1.20.1	2024-08-13T15:32:07.3720542	Recipes
 4de296ae548e8eb110bbb662cf53e2310b54ab33 data/actuallyadditions/recipes/atomic_reconstructor.json
 b0367f5012651764931e8b8fd0c5bcca4e8614c0 data/actuallyadditions/recipes/battery_box.json
 cb4123f8822d56aeea50acab94f066fc63f89f1c data/actuallyadditions/recipes/black_quartz_block.json
@@ -51,6 +51,11 @@ af6ec611aeb7b500c5cf615b5329e94f7d102cea data/actuallyadditions/recipes/laser_re
 fdd3b3dade9e2d9f3587a33edc3f2874bce6c7f9 data/actuallyadditions/recipes/lava_factory_controller.json
 5170e5ba7668519e1ed80d3ab24925f5b865718a data/actuallyadditions/recipes/leaf_generator.json
 8efa9c2a9eedbd522fb34bacbe8a8e3110702dec data/actuallyadditions/recipes/oil_generator.json
+9cf6b481deb06e1c8a44575ef3ef458c7f3cd992 data/actuallyadditions/recipes/phantom_booster.json
+fd7261368e82e1ff4710da1f192ac53f89a45be0 data/actuallyadditions/recipes/phantom_energyface.json
+64f40b0e7c75ec6e014f30011ac455e00d76c693 data/actuallyadditions/recipes/phantom_itemface.json
+befbfb01149a193d5a507e61a5d9e3f0514478d5 data/actuallyadditions/recipes/phantom_liquiface.json
+7ea134d5a5745b9e6443d69f50f440eefdc607d1 data/actuallyadditions/recipes/phantom_redstoneface.json
 94a4d914c6f98290bc5d65625e2511dffe9e3453 data/actuallyadditions/recipes/placer.json
 d1c798a66f18326581f12e8bfdf8e742d62cfb0f data/actuallyadditions/recipes/powered_furnace.json
 d6f0166168e1d0f0f7e54335b920d6706f0a8c44 data/actuallyadditions/recipes/ranged_collector.json
