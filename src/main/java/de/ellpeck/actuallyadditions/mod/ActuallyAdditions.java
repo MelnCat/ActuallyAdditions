@@ -26,6 +26,7 @@ import de.ellpeck.actuallyadditions.mod.entity.EntityWorm;
 import de.ellpeck.actuallyadditions.mod.entity.InitEntities;
 import de.ellpeck.actuallyadditions.mod.event.CommonEvents;
 import de.ellpeck.actuallyadditions.mod.fluids.InitFluids;
+import de.ellpeck.actuallyadditions.mod.gen.ActuallyVillageCrops;
 import de.ellpeck.actuallyadditions.mod.gen.modifier.BoolConfigFeatureBiomeModifier;
 import de.ellpeck.actuallyadditions.mod.inventory.ActuallyContainers;
 import de.ellpeck.actuallyadditions.mod.items.ActuallyItems;
@@ -122,6 +123,7 @@ public class ActuallyAdditions {
         MinecraftForge.EVENT_BUS.register(new DungeonLoot());
         MinecraftForge.EVENT_BUS.addListener(ActuallyAdditions::reloadEvent);
         MinecraftForge.EVENT_BUS.addListener(Worm::onHoe);
+        NeoForge.EVENT_BUS.addListener(ActuallyVillageCrops::addNewVillageCrop);
         InitFluids.init(eventBus);
 
         eventBus.addListener(this::setup);
