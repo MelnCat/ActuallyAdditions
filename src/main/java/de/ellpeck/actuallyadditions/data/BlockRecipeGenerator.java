@@ -345,6 +345,22 @@ public class BlockRecipeGenerator extends RecipeProvider {
             .pattern("B", "B")
             .define('B', ActuallyBlocks.BLACK_QUARTZ.getItem())
             .save(consumer);
+
+        // Lava Factory Controller
+        Recipe.shaped(ActuallyBlocks.LAVA_FACTORY_CONTROLLER.getItem())
+            .pattern("ACA", "EAE", "BBB")
+            .define('B', Items.LAVA_BUCKET)
+            .define('A', ActuallyItems.ADVANCED_COIL.get())
+            .define('E', ActuallyBlocks.EMPOWERED_ENORI_CRYSTAL.get())
+            .define('C', ActuallyBlocks.IRON_CASING.get())
+            .save(consumer);
+
+        // Lava Casing
+        Recipe.shaped(ActuallyBlocks.LAVA_FACTORY_CASING.getItem(), 32)
+            .pattern("ECE")
+            .define('E', ActuallyBlocks.ENORI_CRYSTAL.get())
+            .define('C', ActuallyBlocks.IRON_CASING.get())
+            .save(consumer);
     }
 
     @Override
