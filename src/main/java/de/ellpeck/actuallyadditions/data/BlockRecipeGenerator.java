@@ -327,6 +327,24 @@ public class BlockRecipeGenerator extends RecipeProvider {
             .define('S', ItemTags.SAPLINGS)
             .define('E', ActuallyItems.EMPOWERED_PALIS_CRYSTAL.get())
             .save(consumer);
+
+        // Block of Black Quartz
+        Recipe.shaped(ActuallyBlocks.BLACK_QUARTZ.getItem())
+            .pattern("BB", "BB")
+            .define('B', ActuallyItems.BLACK_QUARTZ.get())
+            .save(consumer);
+
+        // Pillar of Black Quartz
+        Recipe.shaped(ActuallyBlocks.BLACK_QUARTZ_PILLAR.getItem())
+            .pattern("B", "B")
+            .define('B', ActuallyItems.BLACK_QUARTZ.get())
+            .save(consumer);
+
+        // Chiseled Block of Black Quartz
+        Recipe.shaped(ActuallyBlocks.CHISELED_BLACK_QUARTZ.getItem(), 2)
+            .pattern("B", "B")
+            .define('B', ActuallyBlocks.BLACK_QUARTZ.getItem())
+            .save(consumer);
     }
 
     @Override

@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "actuallyadditions:black_quartz_block"
-  }
+  },
+  "show_notification": true
 }
