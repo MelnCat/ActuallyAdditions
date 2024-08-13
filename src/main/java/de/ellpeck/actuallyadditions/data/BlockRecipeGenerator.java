@@ -454,6 +454,15 @@ public class BlockRecipeGenerator extends RecipeProvider {
             .define('R', ActuallyItems.RESTONIA_CRYSTAL.get())
             .define('C', ActuallyBlocks.ENDER_CASING.getItem())
             .save(consumer);
+
+        // Automatic Feeder
+        Recipe.shaped(ActuallyBlocks.FEEDER.getItem())
+            .pattern("PGP", "BCB", "PGP")
+            .define('P', ItemTags.PLANKS)
+            .define('G', Items.GOLDEN_CARROT)
+            .define('B', ActuallyItems.BASIC_COIL.get())
+            .define('C', ActuallyBlocks.WOOD_CASING.getItem())
+            .save(consumer);
     }
 
     public static class Recipe {
