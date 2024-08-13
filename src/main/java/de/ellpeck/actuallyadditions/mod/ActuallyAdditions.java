@@ -28,6 +28,9 @@ import de.ellpeck.actuallyadditions.mod.event.CommonEvents;
 import de.ellpeck.actuallyadditions.mod.fluids.InitFluids;
 import de.ellpeck.actuallyadditions.mod.gen.ActuallyVillages;
 import de.ellpeck.actuallyadditions.mod.gen.modifier.BoolConfigFeatureBiomeModifier;
+import de.ellpeck.actuallyadditions.mod.gen.village.ActuallyPOITypes;
+import de.ellpeck.actuallyadditions.mod.gen.village.ActuallyVillagers;
+import de.ellpeck.actuallyadditions.mod.gen.village.InitVillager;
 import de.ellpeck.actuallyadditions.mod.inventory.ActuallyContainers;
 import de.ellpeck.actuallyadditions.mod.items.ActuallyItems;
 import de.ellpeck.actuallyadditions.mod.items.ItemCoffee;
@@ -110,6 +113,8 @@ public class ActuallyAdditions {
         ActuallyTabs.init(eventBus);
         ActuallyRecipes.init(eventBus);
         AASounds.init(eventBus);
+        ActuallyVillagers.init(eventBus);
+        ActuallyPOITypes.init(eventBus);
         ActuallyContainers.CONTAINERS.register(eventBus);
         ENTITIES.register(eventBus);
 		BIOME_MODIFIER_SERIALIZERS.register(eventBus);
@@ -119,6 +124,7 @@ public class ActuallyAdditions {
 
         MinecraftForge.EVENT_BUS.addListener(this::serverStarted);
         MinecraftForge.EVENT_BUS.addListener(this::serverStopped);
+        MinecraftForge.EVENT_BUS.addListener(InitVillager::setupTrades);
         MinecraftForge.EVENT_BUS.register(new CommonEvents());
         MinecraftForge.EVENT_BUS.register(new DungeonLoot());
         MinecraftForge.EVENT_BUS.addListener(ActuallyAdditions::reloadEvent);

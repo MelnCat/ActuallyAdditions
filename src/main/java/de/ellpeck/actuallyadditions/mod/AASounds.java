@@ -14,7 +14,7 @@ public class AASounds {
     public static RegistryObject<SoundEvent> CRUSHER = SOUNDS.register("crusher", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ActuallyAdditions.MODID, "crusher")));
     public static RegistryObject<SoundEvent> COFFEE_MACHINE = SOUNDS.register("coffee_machine", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ActuallyAdditions.MODID, "coffee_machine")));
     public static RegistryObject<SoundEvent> DUH_DUH_DUH_DUUUH = SOUNDS.register("duh_duh_duh_duuuh", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ActuallyAdditions.MODID, "duh_duh_duh_duuuh")));
-
+    public static RegistryObject<SoundEvent> VILLAGER_WORK_ENGINEER = SOUNDS.register("villager.work_engineer", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ActuallyAdditions.MODID, "villager.work_engineer")));
 
     public static void init(IEventBus bus) {
         SOUNDS.register(bus);
