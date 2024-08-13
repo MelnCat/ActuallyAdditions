@@ -147,6 +147,7 @@ public class TileEntityFireworkBox extends TileEntityBase implements IEnergyDisp
                 break;
         }
 
+        this.setChanged();
         this.sendUpdate();
     }
 
@@ -301,7 +302,7 @@ public class TileEntityFireworkBox extends TileEntityBase implements IEnergyDisp
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int windowId, Inventory playerInventory, Player p_createMenu_3_) {
-        return new ContainerFireworkBox(windowId, playerInventory);
+        return new ContainerFireworkBox(windowId, playerInventory, this);
     }
 
     private static class WeightedFireworkType implements WeightedEntry {
