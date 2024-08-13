@@ -64,7 +64,7 @@ public class TileEntityEnervator extends TileEntityInventoryBase implements ISha
         if (t instanceof TileEntityEnervator tile) {
             tile.serverTick();
 
-            if (StackUtil.isValid(tile.inv.getStackInSlot(0)) && !StackUtil.isValid(tile.inv.getStackInSlot(1))) {
+            if (!tile.inv.getStackInSlot(0).isEmpty() && tile.inv.getStackInSlot(1).isEmpty()) {
                 if (tile.storage.getEnergyStored() < tile.storage.getMaxEnergyStored()) {
                     LazyOptional<IEnergyStorage> capability = tile.inv.getStackInSlot(0).getCapability(ForgeCapabilities.ENERGY, null);
 
@@ -130,7 +130,7 @@ public class TileEntityEnervator extends TileEntityInventoryBase implements ISha
 
     @Override
     public Component getDisplayName() {
-        return Component.empty();
+        return Component.translatable("container.actuallyadditions.enervator");
     }
 
     @Nullable

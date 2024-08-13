@@ -65,7 +65,7 @@ public class TileEntityEnergizer extends TileEntityInventoryBase implements Menu
         if (t instanceof TileEntityEnergizer tile) {
             tile.serverTick();
 
-            if (StackUtil.isValid(tile.inv.getStackInSlot(0)) && !StackUtil.isValid(tile.inv.getStackInSlot(1))) {
+            if (!tile.inv.getStackInSlot(0).isEmpty() && tile.inv.getStackInSlot(1).isEmpty()) {
                 if (tile.storage.getEnergyStored() > 0) {
                     int received = tile.inv.getStackInSlot(0).getCapability(ForgeCapabilities.ENERGY, null).map(cap -> cap.receiveEnergy(tile.storage.getEnergyStored(), false)).orElse(0);
                     boolean canTakeUp = tile.inv.getStackInSlot(0).getCapability(ForgeCapabilities.ENERGY, null).map(cap -> cap.getEnergyStored() >= cap.getMaxEnergyStored()).orElse(false);
@@ -108,7 +108,7 @@ public class TileEntityEnergizer extends TileEntityInventoryBase implements Menu
 
     @Override
     public Component getDisplayName() {
-        return Component.empty();
+        return Component.translatable("container.actuallyadditions.energizer");
     }
 
     @Nullable
