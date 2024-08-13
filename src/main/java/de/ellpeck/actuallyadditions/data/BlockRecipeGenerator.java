@@ -389,12 +389,22 @@ public class BlockRecipeGenerator extends RecipeProvider {
             .define('C', ActuallyBlocks.CRUSHER.get())
             .define('I', ActuallyBlocks.IRON_CASING.get())
             .save(consumer);
-    }
 
-    @Override
-    protected @Nullable CompletableFuture<?> saveAdvancement(CachedOutput output, FinishedRecipe finishedRecipe, JsonObject advancementJson) {
-        return null;
-        //Nope... maybe later...
+        // Energizer
+        Recipe.shaped(ActuallyBlocks.ENERGIZER.getItem())
+            .pattern("R R", "AIA", "R R")
+            .define('R', ActuallyItems.RESTONIA_CRYSTAL.get())
+            .define('A', ActuallyItems.ADVANCED_COIL.get())
+            .define('I', ActuallyBlocks.IRON_CASING.get())
+            .save(consumer);
+
+        // Enervator
+        Recipe.shaped(ActuallyBlocks.ENERVATOR.getItem())
+            .pattern(" R ", "AIA", " R ")
+            .define('R', ActuallyItems.RESTONIA_CRYSTAL.get())
+            .define('A', ActuallyItems.ADVANCED_COIL.get())
+            .define('I', ActuallyBlocks.IRON_CASING.get())
+            .save(consumer);
     }
 
     public static class Recipe {
@@ -484,5 +494,11 @@ public class BlockRecipeGenerator extends RecipeProvider {
                 super.save(consumerIn);
             }
         }
+    }
+
+    @Override
+    protected @Nullable CompletableFuture<?> saveAdvancement(CachedOutput output, FinishedRecipe finishedRecipe, JsonObject advancementJson) {
+        return null;
+        //Nope... maybe later...
     }
 }
