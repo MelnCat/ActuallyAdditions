@@ -1,0 +1,22 @@
+{
+  "type": "actuallyadditions:coffee_ingredient",
+  "ingredient": {
+    "item": "minecraft:iron_horse_armor"
+  },
+  "result": [
+    {
+      "chance": 1.0,
+      "result": {
+        "Count": 6,
+        "id": "minecraft:raw_iron"
+      }
+    },
+    {
+      "chance": 0.0,
+      "result": {
+        "Count": 0,
+        "id": "minecraft:air"
+      }
+    }
+  ]
+}

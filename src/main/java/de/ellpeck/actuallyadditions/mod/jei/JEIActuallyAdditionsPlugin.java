@@ -14,14 +14,17 @@ import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.blocks.ActuallyBlocks;
 import de.ellpeck.actuallyadditions.mod.crafting.ActuallyRecipes;
 import de.ellpeck.actuallyadditions.mod.crafting.CoffeeIngredientRecipe;
+import de.ellpeck.actuallyadditions.mod.crafting.CrushingRecipe;
 import de.ellpeck.actuallyadditions.mod.crafting.EmpowererRecipe;
 import de.ellpeck.actuallyadditions.mod.crafting.FermentingRecipe;
 import de.ellpeck.actuallyadditions.mod.crafting.LaserRecipe;
 import de.ellpeck.actuallyadditions.mod.crafting.PressingRecipe;
+import de.ellpeck.actuallyadditions.mod.inventory.gui.CrusherScreen;
 import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiCoffeeMachine;
 import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiFurnaceDouble;
 import de.ellpeck.actuallyadditions.mod.items.ActuallyItems;
 import de.ellpeck.actuallyadditions.mod.jei.coffee.CoffeeMachineCategory;
+import de.ellpeck.actuallyadditions.mod.jei.crusher.CrusherCategory;
 import de.ellpeck.actuallyadditions.mod.jei.empowerer.EmpowererRecipeCategory;
 import de.ellpeck.actuallyadditions.mod.jei.fermenting.FermentingCategory;
 import de.ellpeck.actuallyadditions.mod.jei.laser.LaserRecipeCategory;
@@ -53,6 +56,7 @@ public class JEIActuallyAdditionsPlugin implements IModPlugin {
     public static final RecipeType<LaserRecipe> LASER = RecipeType.create(ActuallyAdditions.MODID, "laser", LaserRecipe.class);
     public static final RecipeType<EmpowererRecipe> EMPOWERER = RecipeType.create(ActuallyAdditions.MODID, "empowerer", EmpowererRecipe.class);
     public static final RecipeType<CoffeeIngredientRecipe> COFFEE_MACHINE = RecipeType.create(ActuallyAdditions.MODID, "coffee_machine", CoffeeIngredientRecipe.class);
+    public static final RecipeType<CrushingRecipe> CRUSHING = RecipeType.create(ActuallyAdditions.MODID, "crushing", CrushingRecipe.class);
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry) {
@@ -63,6 +67,7 @@ public class JEIActuallyAdditionsPlugin implements IModPlugin {
         registry.addRecipeCategories(new EmpowererRecipeCategory(helpers.getGuiHelper()));
         registry.addRecipeCategories(new CoffeeMachineCategory(helpers.getGuiHelper()));
         registry.addRecipeCategories(new PressingCategory(helpers.getGuiHelper()));
+        registry.addRecipeCategories(new CrusherCategory(helpers.getGuiHelper()));
     }
 
     @Override
@@ -74,9 +79,9 @@ public class JEIActuallyAdditionsPlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.EMPOWERER.getItem()), EMPOWERER);
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.COFFEE_MACHINE.getItem()), COFFEE_MACHINE);
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.CANOLA_PRESS.getItem()), PRESSING);
+        registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.CRUSHER.getItem()), CRUSHING);
+        registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.CRUSHER_DOUBLE.getItem()), CRUSHING);
 
-//        registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.blockGrinder.get()), CrusherRecipeCategory.NAME);
-//        registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.blockGrinderDouble.get()), CrusherRecipeCategory.NAME);
 //        registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.blockAtomicReconstructor.get()), ReconstructorRecipeCategory.NAME);
 //        registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.blockEmpowerer.get()), EmpowererRecipeCategory.NAME);
 //        registry.addRecipeCatalyst(new ItemStack(ActuallyItems.itemBooklet.get()), BookletRecipeCategory.NAME);
@@ -92,6 +97,7 @@ public class JEIActuallyAdditionsPlugin implements IModPlugin {
         registry.addRecipes(EMPOWERER, level.getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.EMPOWERING.get()));
         registry.addRecipes(COFFEE_MACHINE, level.getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.COFFEE_INGREDIENT.get()));
         registry.addRecipes(PRESSING, level.getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.PRESSING.get()));
+        registry.addRecipes(CRUSHING, level.getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.CRUSHING.get()));
 
         //registry.addRecipes(ActuallyAdditionsAPI.BOOKLET_PAGES_WITH_ITEM_OR_FLUID_DATA, BookletRecipeCategory.NAME);
         //registry.addRecipes(ActuallyAdditionsAPI.CRUSHER_RECIPES, CrusherRecipeCategory.NAME);
@@ -100,6 +106,8 @@ public class JEIActuallyAdditionsPlugin implements IModPlugin {
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         registration.addRecipeClickArea(GuiCoffeeMachine.class, 53, 42, 22, 16, COFFEE_MACHINE);
+        registration.addRecipeClickArea(CrusherScreen.class, 80, 40, 24, 22, CRUSHING);
+        registration.addRecipeClickArea(CrusherScreen.CrusherDoubleScreen.class, 51, 40, 74, 22, CRUSHING);
         registration.addRecipeClickArea(GuiFurnaceDouble.class, 51, 40, 74, 22, RecipeTypes.SMELTING);
     }
 

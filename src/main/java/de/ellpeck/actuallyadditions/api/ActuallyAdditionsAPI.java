@@ -142,13 +142,14 @@ public final class ActuallyAdditionsAPI {
     /**
      * Adds a Recipe to the Crusher Recipe Registry
      *
+     * @param id              The id of the recipe
      * @param input           The input as an ItemStack
      * @param outputOne       The first output as an ItemStack
      * @param outputTwo       The second output as an ItemStack (can be ItemStack.EMPTY if there should be none)
      * @param outputTwoChance The chance of the second output (0 won't occur at all, 100 will all the time)
      */
-    public static void addCrusherRecipe(ItemStack input, ItemStack outputOne, ItemStack outputTwo, int outputTwoChance) {
-        CRUSHER_RECIPES.add(new CrushingRecipe(Ingredient.of(input), outputOne, 1.0f, outputTwo.isEmpty()
+    public static void addCrusherRecipe(ResourceLocation id, ItemStack input, ItemStack outputOne, ItemStack outputTwo, int outputTwoChance) {
+        CRUSHER_RECIPES.add(new CrushingRecipe(id, Ingredient.of(input), outputOne, 1.0f, outputTwo.isEmpty()
             ? ItemStack.EMPTY
             : outputTwo, outputTwoChance));
     }
@@ -156,13 +157,14 @@ public final class ActuallyAdditionsAPI {
     /**
      * Adds a Recipe to the Crusher Recipe Registry
      *
+     * @param id              The id of the recipe
      * @param input           The input as an Ingredient
      * @param outputOne       The first output as an ItemStack
      * @param outputTwo       The second output as an ItemStack (can be ItemStack.EMPTY if there should be none)
      * @param outputTwoChance The chance of the second output (0 won't occur at all, 100 will all the time)
      */
-    public static void addCrusherRecipe(Ingredient input, ItemStack outputOne, ItemStack outputTwo, int outputTwoChance) {
-        CRUSHER_RECIPES.add(new CrushingRecipe(input, outputOne, 1.0f, outputTwo.isEmpty()
+    public static void addCrusherRecipe(ResourceLocation id, Ingredient input, ItemStack outputOne, ItemStack outputTwo, int outputTwoChance) {
+        CRUSHER_RECIPES.add(new CrushingRecipe(id, input, outputOne, 1.0f, outputTwo.isEmpty()
             ? ItemStack.EMPTY
             : outputTwo, outputTwoChance));
     }

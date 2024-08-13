@@ -1,0 +1,22 @@
+{
+  "type": "actuallyadditions:coffee_ingredient",
+  "ingredient": {
+    "item": "minecraft:iron_ore"
+  },
+  "result": [
+    {
+      "chance": 1.0,
+      "result": {
+        "Count": 2,
+        "id": "minecraft:raw_iron"
+      }
+    },
+    {
+      "chance": 0.2,
+      "result": {
+        "Count": 1,
+        "id": "minecraft:raw_gold"
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "actuallyadditions:coffee_ingredient",
+  "ingredient": {
+    "item": "minecraft:lapis_ore"
+  },
+  "result": [
+    {
+      "chance": 1.0,
+      "result": {
+        "Count": 12,
+        "id": "minecraft:lapis_lazuli"
+      }
+    },
+    {
+      "chance": 0.0,
+      "result": {
+        "Count": 0,
+        "id": "minecraft:air"
+      }
+    }
+  ]
+}
