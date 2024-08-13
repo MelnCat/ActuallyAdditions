@@ -6,6 +6,7 @@ import de.ellpeck.actuallyadditions.mod.config.conditions.BoolConfigCondition;
 import de.ellpeck.actuallyadditions.mod.gen.ActuallyBiomeModifiers;
 import de.ellpeck.actuallyadditions.mod.gen.ActuallyConfiguredFeatures;
 import de.ellpeck.actuallyadditions.mod.gen.ActuallyPlacedFeatures;
+import de.ellpeck.actuallyadditions.mod.gen.ActuallyProcessorLists;
 import de.ellpeck.actuallyadditions.mod.misc.ActuallyDamageTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
@@ -74,7 +75,8 @@ public class ActuallyAdditionsData {
 		});
 		registryBuilder.add(Registries.CONFIGURED_FEATURE, ActuallyConfiguredFeatures::bootstrap);
 		registryBuilder.add(Registries.PLACED_FEATURE, ActuallyPlacedFeatures::bootstrap);
-		registryBuilder.add(ForgeRegistries.Keys.BIOME_MODIFIERS, ActuallyBiomeModifiers::bootstrap);
+		registryBuilder.add(Registries.PROCESSOR_LIST, ActuallyProcessorLists::bootstrap);
+        registryBuilder.add(ForgeRegistries.Keys.BIOME_MODIFIERS, ActuallyBiomeModifiers::bootstrap);
 		// We need the BIOME registry to be present, so we can use a biome tag, doesn't matter that it's empty
 		registryBuilder.add(Registries.BIOME, context -> {
 		});

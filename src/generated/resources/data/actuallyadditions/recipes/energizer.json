@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "actuallyadditions:energizer"
-  }
+  },
+  "show_notification": true
 }
