@@ -17,6 +17,7 @@ import de.ellpeck.actuallyadditions.mod.crafting.CoffeeIngredientRecipe;
 import de.ellpeck.actuallyadditions.mod.crafting.EmpowererRecipe;
 import de.ellpeck.actuallyadditions.mod.crafting.FermentingRecipe;
 import de.ellpeck.actuallyadditions.mod.crafting.LaserRecipe;
+import de.ellpeck.actuallyadditions.mod.crafting.PressingRecipe;
 import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiCoffeeMachine;
 import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiFurnaceDouble;
 import de.ellpeck.actuallyadditions.mod.items.ActuallyItems;
@@ -24,6 +25,7 @@ import de.ellpeck.actuallyadditions.mod.jei.coffee.CoffeeMachineCategory;
 import de.ellpeck.actuallyadditions.mod.jei.empowerer.EmpowererRecipeCategory;
 import de.ellpeck.actuallyadditions.mod.jei.fermenting.FermentingCategory;
 import de.ellpeck.actuallyadditions.mod.jei.laser.LaserRecipeCategory;
+import de.ellpeck.actuallyadditions.mod.jei.pressing.PressingCategory;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
@@ -47,6 +49,7 @@ public class JEIActuallyAdditionsPlugin implements IModPlugin {
     }
 
     public static final RecipeType<FermentingRecipe> FERMENTING = RecipeType.create(ActuallyAdditions.MODID, "fermenting", FermentingRecipe.class);
+    public static final RecipeType<PressingRecipe> PRESSING = RecipeType.create(ActuallyAdditions.MODID, "pressing", PressingRecipe.class);
     public static final RecipeType<LaserRecipe> LASER = RecipeType.create(ActuallyAdditions.MODID, "laser", LaserRecipe.class);
     public static final RecipeType<EmpowererRecipe> EMPOWERER = RecipeType.create(ActuallyAdditions.MODID, "empowerer", EmpowererRecipe.class);
     public static final RecipeType<CoffeeIngredientRecipe> COFFEE_MACHINE = RecipeType.create(ActuallyAdditions.MODID, "coffee_machine", CoffeeIngredientRecipe.class);
@@ -59,6 +62,7 @@ public class JEIActuallyAdditionsPlugin implements IModPlugin {
         registry.addRecipeCategories(new LaserRecipeCategory(helpers.getGuiHelper()));
         registry.addRecipeCategories(new EmpowererRecipeCategory(helpers.getGuiHelper()));
         registry.addRecipeCategories(new CoffeeMachineCategory(helpers.getGuiHelper()));
+        registry.addRecipeCategories(new PressingCategory(helpers.getGuiHelper()));
     }
 
     @Override
@@ -69,6 +73,7 @@ public class JEIActuallyAdditionsPlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.ATOMIC_RECONSTRUCTOR.getItem()), LASER);
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.EMPOWERER.getItem()), EMPOWERER);
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.COFFEE_MACHINE.getItem()), COFFEE_MACHINE);
+        registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.CANOLA_PRESS.getItem()), PRESSING);
 
 //        registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.blockGrinder.get()), CrusherRecipeCategory.NAME);
 //        registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.blockGrinderDouble.get()), CrusherRecipeCategory.NAME);
@@ -86,6 +91,7 @@ public class JEIActuallyAdditionsPlugin implements IModPlugin {
         registry.addRecipes(LASER, level.getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.LASER.get()));
         registry.addRecipes(EMPOWERER, level.getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.EMPOWERING.get()));
         registry.addRecipes(COFFEE_MACHINE, level.getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.COFFEE_INGREDIENT.get()));
+        registry.addRecipes(PRESSING, level.getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.PRESSING.get()));
 
         //registry.addRecipes(ActuallyAdditionsAPI.BOOKLET_PAGES_WITH_ITEM_OR_FLUID_DATA, BookletRecipeCategory.NAME);
         //registry.addRecipes(ActuallyAdditionsAPI.CRUSHER_RECIPES, CrusherRecipeCategory.NAME);
