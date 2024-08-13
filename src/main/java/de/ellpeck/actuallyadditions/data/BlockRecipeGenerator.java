@@ -370,6 +370,25 @@ public class BlockRecipeGenerator extends RecipeProvider {
             .define('H', Items.HOPPER)
             .define('C', ActuallyBlocks.IRON_CASING.get())
             .save(consumer);
+
+        // Crusher
+        Recipe.shaped(ActuallyBlocks.CRUSHER.getItem())
+            .pattern("RFC", "BIB", "CFR")
+            .define('R', ActuallyItems.RESTONIA_CRYSTAL.get())
+            .define('F', Items.FLINT)
+            .define('C', Tags.Items.COBBLESTONE)
+            .define('I', ActuallyBlocks.IRON_CASING.get())
+            .define('B', ActuallyItems.BASIC_COIL.get())
+            .save(consumer);
+
+        // Double Crusher
+        Recipe.shaped(ActuallyBlocks.CRUSHER_DOUBLE.getItem())
+            .pattern("SAS", "CIC", "SAS")
+            .define('S', Tags.Items.COBBLESTONE)
+            .define('A', ActuallyItems.ADVANCED_COIL.get())
+            .define('C', ActuallyBlocks.CRUSHER.get())
+            .define('I', ActuallyBlocks.IRON_CASING.get())
+            .save(consumer);
     }
 
     @Override
