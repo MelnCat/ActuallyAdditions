@@ -201,7 +201,7 @@ public class CrushingRecipe implements Recipe<Container> {
 
         @Override
         public RecipeSerializer<?> getType() {
-            return ActuallyRecipes.COFFEE_INGREDIENT_RECIPE.get();
+            return ActuallyRecipes.CRUSHING_RECIPE.get();
         }
 
         @Nullable

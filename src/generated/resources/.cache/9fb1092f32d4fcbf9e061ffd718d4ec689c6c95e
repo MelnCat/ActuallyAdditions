@@ -1,4 +1,4 @@
-// 1.20.1	2024-08-13T03:05:34.2965238	Recipes
+// 1.20.1	2024-08-13T04:22:43.4135095	Recipes
 4de296ae548e8eb110bbb662cf53e2310b54ab33 data/actuallyadditions/recipes/atomic_reconstructor.json
 b0367f5012651764931e8b8fd0c5bcca4e8614c0 data/actuallyadditions/recipes/battery_box.json
 cb4123f8822d56aeea50acab94f066fc63f89f1c data/actuallyadditions/recipes/black_quartz_block.json
@@ -20,6 +20,8 @@ aafa8978d353bcd6f131b89f0c291f9ec7761944 data/actuallyadditions/recipes/canola_p
 36f458f41cf188e1800abdf3b879f7932d289bbe data/actuallyadditions/recipes/chiseled_black_quartz_wall.json
 73c5a26b090c7329e36acf5e4837665113bfc527 data/actuallyadditions/recipes/coal_generator.json
 2a409ab7d053c804dfb24aff9de9584efb74c76d data/actuallyadditions/recipes/coffee_machine.json
+df19a4470787928d813168675f8aefbd4394a81b data/actuallyadditions/recipes/crusher.json
+604e6e49d94fc3f06a3f58efaee2f2c206cb0cac data/actuallyadditions/recipes/crusher_double.json
 613a00e50d85131115f6ae50064dea74db45cd5d data/actuallyadditions/recipes/display_stand.json
 c53a91a7bd542620e61f0c468392a6a948001bdf data/actuallyadditions/recipes/dropper.json
 0c4a01aaf3773457199127f9311c0c97b6de89f9 data/actuallyadditions/recipes/empowerer.json

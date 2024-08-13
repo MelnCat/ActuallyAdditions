@@ -25,5 +25,6 @@
   ],
   "result": {
     "item": "actuallyadditions:crusher"
-  }
+  },
+  "show_notification": true
 }
