@@ -188,4 +188,8 @@ public class    ActuallyAdditions {
         // TODO: [port] check if this is needed
         WorldData.clear();
     }
+
+    public static ResourceLocation modLoc(String path) {
+        return ResourceLocation.tryBuild(MODID, path);
+    }
 }
