@@ -78,7 +78,7 @@ public class BlockOilGenerator extends DirectionalBlock.Container {
         return InteractionResult.SUCCESS;
     }
 
-    @Override
+/*    @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         switch (state.getValue(FACING)) {
             case EAST:
@@ -90,5 +90,10 @@ public class BlockOilGenerator extends DirectionalBlock.Container {
             default:
                 return VoxelShapes.OilGeneratorShapes.SHAPE_N;
         }
+    }*/
+
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        return VoxelShapes.SIMPLE_GENERATOR_SHAPE;
     }
 }
