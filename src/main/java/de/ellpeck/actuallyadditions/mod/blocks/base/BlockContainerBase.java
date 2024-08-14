@@ -93,7 +93,7 @@ public abstract class BlockContainerBase extends Block implements EntityBlock {
         if (stack.getItem() == CommonConfig.Other.redstoneConfigureItem) {
             BlockEntity tile = world.getBlockEntity(pos);
             if (tile instanceof TileEntityBase base) {
-	            if (!world.isClientSide && base.isRedstoneToggle()) {
+                if (!world.isClientSide && base.isRedstoneToggle()) {
                     base.isPulseMode = !base.isPulseMode;
                     base.setChanged();
                     base.sendUpdate();
@@ -109,7 +109,7 @@ public abstract class BlockContainerBase extends Block implements EntityBlock {
         if (!world.isClientSide) {
             BlockEntity tile = world.getBlockEntity(pos);
             if (tile instanceof TileEntityBase base) {
-	            if (base.respondsToPulses()) {
+                if (base.respondsToPulses()) {
                     base.activateOnPulse();
                 }
             }
@@ -121,7 +121,7 @@ public abstract class BlockContainerBase extends Block implements EntityBlock {
 
         BlockEntity tile = world.getBlockEntity(pos);
         if (tile instanceof TileEntityBase base) {
-	        if (base.shouldSaveDataOnChangeOrWorldStart()) {
+            if (base.shouldSaveDataOnChangeOrWorldStart()) {
                 base.saveDataOnChangeOrWorldStart();
             }
         }
@@ -144,7 +144,7 @@ public abstract class BlockContainerBase extends Block implements EntityBlock {
         if (!world.isClientSide) {
             BlockEntity tile = world.getBlockEntity(pos);
             if (tile instanceof TileEntityBase base) {
-	            boolean powered = world.getBestNeighborSignal(pos) > 0;
+                boolean powered = world.getBestNeighborSignal(pos) > 0;
                 boolean wasPowered = base.isRedstonePowered;
                 if (powered && !wasPowered) {
                     if (base.respondsToPulses()) {
@@ -177,7 +177,7 @@ public abstract class BlockContainerBase extends Block implements EntityBlock {
         if (stack.hasTag()) {
             BlockEntity tile = world.getBlockEntity(pos);
             if (tile instanceof TileEntityBase base) {
-	            CompoundTag compound = stack.getOrCreateTag().getCompound("Data");
+                CompoundTag compound = stack.getOrCreateTag().getCompound("Data");
                 base.readSyncableNBT(compound, TileEntityBase.NBTType.SAVE_BLOCK);
             }
         }

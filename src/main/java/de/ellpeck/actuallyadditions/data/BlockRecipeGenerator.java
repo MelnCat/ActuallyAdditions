@@ -319,6 +319,16 @@ public class BlockRecipeGenerator extends RecipeProvider {
             .define('F', ActuallyBlocks.BREAKER.get())
             .save(consumer);
 
+        // Phantom Placer
+        Recipe.shapeless(ActuallyBlocks.PHANTOM_PLACER.get())
+            .ingredients(ActuallyBlocks.PLACER.get(), ActuallyBlocks.PHANTOM_ITEMFACE.get())
+            .save(consumer);
+
+        // Phantom Breaker
+        Recipe.shapeless(ActuallyBlocks.PHANTOM_BREAKER.get())
+            .ingredients(ActuallyBlocks.BREAKER.get(), ActuallyBlocks.PHANTOM_ITEMFACE.get())
+            .save(consumer);
+
         // Powered furnace.
         Recipe.shaped(ActuallyBlocks.POWERED_FURNACE.getItem())
             .pattern("EXC", "FIF", "CXE")
