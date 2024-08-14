@@ -14,6 +14,7 @@ public class ActuallyLootModifiers {
 
 	public static final Supplier<Codec<? extends IGlobalLootModifier>> BAT_LOOT = GLM.register("bat_loot", BatLootModifier.CODEC);
 	public static final Supplier<Codec<? extends IGlobalLootModifier>> DUNGEON_LOOT = GLM.register("dungeon_loot", DungeonLootModifier.CODEC);
+	public static final Supplier<Codec<? extends IGlobalLootModifier>> SOLID_XP_LOOT = GLM.register("solid_xp_loot", SolidXpLootModifier.CODEC);
 
 	public static void init(IEventBus evt) {
 		GLM.register(evt);

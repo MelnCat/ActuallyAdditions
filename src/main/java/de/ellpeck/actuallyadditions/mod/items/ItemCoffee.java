@@ -93,7 +93,7 @@ public class ItemCoffee extends ItemBase { //TODO: Do we want to change the satu
 	    if (effects != null) {
 		    for (MobEffectInstance effect : effects) {
 			    tooltip.add(Component.translatable(effect.getDescriptionId())
-				    .append(" " + (effect.getAmplifier() + 1) + ", " + StringUtil.formatTickDuration(effect.getDuration()))
+				    .append(" " + (effect.getAmplifier() + 1) + ", " + StringUtil.formatTickDuration(effect.getDuration() * 20))
 				    .withStyle(ChatFormatting.GRAY));
 		    }
 	    } else {

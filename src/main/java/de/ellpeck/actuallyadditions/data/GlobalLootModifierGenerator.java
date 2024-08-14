@@ -3,11 +3,14 @@ package de.ellpeck.actuallyadditions.data;
 import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.lootmodifier.BatLootModifier;
 import de.ellpeck.actuallyadditions.mod.lootmodifier.DungeonLootModifier;
+import de.ellpeck.actuallyadditions.mod.lootmodifier.SolidXpLootModifier;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.AnyOfCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition;
 import net.minecraftforge.common.data.GlobalLootModifierProvider;
 import net.minecraftforge.common.loot.LootTableIdCondition;
@@ -38,5 +41,9 @@ public class GlobalLootModifierGenerator extends GlobalLootModifierProvider {
 								LootTableIdCondition.builder(BuiltInLootTables.WOODLAND_MANSION)
 						).build()
 				}));
+		this.add("solid_xp_drop", new SolidXpLootModifier(
+			new LootItemCondition[]{
+				LootItemEntityPropertyCondition.entityPresent(LootContext.EntityTarget.THIS).build()
+			}));
 	}
 }

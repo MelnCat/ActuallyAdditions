@@ -1,0 +1,10 @@
+{
+  "type": "actuallyadditions:solid_xp_loot",
+  "conditions": [
+    {
+      "condition": "minecraft:entity_properties",
+      "entity": "this",
+      "predicate": {}
+    }
+  ]
+}

@@ -1,7 +1,8 @@
 {
   "entries": [
     "actuallyadditions:dungeon_loot",
-    "actuallyadditions:bat_loot"
+    "actuallyadditions:bat_loot",
+    "actuallyadditions:solid_xp_drop"
   ],
   "replace": false
 }

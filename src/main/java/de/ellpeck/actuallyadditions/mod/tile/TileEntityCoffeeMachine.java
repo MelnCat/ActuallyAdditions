@@ -197,7 +197,7 @@ public class TileEntityCoffeeMachine extends TileEntityInventoryBase implements 
                     this.brewTime = 0;
                     ItemStack output = new ItemStack(ActuallyItems.COFFEE_CUP.get());
                     for (int i = 3; i < this.inv.getSlots(); i++) {
-                        if (StackUtil.isValid(this.inv.getStackInSlot(i))) {
+                        if (!this.inv.getStackInSlot(i).isEmpty()) {
                             CoffeeIngredientRecipe recipeHolder = ItemCoffee.getIngredientRecipeFromStack(this.inv.getStackInSlot(i));
                             if (recipeHolder != null) {
                                 if (recipeHolder.effect(output)) {

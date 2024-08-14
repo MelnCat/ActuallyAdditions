@@ -86,6 +86,7 @@ public class CommonConfig {
         public static ForgeConfigSpec.BooleanValue SOLID_XP_ALWAYS_ORBS;
         public static ForgeConfigSpec.BooleanValue DO_UPDATE_CHECK;
         public static ForgeConfigSpec.BooleanValue UPDATE_CHECK_VERSION_SPECIFIC;
+        public static ForgeConfigSpec.BooleanValue DO_XP_DROPS;
         public static ForgeConfigSpec.BooleanValue DO_CAT_DROPS;
         public static ForgeConfigSpec.BooleanValue DO_BAT_DROPS;
         public static ForgeConfigSpec.IntValue FUR_CHANCE;
@@ -118,6 +119,10 @@ public class CommonConfig {
 
             UPDATE_CHECK_VERSION_SPECIFIC = BUILDER.comment("If true, Actually Additions' Update Checker searches for updates for the Minecraft Version you currently play on.")
                 .define("versionSpecificUpdateChecker", true);
+
+
+            DO_XP_DROPS = BUILDER.comment("If true, Mobs will randomly drop solidified XP occasionally.")
+                .define("doXpDrops", true);
 
             DO_CAT_DROPS = BUILDER.comment("If true, Cats drop Hairy Balls Occasionally.")
                 .define("doCatDrops", true);
