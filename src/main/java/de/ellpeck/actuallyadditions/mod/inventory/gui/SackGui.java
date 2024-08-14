@@ -88,8 +88,8 @@ public class SackGui extends AAScreen<SackContainer> {
             text.add(TextFormatting.BOLD + "Auto-Insert " + (this.container.autoInsert
                 ? "On"
                 : "Off"));
-            text.addAll(this.font.listFormattedStringToWidth("Turn this on to make items that get picked up automatically go into the bag.", 200));
-            text.addAll(this.font.listFormattedStringToWidth(TextFormatting.GRAY + "" + TextFormatting.ITALIC + "Note that this WON'T work when you are holding the bag in your hand.", 200));
+            text.addAll(this.font.listFormattedStringToWidth("Turn this on to make items that get picked up automatically go into the sack.", 200));
+            text.addAll(this.font.listFormattedStringToWidth(TextFormatting.GRAY + "" + TextFormatting.ITALIC + "Note that this WON'T work when you are holding the sack in your hand.", 200));
             this.renderToolTip(stack, text, mouseX, mouseY, this.getMinecraft().font);
         }*/
     }
