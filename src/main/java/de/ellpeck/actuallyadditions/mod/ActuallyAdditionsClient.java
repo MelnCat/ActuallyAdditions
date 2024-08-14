@@ -33,6 +33,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.game.ServerboundPlayerActionPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.fml.ModList;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -79,8 +80,11 @@ public class ActuallyAdditionsClient {
                         (stack, level, entity, tintIndex) -> "snail mail".equalsIgnoreCase(stack.getHoverName().getString()) ? 1F : 0F));
 
         setupRenderLayers();
-        
-        PatchouliPages.init();
+
+
+        if (ModList.get().isLoaded("patchouli")) {
+            PatchouliPages.init();
+        }
     }
 
     private static void setupRenderLayers() {
