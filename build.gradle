@@ -27,13 +27,30 @@ minecraft {
             workingDirectory project.file('run')
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+	        // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
 
             mods {
                 actuallyadditions {
                     source sourceSets.main
                 }
             }
+	        property 'forge.enabledGameTestNamespaces', "actuallyadditions"
+
         }
+	    client2 {
+            workingDirectory project.file('run')
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            args '--username', 'Dev2'
+            // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
+
+            mods {
+                actuallyadditions {
+                    source sourceSets.main
+                }
+            }
+            property 'forge.enabledGameTestNamespaces', "actuallyadditions"
+	    }
 
         server {
             workingDirectory project.file('run')
