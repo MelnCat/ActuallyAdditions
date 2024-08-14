@@ -1,6 +1,7 @@
 package de.ellpeck.actuallyadditions.mod.crafting;
 
 import com.google.gson.JsonObject;
+import de.ellpeck.actuallyadditions.mod.util.GsonUtil;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.network.FriendlyByteBuf;
@@ -97,8 +98,7 @@ public class MiningLensRecipe implements Recipe<Container>, WeightedEntry {
         public MiningLensRecipe fromJson(@Nonnull ResourceLocation pRecipeId, @Nonnull JsonObject pJson) {
             Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(pJson, "ingredient"));
             int weight = GsonHelper.getAsInt(pJson, "weight");
-            JsonObject resultObject = GsonHelper.getAsJsonObject(pJson, "result");
-            ItemStack result = new ItemStack(GsonHelper.getAsItem(resultObject, "item"));
+            ItemStack result = GsonUtil.getItemStack(pJson, "result");
 
             return new MiningLensRecipe(pRecipeId, ingredient, weight, result);
         }

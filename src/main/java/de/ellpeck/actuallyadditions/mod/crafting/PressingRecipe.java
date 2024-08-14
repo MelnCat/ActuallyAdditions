@@ -2,6 +2,7 @@ package de.ellpeck.actuallyadditions.mod.crafting;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import de.ellpeck.actuallyadditions.mod.util.GsonUtil;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.network.FriendlyByteBuf;
@@ -86,13 +87,7 @@ public class PressingRecipe implements Recipe<Container> {
         @Override
         public PressingRecipe fromJson(@Nonnull ResourceLocation pRecipeId, @Nonnull JsonObject pJson) {
             Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(pJson, "ingredient"));
-            JsonObject result = pJson.getAsJsonObject("result");
-            ResourceLocation fluidRes = new ResourceLocation(GsonHelper.getAsString(result, "fluid"));
-            int fluidAmount = GsonHelper.getAsInt(result, "amount");
-            Fluid fluid = ForgeRegistries.FLUIDS.getValue(fluidRes);
-            if(fluid == null)
-                throw new JsonParseException("Unknown fluid '" + fluidRes + "'");
-            FluidStack output = new FluidStack(fluid, fluidAmount);
+            FluidStack output = GsonUtil.getFluidStack(pJson, "fluid");
 
             return new PressingRecipe(pRecipeId, ingredient, output);
         }
@@ -132,10 +127,7 @@ public class PressingRecipe implements Recipe<Container> {
         @Override
         public void serializeRecipeData(JsonObject pJson) {
             pJson.add("ingredient", input.toJson());
-            JsonObject result = new JsonObject();
-            result.addProperty("fluid", ForgeRegistries.FLUIDS.getKey(output.getFluid()).toString());
-            result.addProperty("amount", output.getAmount());
-            pJson.add("result", result);
+            GsonUtil.setFluidStack(pJson, "fluid", output);
         }
 
         @Override

@@ -3,6 +3,7 @@ package de.ellpeck.actuallyadditions.mod.crafting;
 import com.google.gson.JsonObject;
 import de.ellpeck.actuallyadditions.api.ActuallyAdditionsAPI;
 import de.ellpeck.actuallyadditions.mod.blocks.ActuallyBlocks;
+import de.ellpeck.actuallyadditions.mod.util.GsonUtil;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.network.FriendlyByteBuf;
@@ -112,8 +113,7 @@ public class LaserRecipe implements Recipe<Container> {
         public LaserRecipe fromJson(@Nonnull ResourceLocation pRecipeId, @Nonnull JsonObject pJson) {
             Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(pJson, "ingredient"));
             int energy = GsonHelper.getAsInt(pJson, "energy");
-            JsonObject resultObject = GsonHelper.getAsJsonObject(pJson, "result");
-            ItemStack result = new ItemStack(GsonHelper.getAsItem(resultObject, "item"));
+            ItemStack result = GsonUtil.getItemStack(pJson, "result");
 
             return new LaserRecipe(pRecipeId, result, ingredient, energy);
         }

@@ -12,7 +12,7 @@ def buildSuffix = System.getenv('BUILD_NUMBER') ? "-b${System.getenv('BUILD_NUMB
 version = "$mod_version+mc${game_version}${buildSuffix}"
 group = "de.ellpeck.actuallyadditions"
 base {
-    archivesName = "ActuallyAdditions-$game_version"
+    archivesName = "ActuallySubtractions-$game_version"
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)

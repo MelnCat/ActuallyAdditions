@@ -3,6 +3,7 @@ package de.ellpeck.actuallyadditions.mod.crafting;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import de.ellpeck.actuallyadditions.mod.inventory.gui.FluidDisplay;
+import de.ellpeck.actuallyadditions.mod.util.GsonUtil;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.network.FriendlyByteBuf;
@@ -124,22 +125,8 @@ public class FermentingRecipe implements Recipe<Container> {
         @Nonnull
         @Override
         public FermentingRecipe fromJson(@Nonnull ResourceLocation pRecipeId, @Nonnull JsonObject pJson) {
-            JsonObject ingredient = pJson.getAsJsonObject("ingredient");
-
-            ResourceLocation fluidRes = new ResourceLocation(GsonHelper.getAsString(ingredient, "fluid"));
-            Fluid fluid = ForgeRegistries.FLUIDS.getValue(fluidRes);
-            if (fluid == null)
-                throw new JsonParseException("Unknown fluid '" + fluidRes + "'");
-            int inputAmount = GsonHelper.getAsInt(ingredient, "amount", 80);
-            FluidStack input = new FluidStack(fluid, inputAmount);
-
-            JsonObject result = pJson.getAsJsonObject("result");
-            ResourceLocation fluidOutputRes = new ResourceLocation(GsonHelper.getAsString(result, "fluid"));
-            int outputAmount = GsonHelper.getAsInt(result, "amount");
-            Fluid fluidOutput = ForgeRegistries.FLUIDS.getValue(fluidOutputRes);
-            if(fluidOutput == null)
-                throw new JsonParseException("Unknown fluid '" + fluidRes + "'");
-            FluidStack output = new FluidStack(fluidOutput, outputAmount);
+            FluidStack input = GsonUtil.getFluidStack(pJson, "ingredient");
+            FluidStack output = GsonUtil.getFluidStack(pJson, "result");
 
             int time = GsonHelper.getAsInt(pJson, "time", 100);
 
@@ -176,16 +163,8 @@ public class FermentingRecipe implements Recipe<Container> {
 
         @Override
         public void serializeRecipeData(JsonObject pJson) {
-            JsonObject ingredient = new JsonObject();
-            ingredient.addProperty("fluid", ForgeRegistries.FLUIDS.getKey(input.getFluid()).toString());
-            ingredient.addProperty("amount", input.getAmount());
-
-            JsonObject result = new JsonObject();
-            result.addProperty("fluid", ForgeRegistries.FLUIDS.getKey(output.getFluid()).toString());
-            result.addProperty("amount", output.getAmount());
-
-            pJson.add("ingredient", ingredient);
-            pJson.add("result", result);
+            GsonUtil.setFluidStack(pJson, "ingredient", input);
+            GsonUtil.setFluidStack(pJson, "result", output);
             pJson.addProperty("time", time);
         }
 

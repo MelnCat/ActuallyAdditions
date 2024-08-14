@@ -2,6 +2,7 @@ package de.ellpeck.actuallyadditions.mod.crafting;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import de.ellpeck.actuallyadditions.mod.util.GsonUtil;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.network.FriendlyByteBuf;
@@ -110,14 +111,7 @@ public class LiquidFuelRecipe implements Recipe<Container> {
         @Nonnull
         @Override
         public LiquidFuelRecipe fromJson(@Nonnull ResourceLocation pId, JsonObject pJson) {
-            JsonObject ingredient = pJson.getAsJsonObject("ingredient");
-
-            ResourceLocation fluidRes = new ResourceLocation(GsonHelper.getAsString(ingredient, "fluid"));
-            Fluid fluid = ForgeRegistries.FLUIDS.getValue(fluidRes);
-            if (fluid == null)
-                throw new JsonParseException("Unknown fluid '" + fluidRes + "'");
-            int inputAmount = GsonHelper.getAsInt(ingredient, "amount", 50);
-            FluidStack input = new FluidStack(fluid, inputAmount);
+            FluidStack input = GsonUtil.getFluidStack(pJson, "fuel");
 
             JsonObject result = pJson.getAsJsonObject("result");
             int totalEnergy = result.get("total_energy").getAsInt();
@@ -163,15 +157,11 @@ public class LiquidFuelRecipe implements Recipe<Container> {
 
         @Override
         public void serializeRecipeData(JsonObject pJson) {
-            JsonObject ingredient = new JsonObject();
-            ingredient.addProperty("fluid", ForgeRegistries.FLUIDS.getKey(fuel.getFluid()).toString());
-            ingredient.addProperty("amount", fuel.getAmount());
-
             JsonObject result = new JsonObject();
             result.addProperty("total_energy", totalEnergy);
             result.addProperty("burn_time", burnTime);
 
-            pJson.add("ingredient", ingredient);
+            GsonUtil.setFluidStack(pJson, "fuel", fuel);
             pJson.add("result", result);
         }
 

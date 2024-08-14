@@ -2,6 +2,7 @@ package de.ellpeck.actuallyadditions.mod.crafting;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import de.ellpeck.actuallyadditions.mod.util.GsonUtil;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.network.FriendlyByteBuf;
@@ -173,8 +174,7 @@ public class EmpowererRecipe implements Recipe<Container> {
             int energy = GsonHelper.getAsInt(pJson, "energy");
             int color = GsonHelper.getAsInt(pJson, "color");
             int time = GsonHelper.getAsInt(pJson, "time");
-            JsonObject resultObject = GsonHelper.getAsJsonObject(pJson, "result");
-            ItemStack result = new ItemStack(GsonHelper.getAsItem(resultObject, "item"));
+            ItemStack result = GsonUtil.getItemStack(pJson, "result");
 
             return new EmpowererRecipe(pRecipeId, result, base, mod1, mod2, mod3, mod4, energy, color, time);
         }
