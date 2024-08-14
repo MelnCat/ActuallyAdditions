@@ -60,7 +60,6 @@ public class CommonEvents {
             event.setUseItem(Event.Result.DENY);
             event.setUseBlock(Event.Result.ALLOW);
         }
-
     }
 
     @SubscribeEvent
