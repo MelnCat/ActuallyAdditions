@@ -120,11 +120,20 @@ public class CrushingRecipeGenerator extends RecipeProvider {
             .save(consumer, "prismarine_shard");
         new CrushingBuilder(Ingredient.of(ActuallyBlocks.BLACK_QUARTZ_ORE.get()), new CrushingRecipe.CrushingResult(new ItemStack(ActuallyItems.BLACK_QUARTZ.get(), 2), 1.0f))
             .save(consumer, "black_quartz_ore");
+        new CrushingBuilder(Ingredient.of(Items.COPPER_ORE), new CrushingRecipe.CrushingResult(new ItemStack(Items.RAW_COPPER, 2), 1.0f))
+            .addResult2(new CrushingRecipe.CrushingResult(new ItemStack(Items.RAW_GOLD, 1), 0.05f))
+            .save(consumer, "copper_ore");
+        new CrushingBuilder(Ingredient.of(Items.DEEPSLATE_COPPER_ORE), new CrushingRecipe.CrushingResult(new ItemStack(Items.RAW_COPPER, 2), 1.0f))
+            .addResult2(new CrushingRecipe.CrushingResult(new ItemStack(Items.RAW_GOLD, 1), 0.05f))
+            .save(consumer, "deepslate_copper_ore");
 
         //TODO: Think about the recipes that returned crushed ores before and what to replace them with
         new CrushingBuilder(Ingredient.of(Items.IRON_ORE), new CrushingRecipe.CrushingResult(new ItemStack(Items.RAW_IRON, 2), 1.0f))
             .addResult2(new CrushingRecipe.CrushingResult(new ItemStack(Items.RAW_GOLD, 1), 0.2f))
             .save(consumer, "iron_ore");
+        new CrushingBuilder(Ingredient.of(Items.DEEPSLATE_IRON_ORE), new CrushingRecipe.CrushingResult(new ItemStack(Items.RAW_IRON, 2), 1.0f))
+            .addResult2(new CrushingRecipe.CrushingResult(new ItemStack(Items.RAW_GOLD, 1), 0.2f))
+            .save(consumer, "deepslate_iron_ore");
         new CrushingBuilder(Ingredient.of(Items.IRON_HORSE_ARMOR), new CrushingRecipe.CrushingResult(new ItemStack(Items.RAW_IRON, 6), 1.0f))
             .save(consumer, "iron_horse_armor");
         new CrushingBuilder(Ingredient.of(Items.GOLDEN_HORSE_ARMOR), new CrushingRecipe.CrushingResult(new ItemStack(Items.RAW_GOLD, 6), 1.0f))
@@ -133,6 +142,8 @@ public class CrushingRecipeGenerator extends RecipeProvider {
             .save(consumer, "diamond_horse_armor");
         new CrushingBuilder(Ingredient.of(Items.GOLD_ORE), new CrushingRecipe.CrushingResult(new ItemStack(Items.RAW_GOLD, 2), 1.0f))
             .save(consumer, "gold_ore");
+        new CrushingBuilder(Ingredient.of(Items.DEEPSLATE_GOLD_ORE), new CrushingRecipe.CrushingResult(new ItemStack(Items.RAW_GOLD, 2), 1.0f))
+            .save(consumer, "deepslate_gold_ore");
 
     }
 
