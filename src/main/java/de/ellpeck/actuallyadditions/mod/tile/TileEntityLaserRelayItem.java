@@ -171,7 +171,7 @@ public class TileEntityLaserRelayItem extends TileEntityLaserRelay {
 
     @Override
     public void onCompassAction(Player player) {
-        if (player.isShiftKeyDown()) {
+        if (player.isCrouching()) {
             this.priority--;
         } else {
             this.priority++;

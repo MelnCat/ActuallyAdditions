@@ -11,6 +11,7 @@
 package de.ellpeck.actuallyadditions.mod.event;
 
 import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
+import de.ellpeck.actuallyadditions.mod.blocks.BlockLaserRelay;
 import de.ellpeck.actuallyadditions.mod.config.CommonConfig;
 import de.ellpeck.actuallyadditions.mod.config.values.ConfigBoolValues;
 import de.ellpeck.actuallyadditions.mod.data.PlayerData;
@@ -40,6 +41,7 @@ import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -50,14 +52,15 @@ import java.util.Locale;
 
 public class CommonEvents {
 
-    //TODO spawner shards are yeeted right?
     @SubscribeEvent
-    public void onBlockBreakEvent(BlockEvent.BreakEvent event) {
-        BlockState state = event.getState();
-        if (state != null && state.getBlock() == Blocks.SPAWNER) {
-            // TODO: [port] add back once we've unflattened
-            //            event.getDrops().add(new ItemStack(InitItems.itemMisc, 1, TheMiscItems.SPAWNER_SHARD.ordinal()));
+    public void onBlockRightClick(PlayerInteractEvent.RightClickBlock event) { //Workaround, cant sneak right click a block with an item normally.
+        if (event.getLevel().isClientSide)
+            return;
+        if( (event.getLevel().getBlockState(event.getHitVec().getBlockPos()).getBlock() instanceof BlockLaserRelay) && (event.getItemStack().is(CommonConfig.Other.relayConfigureItem))) {
+            event.setUseItem(Event.Result.DENY);
+            event.setUseBlock(Event.Result.ALLOW);
         }
+
     }
 
     @SubscribeEvent
