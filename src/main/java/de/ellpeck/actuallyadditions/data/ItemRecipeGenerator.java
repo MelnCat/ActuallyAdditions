@@ -193,7 +193,8 @@ public class ItemRecipeGenerator extends RecipeProvider {
             .pattern("R  ")
             .pattern(" R ")
             .pattern("  R")
-            .define('R', ActuallyItems.RICE).save(recipeOutput, new ResourceLocation(ActuallyAdditions.MODID, "rice_paper"));
+            .define('R', ActuallyItems.RICE.get())
+            .save(consumer, new ResourceLocation(ActuallyAdditions.MODID, "rice_paper"));
 
         Recipe.shaped(ActuallyItems.RICE_SLIMEBALL.get())
             .requiresBook()
