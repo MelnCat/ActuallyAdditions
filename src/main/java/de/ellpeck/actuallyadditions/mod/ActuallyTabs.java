@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 public class ActuallyTabs {
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ActuallyAdditions.MODID);
 
-	public static final Supplier<CreativeModeTab> GROUP = CREATIVE_MODE_TABS.register("tab", () -> CreativeModeTab.builder()
+	public static final Supplier<CreativeModeTab> GROUP = CREATIVE_MODE_TABS.register("tab", () -> CreativeModeTab.builder() // TODO coherently order them :P
 			.icon(() -> ActuallyItems.ITEM_BOOKLET.get().getDefaultInstance())
 			.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 			.title(Component.translatable("itemGroup.actuallyadditions"))
@@ -25,6 +25,7 @@ public class ActuallyTabs {
 				stacks.forEach(stack -> {
 					if(stack.getItem() instanceof ItemEnergy itemEnergy) {
 						stack.getOrCreateTag().putDouble("Energy", itemEnergy.getMaxEnergyStored(stack));
+						stack.getOrCreateTag().putBoolean("Charged", true);
 					}
 				});
 				output.acceptAll(stacks);
