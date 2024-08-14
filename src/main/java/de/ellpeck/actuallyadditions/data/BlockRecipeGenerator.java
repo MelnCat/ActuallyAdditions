@@ -375,7 +375,7 @@ public class BlockRecipeGenerator extends RecipeProvider {
             .save(consumer);
 
         // Lava Casing
-        Recipe.shaped(ActuallyBlocks.LAVA_FACTORY_CASING.getItem(), 32)
+        Recipe.shaped(ActuallyBlocks.LAVA_FACTORY_CASING.getItem(), 4)
             .pattern("ECE")
             .define('E', ActuallyBlocks.ENORI_CRYSTAL.get())
             .define('C', ActuallyBlocks.IRON_CASING.get())
