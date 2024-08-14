@@ -15,6 +15,7 @@ import de.ellpeck.actuallyadditions.mod.inventory.slot.SlotFilter;
 import de.ellpeck.actuallyadditions.mod.items.DrillItem;
 import de.ellpeck.actuallyadditions.mod.items.ItemTag;
 import de.ellpeck.actuallyadditions.mod.util.ItemStackHandlerAA;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -29,15 +30,21 @@ public class FilterSettings {
     public final ItemStackHandlerAA filterInventory;
     public boolean isWhitelist;
     public boolean respectMod;
+    public boolean matchDamage;
+    public boolean matchNBT;
     private boolean lastWhitelist;
     private boolean lastRespectMod;
+    private boolean lastMatchDamage;
+    private boolean lastMatchNBT;
 
     public enum Buttons {
         WHITELIST,
-        MOD
+        MOD,
+        DAMAGE,
+        NBT
     }
 
-    public FilterSettings(int slots, boolean defaultWhitelist, boolean defaultRespectMod) {
+    public FilterSettings(int slots, boolean defaultWhitelist, boolean defaultRespectMod, boolean defaultMatchDamage, boolean defaultMatchNBT) {
         this.filterInventory = new ItemStackHandlerAA(slots) {
             @Override
             protected void onContentsChanged(int slot) {
@@ -48,11 +55,13 @@ public class FilterSettings {
 
         this.isWhitelist = defaultWhitelist;
         this.respectMod = defaultRespectMod;
+        this.matchDamage = defaultMatchDamage;
+        this.matchNBT = defaultMatchNBT;
     }
 
     public void onContentsChanged() {}
 
-    public static boolean check(ItemStack stack, ItemStackHandlerAA filter, boolean whitelist, boolean mod) {
+    public static boolean check(ItemStack stack, ItemStackHandlerAA filter, boolean whitelist, boolean mod, boolean damage, boolean nbt) {
         if (!stack.isEmpty()) {
             for (int i = 0; i < filter.getSlots(); i++) {
                 ItemStack slot = filter.getStackInSlot(i);
@@ -63,7 +72,7 @@ public class FilterSettings {
                         DrillItem.loadSlotsFromNBT(inv, slot);
                         for (int k = 0; k < inv.getSlots(); k++) {
                             ItemStack filterSlot = inv.getStackInSlot(k);
-                            if (!filterSlot.isEmpty() && areEqualEnough(filterSlot, stack, mod)) {
+                            if (!filterSlot.isEmpty() && areEqualEnough(filterSlot, stack, mod, damage, nbt)) {
                                 return whitelist;
                             }
                         }
@@ -80,7 +89,7 @@ public class FilterSettings {
                             }
                         }
                     }
-                    else if (areEqualEnough(slot, stack, mod)) {
+                    else if (areEqualEnough(slot, stack, mod, damage, nbt)) {
                         return whitelist;
                     }
                 }
@@ -89,20 +98,31 @@ public class FilterSettings {
         return !whitelist;
     }
 
-    private static boolean areEqualEnough(ItemStack first, ItemStack second, boolean mod) {
-        Item firstItem = first.getItem();
-        Item secondItem = second.getItem();
-        if (mod && ForgeRegistries.ITEMS.getKey(firstItem).getNamespace().equals(ForgeRegistries.ITEMS.getKey(secondItem).getNamespace())) {
+    private static boolean areEqualEnough(ItemStack first, ItemStack second, boolean mod, boolean damage, boolean nbt) {
+        if (mod && checkMod(first, second) && checkDamage(first, second, damage)) {
             return true;
         }
+        return checkItem(first, second, nbt) && checkDamage(first, second, damage);
+    }
 
-        return firstItem == secondItem;
+    public static boolean checkDamage(ItemStack first, ItemStack second, boolean damage) {
+        return !damage || first.getDamageValue() == second.getDamageValue();
+    }
+
+    public static boolean checkItem(ItemStack first, ItemStack second, boolean nbt) {
+        return nbt? ItemStack.isSameItemSameTags(first, second) : ItemStack.isSameItem(first, second);
+    }
+
+    public static boolean checkMod(ItemStack first, ItemStack second) {
+        return BuiltInRegistries.ITEM.getKey(first.getItem()).getNamespace().equals(BuiltInRegistries.ITEM.getKey(second.getItem()).getNamespace());
     }
 
     public void writeToNBT(CompoundTag tag, String name) {
         CompoundTag compound = new CompoundTag();
         compound.putBoolean("Whitelist", this.isWhitelist);
         compound.putBoolean("Mod", this.respectMod);
+        compound.putBoolean("Damage", this.matchDamage);
+        compound.putBoolean("NBT", this.matchNBT);
         compound.put("Items", filterInventory.serializeNBT());
         tag.put(name, compound);
     }
@@ -111,16 +131,20 @@ public class FilterSettings {
         CompoundTag compound = tag.getCompound(name);
         this.isWhitelist = compound.getBoolean("Whitelist");
         this.respectMod = compound.getBoolean("Mod");
+        this.matchDamage = compound.getBoolean("Damage");
+        this.matchNBT = compound.getBoolean("NBT");
         this.filterInventory.deserializeNBT(compound.getCompound("Items"));
     }
 
     public boolean needsUpdateSend() {
-        return this.lastWhitelist != this.isWhitelist || this.lastRespectMod != this.respectMod;
+        return this.lastWhitelist != this.isWhitelist || this.lastRespectMod != this.respectMod || this.lastMatchDamage != this.matchDamage || this.lastMatchNBT != this.matchNBT;
     }
 
     public void updateLasts() {
         this.lastWhitelist = this.isWhitelist;
         this.lastRespectMod = this.respectMod;
+        this.lastMatchDamage = this.matchDamage;
+        this.lastMatchNBT = this.matchNBT;
     }
 
     public void onButtonPressed(int id) {
@@ -128,11 +152,15 @@ public class FilterSettings {
             this.isWhitelist = !this.isWhitelist;
         } else if (id == Buttons.MOD.ordinal()) {
             this.respectMod = !this.respectMod;
+        } else if (id == Buttons.DAMAGE.ordinal()) {
+            this.matchDamage = !this.matchDamage;
+        } else if (id == Buttons.NBT.ordinal()) {
+            this.matchNBT = !this.matchNBT;
         }
     }
 
     public boolean check(ItemStack stack) {
-        return !this.needsCheck() || check(stack, this.filterInventory, this.isWhitelist, this.respectMod);
+        return !this.needsCheck() || check(stack, this.filterInventory, this.isWhitelist, this.respectMod, this.matchDamage, this.matchNBT);
     }
 
     public boolean needsCheck() {
