@@ -1,7 +1,7 @@
 {
   "type": "actuallyadditions:crushing",
   "ingredient": {
-    "item": "actuallyadditions:black_quartz_ore"
+    "tag": "forge:ores/black_quartz"
   },
   "result": [
     {

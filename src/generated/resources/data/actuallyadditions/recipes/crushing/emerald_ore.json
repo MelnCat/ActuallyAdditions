@@ -1,7 +1,7 @@
 {
   "type": "actuallyadditions:crushing",
   "ingredient": {
-    "item": "minecraft:emerald_ore"
+    "tag": "forge:ores/emerald"
   },
   "result": [
     {

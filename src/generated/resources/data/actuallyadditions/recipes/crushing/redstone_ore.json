@@ -1,7 +1,7 @@
 {
   "type": "actuallyadditions:crushing",
   "ingredient": {
-    "item": "minecraft:redstone_ore"
+    "tag": "forge:ores/redstone"
   },
   "result": [
     {

@@ -1,7 +1,7 @@
 {
   "type": "actuallyadditions:crushing",
   "ingredient": {
-    "item": "minecraft:nether_quartz_ore"
+    "tag": "forge:ores/quartz"
   },
   "result": [
     {
