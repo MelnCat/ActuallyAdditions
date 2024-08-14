@@ -92,7 +92,7 @@ public class ItemRecipeGenerator extends RecipeProvider {
 			.define('C', ActuallyItems.ADVANCED_COIL.get()).save(consumer);
 
 		//Filling Wand
-/*        Recipe.shaped(ActuallyItems.HANDHELD_FILLER.get())
+        Recipe.shaped(ActuallyItems.HANDHELD_FILLER.get())
             .pattern("IPI")
             .pattern("DCD")
             .pattern(" B ")
@@ -100,7 +100,7 @@ public class ItemRecipeGenerator extends RecipeProvider {
             .define('P', ActuallyItems.PALIS_CRYSTAL.get())
             .define('C', ActuallyItems.ADVANCED_COIL.get())
             .define('D', ActuallyItems.DIAMATINE_CRYSTAL.get())
-            .define('B', ActuallyItems.TRIPLE_BATTERY.get()).save(consumer);*/ //TODO not done yet
+            .define('B', ActuallyItems.TRIPLE_BATTERY.get()).save(consumer);
 
 		//Bag
 		Recipe.shaped(ActuallyItems.TRAVELERS_SACK.get())
