@@ -16,6 +16,7 @@ import net.minecraftforge.items.IItemHandler;
 public class SlotlessableItemHandlerWrapper {
 
     private final LazyOptional<IItemHandler> normalHandler;
+    @Deprecated
     private final Object slotlessHandler;
 
     public SlotlessableItemHandlerWrapper(LazyOptional<IItemHandler> normalHandler, Object slotlessHandler) {
@@ -27,6 +28,7 @@ public class SlotlessableItemHandlerWrapper {
         return this.normalHandler;
     }
 
+    @Deprecated
     public Object getSlotlessHandler() {
         return this.slotlessHandler;
     }

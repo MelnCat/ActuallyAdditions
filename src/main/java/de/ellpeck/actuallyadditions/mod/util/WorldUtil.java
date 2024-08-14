@@ -42,6 +42,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.level.BlockEvent.BreakEvent;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.items.IItemHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +96,7 @@ public final class WorldUtil {
         }
 
         if (!StackUtil.isValid(extracted)) {
-/*            IItemHandler handler = extractWrapper.getNormalHandler();
+            IItemHandler handler = extractWrapper.getNormalHandler();
             if (handler != null) {
                 for (int i = Math.max(0, slotStart); i < Math.min(slotEnd, handler.getSlots()); i++) {
                     if (filter == null || !filter.needsCheck() || filter.check(handler.getStackInSlot(i))) {
@@ -106,7 +107,7 @@ public final class WorldUtil {
                         }
                     }
                 }
-            }*/
+            }
         }
 
         return extracted;
