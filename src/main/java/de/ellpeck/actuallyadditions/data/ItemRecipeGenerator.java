@@ -533,7 +533,13 @@ public class ItemRecipeGenerator extends RecipeProvider {
 			.define('I', Items.IRON_HELMET)
 			.save(consumer);
 
-		// Sticky Piston from tagged slime balls
+		// Item Tag
+        Recipe.shapeless(ActuallyItems.ITEM_TAG.get())
+            .requires(Items.PAPER)
+            .requires(ActuallyItems.BLACK_QUARTZ.get())
+            .save(consumer);
+
+        // Sticky Piston from tagged slime balls
 		Recipe.shaped(Items.STICKY_PISTON)
 			.pattern("R", "P")
 			.define('R', Tags.Items.SLIMEBALLS)

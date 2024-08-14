@@ -66,6 +66,7 @@ public class ActuallyAdditionsClient {
         MenuScreens.register(ActuallyContainers.PHANTOM_PLACER_CONTAINER.get(), GuiPhantomPlacer::new);
         MenuScreens.register(ActuallyContainers.RANGED_COLLECTOR_CONTAINER.get(), GuiRangedCollector::new);
         MenuScreens.register(ActuallyContainers.XPSOLIDIFIER_CONTAINER.get(), GuiXPSolidifier::new);
+        MenuScreens.register(ActuallyContainers.ITEM_TAG_CONTAINER.get(), ItemTagScreen::new);
     }
 
     public static void setup(FMLClientSetupEvent event) {

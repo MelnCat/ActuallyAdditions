@@ -13,11 +13,17 @@ package de.ellpeck.actuallyadditions.mod.tile;
 import de.ellpeck.actuallyadditions.mod.inventory.ContainerFilter;
 import de.ellpeck.actuallyadditions.mod.inventory.slot.SlotFilter;
 import de.ellpeck.actuallyadditions.mod.items.DrillItem;
+import de.ellpeck.actuallyadditions.mod.items.ItemTag;
 import de.ellpeck.actuallyadditions.mod.util.ItemStackHandlerAA;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.Optional;
 
 public class FilterSettings {
     public final ItemStackHandlerAA filterInventory;
@@ -61,7 +67,20 @@ public class FilterSettings {
                                 return whitelist;
                             }
                         }
-                    } else if (areEqualEnough(slot, stack, mod)) {
+                    }
+                    else if (slot.getItem() instanceof ItemTag && slot.hasTag()) {
+                        var data = Optional.ofNullable(slot.getOrCreateTag().get("ItemTag"));
+                        if (data.isPresent()) {
+                            var parsed = ResourceLocation.tryParse(data.get().getAsString());
+                            if (parsed != null) {
+                                var tag = TagKey.create(Registries.ITEM, parsed);
+                                if (stack.is(tag)) {
+                                    return whitelist;
+                                }
+                            }
+                        }
+                    }
+                    else if (areEqualEnough(slot, stack, mod)) {
                         return whitelist;
                     }
                 }

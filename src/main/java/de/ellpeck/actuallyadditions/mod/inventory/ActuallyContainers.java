@@ -39,6 +39,6 @@ public class ActuallyContainers {
     public static final RegistryObject<MenuType<ContainerPhantomPlacer>> PHANTOM_PLACER_CONTAINER = CONTAINERS.register("phantom_placer_container", () -> IForgeMenuType.create(ContainerPhantomPlacer::fromNetwork));
     public static final RegistryObject<MenuType<ContainerRangedCollector>> RANGED_COLLECTOR_CONTAINER = CONTAINERS.register("ranged_collector_container", () -> IForgeMenuType.create(ContainerRangedCollector::fromNetwork));
     public static final RegistryObject<MenuType<ContainerXPSolidifier>> XPSOLIDIFIER_CONTAINER = CONTAINERS.register("xpsolidifier_container", () -> IForgeMenuType.create(ContainerXPSolidifier::fromNetwork));
-
+    public static final RegistryObject<MenuType<ItemTagContainer>> ITEM_TAG_CONTAINER = CONTAINERS.register("item_tag_container", () -> IForgeMenuType.create(ItemTagContainer::fromNetwork));
 }
 

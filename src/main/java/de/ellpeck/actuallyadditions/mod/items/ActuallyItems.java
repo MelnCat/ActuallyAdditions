@@ -105,6 +105,7 @@ public final class ActuallyItems {
     public static final RegistryObject<Item> WORM = ITEMS.register("worm", Worm::new);
     public static final RegistryObject<Item> PLAYER_PROBE = ITEMS.register("player_probe", ItemPlayerProbe::new);
     public static final RegistryObject<Item> FILTER = ITEMS.register("filter", ItemFilter::new);
+    public static final RegistryObject<Item> ITEM_TAG = ITEMS.register("item_tag", ItemTag::new);
     public static final RegistryObject<Item> WATER_BOWL = ITEMS.register("water_bowl", ItemWaterBowl::new);
     public static final RegistryObject<Item> CRATE_KEEPER = ITEMS.register("crate_keeper", () -> new ItemGeneric(defaultProps().stacksTo(1)));
     public static final RegistryObject<Item> LENS_OF_COLOR = ITEMS.register("lens_of_color", () -> new ItemLens(ActuallyAdditionsAPI.lensColor));
