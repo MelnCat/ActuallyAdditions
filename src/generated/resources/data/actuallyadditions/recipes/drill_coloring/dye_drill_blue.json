@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "actuallyadditions:copy_nbt_shapeless",
   "category": "misc",
   "ingredients": [
     {

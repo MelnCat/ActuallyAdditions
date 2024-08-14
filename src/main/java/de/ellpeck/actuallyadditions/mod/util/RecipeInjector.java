@@ -21,6 +21,6 @@ public class RecipeInjector<T extends FinishedRecipe> implements Consumer<Finish
 
 	@Override
 	public void accept(FinishedRecipe finishedRecipe) {
-		inner.accept(finishedRecipe);
+		inner.accept(constructor.apply((T) finishedRecipe));
 	}
 }

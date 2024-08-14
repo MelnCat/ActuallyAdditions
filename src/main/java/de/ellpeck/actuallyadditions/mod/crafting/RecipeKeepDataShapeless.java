@@ -115,11 +115,6 @@ public class RecipeKeepDataShapeless extends ShapelessRecipe {
         }
 
         @Override
-        public JsonObject serializeRecipe() {
-            return inner.serializeRecipe();
-        }
-
-        @Override
         public ResourceLocation getId() {
             return inner.getId();
         }
