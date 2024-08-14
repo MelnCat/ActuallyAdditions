@@ -3,6 +3,7 @@
   "minVersion": "0.8.5",
   "compatibilityLevel": "JAVA_17",
   "package": "de.ellpeck.actuallyadditions.mixin",
+  "refmap": "actuallyadditions.refmap.json",
   "target": "@env(DEFAULT)",
   "mixins": [
     "AnvilMixin",
