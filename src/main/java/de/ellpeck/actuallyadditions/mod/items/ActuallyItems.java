@@ -46,13 +46,13 @@ public final class ActuallyItems {
     public static final RegistryObject<Item> RICE_DOUGH = ITEMS.register("rice_dough", ItemBase::new);
     public static final RegistryObject<Item> TINY_COAL = ITEMS.register("tiny_coal", () -> new ItemBase() {
         @Override
-        public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
+        public int getBurnTime(@Nonnull ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
             return 200;
         }
     });
     public static final RegistryObject<Item> TINY_CHARCOAL = ITEMS.register("tiny_charcoal", () -> new ItemBase() {
         @Override
-        public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
+        public int getBurnTime(@Nonnull ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
             return 200;
         }
     });
