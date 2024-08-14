@@ -128,11 +128,6 @@ public class RenderLaserRelay implements BlockEntityRenderer<TileEntityLaserRela
     }
 
     @Override
-    public AABB getRenderBoundingBox(TileEntityLaserRelay blockEntity) {
-        return INFINITE_EXTENT_AABB;
-    }
-
-    @Override
     public int getViewDistance() {
         return 32;
     }

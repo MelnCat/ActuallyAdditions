@@ -35,7 +35,7 @@ public class CoffeeIngredientGenerator extends RecipeProvider {
 
     @Override
     protected void buildRecipes(@Nonnull Consumer<FinishedRecipe> consumer) {
-        buildIngredient(consumer, Items.MILK_BUCKET, 0, "jei." + ActuallyAdditions.MODID + ".coffee.extra.milk");
+        buildIngredient(consumer, Items.MILK_BUCKET, 0, "jei.actuallyadditions.coffee.extra.milk");
 
         //Pam's puts milk in a tag, so we'll use that
         TagKey<Item> milkTag = ItemTags.create(new ResourceLocation("forge", "milk"));
@@ -46,7 +46,7 @@ public class CoffeeIngredientGenerator extends RecipeProvider {
                 Ingredient.of(milkTag),
                 new ArrayList<>(),
                 0,
-                "jei." + ActuallyAdditions.MODID + ".coffee.extra.milk"
+                "jei.actuallyadditions.coffee.extra.milk"
             ))
             .generateAdvancement().build(consumer, new ResourceLocation(ActuallyAdditions.MODID, "coffee_ingredient/milk_tagged"));
 

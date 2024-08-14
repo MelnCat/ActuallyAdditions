@@ -97,7 +97,7 @@ public class ItemCoffee extends ItemBase { //TODO: Do we want to change the satu
 				    .withStyle(ChatFormatting.GRAY));
 		    }
 	    } else {
-		    tooltip.add(Component.translatable("tooltip." + ActuallyAdditions.MODID + ".coffeeCup.noEffect").withStyle(ChatFormatting.GRAY));
+		    tooltip.add(Component.translatable("tooltip.actuallyadditions.coffeeCup.noEffect").withStyle(ChatFormatting.GRAY));
 	    }
     }
 
@@ -139,7 +139,7 @@ public class ItemCoffee extends ItemBase { //TODO: Do we want to change the satu
 
         @Override
         public String getExtraText() {
-	        return I18n.get("jei." + ActuallyAdditions.MODID + ".coffee.extra.milk");
+	        return I18n.get("jei.actuallyadditions.coffee.extra.milk");
         }
     }
 }
