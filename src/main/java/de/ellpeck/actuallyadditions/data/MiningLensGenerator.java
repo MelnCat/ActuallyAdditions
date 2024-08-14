@@ -55,6 +55,15 @@ public class MiningLensGenerator extends RecipeProvider {
         buildTagOre(consumer, Tags.Items.NETHERRACK, "nether", weight, output);
     }
 
+    private void buildDeepSlateOre(Consumer<FinishedRecipe> consumer, int weight, ItemLike output) {
+        consumer.accept(new MiningLensRecipe.Result(
+            folderRecipe("mininglens", "deepslate_" + getItemName(output)),
+                Ingredient.of(Items.DEEPSLATE),
+                weight,
+                output
+        ));
+    }
+
     private void buildTagOre(Consumer<FinishedRecipe> consumer, TagKey<Item> tag, String prefix, int weight, ItemLike output) {
         consumer.accept(new MiningLensRecipe.Result(
                 folderRecipe("mininglens", prefix + "_" + getItemName(output)),
@@ -76,5 +85,13 @@ public class MiningLensGenerator extends RecipeProvider {
         buildNetherOre(consumer, 3000, Items.NETHER_QUARTZ_ORE);
         buildStoneOre(consumer, 3000, ActuallyBlocks.BLACK_QUARTZ_ORE.getItem());
         buildNetherOre(consumer, 1, Items.ANCIENT_DEBRIS);
+
+        buildDeepSlateOre(consumer, 2000, Items.DEEPSLATE_COAL_ORE);
+        buildDeepSlateOre(consumer, 3000, Items.DEEPSLATE_IRON_ORE);
+        buildDeepSlateOre(consumer, 500, Items.DEEPSLATE_GOLD_ORE);
+        buildDeepSlateOre(consumer, 50, Items.DEEPSLATE_DIAMOND_ORE);
+        buildDeepSlateOre(consumer, 250, Items.DEEPSLATE_LAPIS_ORE);
+        buildDeepSlateOre(consumer, 200, Items.DEEPSLATE_REDSTONE_ORE);
+        buildDeepSlateOre(consumer, 30, Items.DEEPSLATE_EMERALD_ORE);
     }
 }
