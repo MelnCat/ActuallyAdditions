@@ -13,7 +13,6 @@ package de.ellpeck.actuallyadditions.mod.items;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import de.ellpeck.actuallyadditions.api.ActuallyTags;
-import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.config.CommonConfig;
 import de.ellpeck.actuallyadditions.mod.inventory.ContainerDrill;
 import de.ellpeck.actuallyadditions.mod.items.base.ItemEnergy;
@@ -41,7 +40,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
-import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -190,7 +188,7 @@ public class DrillItem extends ItemEnergy {
 
     @Nonnull
     @Override
-    public ItemAttributeModifiers getDefaultAttributeModifiers(@Nonnull ItemStack stack) {
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, @Nonnull ItemStack stack) {
             return this.getEnergyStored(stack) >= ENERGY_USE
                     ? this.attributes_powered
                     : this.attributes_unpowered;
