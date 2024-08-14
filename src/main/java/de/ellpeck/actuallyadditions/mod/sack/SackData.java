@@ -1,5 +1,6 @@
 package de.ellpeck.actuallyadditions.mod.sack;
 
+import de.ellpeck.actuallyadditions.mod.tile.FilterSettings;
 import de.ellpeck.actuallyadditions.mod.util.ItemStackHandlerAA;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.util.INBTSerializable;
@@ -28,6 +29,18 @@ public class SackData {
     }
     public ItemStackHandlerAA getSpecialHandler() {
         return inventory;
+    }
+
+    private final FilterSettings filter = new FilterSettings(4, false, false, false, false){
+        @Override
+        public void onContentsChanged() {
+            super.onContentsChanged();
+            SackManager.get().setDirty();
+        }
+    };
+
+    public FilterSettings getFilter() {
+        return filter;
     }
 
     public void updateAccessRecords(String player, long time) {
@@ -70,6 +83,9 @@ public class SackData {
 
         optional = LazyOptional.of(() -> inventory);
 
+        if (incoming.contains("Filter"))
+            filter.readFromNBT(incoming, "Filter");
+
         if (incoming.contains("Metadata"))
             meta.deserializeNBT(incoming.getCompound("Metadata"));
     }
@@ -92,6 +108,8 @@ public class SackData {
         nbt.putUUID("UUID", uuid);
 
         nbt.put("Inventory", inventory.serializeNBT());
+
+        filter.writeToNBT(nbt, "Filter");
 
         nbt.put("Metadata", meta.serializeNBT());
 
