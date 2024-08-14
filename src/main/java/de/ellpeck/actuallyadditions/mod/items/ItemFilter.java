@@ -10,6 +10,7 @@
 
 package de.ellpeck.actuallyadditions.mod.items;
 
+import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.inventory.ContainerFilter;
 import de.ellpeck.actuallyadditions.mod.items.base.ItemBase;
 import de.ellpeck.actuallyadditions.mod.util.ItemStackHandlerAA;
@@ -39,7 +40,7 @@ public class ItemFilter extends ItemBase {
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         if (!world.isClientSide && hand == InteractionHand.MAIN_HAND) {
-            NetworkHooks.openScreen((ServerPlayer) player, new SimpleMenuProvider((windowId, inv, playerEnt) -> new ContainerFilter(windowId, inv), Component.empty()));
+            NetworkHooks.openScreen((ServerPlayer) player, new SimpleMenuProvider((windowId, inv, playerEnt) -> new ContainerFilter(windowId, inv), Component.translatable("container." + ActuallyAdditions.MODID + ".filter")));
             //            player.openGui(ActuallyAdditions.INSTANCE, GuiHandler.GuiTypes.FILTER.ordinal(), world, (int) player.posX, (int) player.posY, (int) player.posZ);
         }
         return InteractionResultHolder.pass(player.getItemInHand(hand));

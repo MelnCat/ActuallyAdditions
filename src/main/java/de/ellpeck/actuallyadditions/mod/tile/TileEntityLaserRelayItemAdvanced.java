@@ -149,7 +149,7 @@ public class TileEntityLaserRelayItemAdvanced extends TileEntityLaserRelayItem i
 
     @Override
     public Component getDisplayName() {
-        return Component.empty();
+        return Component.translatable("container.actuallyadditions.laserRelayAdvanced");
     }
 
     @Nullable
