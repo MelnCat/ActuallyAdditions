@@ -208,16 +208,15 @@ public class TileEntityItemInterface extends TileEntityBase {
 
                         int slotsQueried = 0;
                         for (GenericItemHandlerInfo info : this.genericInfos) {
+                            if (!info.isLoaded()) continue;
                             for (SlotlessableItemHandlerWrapper handler : info.handlers) {
                                 LazyOptional<IItemHandler> normalHandler = handler.getNormalHandler();
-                                slotsQueried += normalHandler.map(cap -> {
-                                    int queried = 0;
-                                    for (int i = 0; i < cap.getSlots(); i++) {
-                                        this.itemHandlerInfos.put(queried, new IItemHandlerInfo(cap, i, info.relayInQuestion));
-                                        queried++;
+                                if (normalHandler.isPresent()) {
+                                    for (int i = 0; i < normalHandler.resolve().get().getSlots(); i++) {
+                                        this.itemHandlerInfos.put(slotsQueried, new IItemHandlerInfo(normalHandler.resolve().get(), i, info.relayInQuestion));
+                                        slotsQueried++;
                                     }
-                                    return queried;
-                                }).orElse(0);
+                                }
                                 // TODO: [port] add back
 
                                 //                                if (ActuallyAdditions.commonCapsLoaded) {

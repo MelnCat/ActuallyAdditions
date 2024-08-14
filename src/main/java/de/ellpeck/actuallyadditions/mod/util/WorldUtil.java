@@ -42,7 +42,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.level.BlockEvent.BreakEvent;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.neoforged.neoforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,11 +96,11 @@ public final class WorldUtil {
         }
 
         if (!StackUtil.isValid(extracted)) {
-            IItemHandler handler = extractWrapper.getNormalHandler();
-            if (handler != null) {
-                for (int i = Math.max(0, slotStart); i < Math.min(slotEnd, handler.getSlots()); i++) {
-                    if (filter == null || !filter.needsCheck() || filter.check(handler.getStackInSlot(i))) {
-                        extracted = handler.extractItem(i, maxExtract, simulate);
+            LazyOptional<IItemHandler> handler = extractWrapper.getNormalHandler();
+            if (handler.isPresent()) {
+                for (int i = Math.max(0, slotStart); i < Math.min(slotEnd, handler.resolve().get().getSlots()); i++) {
+                    if (filter == null || !filter.needsCheck() || filter.check(handler.resolve().get().getStackInSlot(i))) {
+                        extracted = handler.resolve().get().extractItem(i, maxExtract, simulate);
 
                         if (StackUtil.isValid(extracted)) {
                             break;
