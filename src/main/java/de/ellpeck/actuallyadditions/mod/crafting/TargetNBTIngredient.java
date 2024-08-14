@@ -6,11 +6,13 @@ import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.IIngredientSerializer;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nonnull;
 import java.util.stream.Stream;
 
@@ -32,7 +34,7 @@ public class TargetNBTIngredient extends Ingredient {
         return new TargetNBTIngredient(Stream.of(new ItemValue(itemStack)));
     }
     @Nonnull
-    public static TargetNBTIngredient of(@Nonnull TagKey tag) {
+    public static TargetNBTIngredient of(@Nonnull TagKey<Item> tag) {
         return new TargetNBTIngredient(Stream.of(new TagValue(tag)));
     }
 

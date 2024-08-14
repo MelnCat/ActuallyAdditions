@@ -21,7 +21,8 @@ public class ActuallyRecipes {
     }
 
     public static final RegistryObject<RecipeSerializer<?>> KEEP_DATA_SHAPED_RECIPE = SERIALIZERS.register(RecipeKeepDataShaped.NAME, RecipeKeepDataShaped.Serializer::new);
-    public static final RegistryObject<RecipeSerializer<?>> LASER_RECIPE = SERIALIZERS.register(LaserRecipe.NAME, LaserRecipe.Serializer::new);
+    public static final RegistryObject<RecipeSerializer<?>> KEEP_DATA_SHAPELESS_RECIPE = SERIALIZERS.register(RecipeKeepDataShapeless.NAME, RecipeKeepDataShapeless.Serializer::new);
+    public static final Supplier<RecipeSerializer<?>> LASER_RECIPE = SERIALIZERS.register(LaserRecipe.NAME, LaserRecipe.Serializer::new);
     public static final RegistryObject<RecipeSerializer<?>> EMPOWERING_RECIPE = SERIALIZERS.register(EmpowererRecipe.NAME, EmpowererRecipe.Serializer::new);
     public static final RegistryObject<RecipeSerializer<?>> CRUSHING_RECIPE = SERIALIZERS.register(CrushingRecipe.NAME, CrushingRecipe.Serializer::new);
     public static final RegistryObject<RecipeSerializer<?>> SOLID_FUEL_RECIPE = SERIALIZERS.register(SolidFuelRecipe.NAME, SolidFuelRecipe.Serializer::new);
@@ -51,5 +52,5 @@ public class ActuallyRecipes {
 
     private static <T extends Recipe<?>> Supplier<RecipeType<T>> recipeType(String name) {
         return () -> RecipeType.simple(new ResourceLocation(ActuallyAdditions.MODID, name));
-    } 
+    }
 }
