@@ -14,6 +14,7 @@ import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.blocks.base.AACrops;
 import de.ellpeck.actuallyadditions.mod.items.ActuallyItems;
 import de.ellpeck.actuallyadditions.mod.items.metalists.Crystals;
+import de.ellpeck.actuallyadditions.mod.tile.CrateBE;
 import de.ellpeck.actuallyadditions.mod.tile.TileEntityAtomicReconstructor;
 import de.ellpeck.actuallyadditions.mod.tile.TileEntityBatteryBox;
 import de.ellpeck.actuallyadditions.mod.tile.TileEntityBioReactor;
@@ -159,6 +160,9 @@ public final class ActuallyBlocks {
 	public static final AABlockReg<BlockPoweredFurnace, AABlockItem, TileEntityPoweredFurnace> POWERED_FURNACE = new AABlockReg<>("powered_furnace", BlockPoweredFurnace::new,
 		(b) -> new AABlockItem.BlockEntityEnergyItem(b, defaultBlockItemProperties), TileEntityPoweredFurnace::new);
 
+
+	public static final AABlockReg<Crate, AABlockItem, CrateBE> CRATE_SMALL = new AABlockReg<>("crate_small", () -> new Crate(Crate.Size.SMALL),
+		(b) -> new AABlockItem(b, defaultBlockItemProperties), (pos, state) -> new CrateBE(pos, state, Crate.Size.SMALL)); //TODO
 
 	// Crystal Blocks
 	public static final AABlockReg<BlockCrystal, AABlockItem, ?> ENORI_CRYSTAL = new AABlockReg<>("enori_crystal_block", () -> new BlockCrystal(false), BlockCrystal::createBlockItem);
