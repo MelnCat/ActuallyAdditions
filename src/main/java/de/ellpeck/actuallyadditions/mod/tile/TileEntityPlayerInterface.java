@@ -11,7 +11,6 @@
 package de.ellpeck.actuallyadditions.mod.tile;
 
 import de.ellpeck.actuallyadditions.mod.blocks.ActuallyBlocks;
-import de.ellpeck.actuallyadditions.mod.util.StackUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -56,7 +55,6 @@ public class TileEntityPlayerInterface extends TileEntityBase implements IEnergy
         return null;
     }
 
-    // TODO: [port] this might not be a stable way of doing this.
     @Override
     public LazyOptional<IItemHandler> getItemHandler(Direction facing) {
         Player player = this.getPlayer();
@@ -67,6 +65,8 @@ public class TileEntityPlayerInterface extends TileEntityBase implements IEnergy
             this.playerHandler = player == null
                 ? null
                 : new PlayerInvWrapper(player.getInventory());
+
+            this.invalidateCapabilities();
         }
 
         return LazyOptional.of(() -> this.playerHandler);
@@ -91,7 +91,7 @@ public class TileEntityPlayerInterface extends TileEntityBase implements IEnergy
                 for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                     if (tile.storage.getEnergyStored() > 0) {
                         ItemStack slot = player.getInventory().getItem(i);
-                        if (StackUtil.isValid(slot) && slot.getCount() == 1) {
+                        if (!slot.isEmpty() && slot.getCount() == 1) {
 
                             int received = slot.getCapability(ForgeCapabilities.ENERGY).map(cap -> cap.receiveEnergy(tile.storage.getEnergyStored(), false)).orElse(0);
                             if (received > 0) {
