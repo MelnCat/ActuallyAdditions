@@ -65,8 +65,6 @@ public class TileEntityPlayerInterface extends TileEntityBase implements IEnergy
             this.playerHandler = player == null
                 ? null
                 : new PlayerInvWrapper(player.getInventory());
-
-            this.invalidateCapabilities();
         }
 
         return LazyOptional.of(() -> this.playerHandler);

@@ -11,6 +11,7 @@
 package de.ellpeck.actuallyadditions.mod.items;
 
 import de.ellpeck.actuallyadditions.mod.inventory.SackContainer;
+import de.ellpeck.actuallyadditions.mod.inventory.VoidSackContainer;
 import de.ellpeck.actuallyadditions.mod.items.base.ItemBase;
 import de.ellpeck.actuallyadditions.mod.sack.SackData;
 import de.ellpeck.actuallyadditions.mod.sack.SackManager;
@@ -30,6 +31,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.network.NetworkHooks;
 
+import javax.annotation.Nonnull;
 import java.util.UUID;
 
 public class Sack extends ItemBase {
@@ -56,13 +58,13 @@ public class Sack extends ItemBase {
 
                             for (int j = 0; j < inv.getSlots(); j++) {
                                 ItemStack invStack = inv.getStackInSlot(j);
-                                if (StackUtil.isValid(invStack)) {
+                                if (!invStack.isEmpty()) {
                                     for (int i = 0; i < cap.getSlots(); i++) {
                                         ItemStack remain = cap.insertItem(i, invStack, false);
                                         if (!ItemStack.matches(remain, invStack)) {
                                             inv.setStackInSlot(j, remain.copy());
                                             localChanged = true;
-                                            if (!StackUtil.isValid(remain)) {
+                                            if (remain.isEmpty()) {
                                                 break;
                                             }
                                             invStack = remain;
@@ -84,8 +86,9 @@ public class Sack extends ItemBase {
         return InteractionResult.PASS;
     }
 
+    @Nonnull
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, @Nonnull InteractionHand hand) {
         ItemStack sackStack = player.getItemInHand(hand);
         if (!world.isClientSide && hand == InteractionHand.MAIN_HAND && sackStack.getItem() instanceof Sack && player instanceof ServerPlayer) {
 
@@ -101,12 +104,8 @@ public class Sack extends ItemBase {
 
                 NetworkHooks.openScreen((ServerPlayer) player, new SimpleMenuProvider((id, inv, entity) ->
                         new SackContainer(id, inv, uuid, data.getSpecialHandler()), sackStack.getHoverName()), (buffer -> buffer.writeUUID(uuid)));
-            }
-
-
-/*            NetworkHooks.openGui((ServerPlayerEntity) player,
-                    new SimpleNamedContainerProvider((windowId, playerInventory, playerEntity) ->
-                            new ContainerBag(windowId, playerInventory, playerEntity.getItemInHand(hand), this.isVoid), StringComponent.empty()));*/
+            } else
+                player.openMenu(new SimpleMenuProvider((id, inv, entity) -> new VoidSackContainer(id, inv), sackStack.getHoverName()));
         }
         return InteractionResultHolder.pass(player.getItemInHand(hand));
     }

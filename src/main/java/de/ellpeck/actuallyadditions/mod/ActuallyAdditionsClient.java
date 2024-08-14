@@ -11,40 +11,12 @@
 package de.ellpeck.actuallyadditions.mod;
 
 import de.ellpeck.actuallyadditions.mod.blocks.ActuallyBlocks;
-import de.ellpeck.actuallyadditions.mod.blocks.render.ReconstructorRenderer;
-import de.ellpeck.actuallyadditions.mod.blocks.render.RenderBatteryBox;
-import de.ellpeck.actuallyadditions.mod.blocks.render.RenderDisplayStand;
-import de.ellpeck.actuallyadditions.mod.blocks.render.RenderEmpowerer;
-import de.ellpeck.actuallyadditions.mod.blocks.render.RenderLaserRelay;
+import de.ellpeck.actuallyadditions.mod.blocks.render.*;
 import de.ellpeck.actuallyadditions.mod.entity.RenderWorm;
 import de.ellpeck.actuallyadditions.mod.event.ClientEvents;
 import de.ellpeck.actuallyadditions.mod.fluids.InitFluids;
 import de.ellpeck.actuallyadditions.mod.inventory.ActuallyContainers;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.CrusherScreen;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiBioReactor;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiBreaker;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiCanolaPress;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiCoalGenerator;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiCoffeeMachine;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiDirectionalBreaker;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiDrill;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiDropper;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiEnergizer;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiEnervator;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiFarmer;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiFeeder;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiFermentingBarrel;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiFilter;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiFireworkBox;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiFluidCollector;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiFurnaceDouble;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiLaserRelayItemWhitelist;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiMiner;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiOilGenerator;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiPhantomPlacer;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiRangedCollector;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiXPSolidifier;
-import de.ellpeck.actuallyadditions.mod.inventory.gui.SackGui;
+import de.ellpeck.actuallyadditions.mod.inventory.gui.*;
 import de.ellpeck.actuallyadditions.mod.items.ActuallyItems;
 import de.ellpeck.actuallyadditions.mod.misc.special.SpecialRenderInit;
 import de.ellpeck.actuallyadditions.mod.particle.ActuallyParticles;
@@ -67,9 +39,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class ActuallyAdditionsClient {
-
-    public static void setup(FMLClientSetupEvent event) {
-        MenuScreens.register(ActuallyContainers.BAG_CONTAINER.get(), SackGui::new);
+    public static void setupMenus(FMLClientSetupEvent evt) {
+        MenuScreens.register(ActuallyContainers.SACK_CONTAINER.get(), SackGui::new);
+        MenuScreens.register(ActuallyContainers.VOID_SACK_CONTAINER.get(), VoidSackGui::new);
         MenuScreens.register(ActuallyContainers.BIO_REACTOR_CONTAINER.get(), GuiBioReactor::new);
         MenuScreens.register(ActuallyContainers.BREAKER_CONTAINER.get(), GuiBreaker::new);
         MenuScreens.register(ActuallyContainers.CANOLA_PRESS_CONTAINER.get(), GuiCanolaPress::new);
@@ -94,6 +66,9 @@ public class ActuallyAdditionsClient {
         MenuScreens.register(ActuallyContainers.PHANTOM_PLACER_CONTAINER.get(), GuiPhantomPlacer::new);
         MenuScreens.register(ActuallyContainers.RANGED_COLLECTOR_CONTAINER.get(), GuiRangedCollector::new);
         MenuScreens.register(ActuallyContainers.XPSOLIDIFIER_CONTAINER.get(), GuiXPSolidifier::new);
+    }
+
+    public static void setup(FMLClientSetupEvent event) {
         // From old proxy
         MinecraftForge.EVENT_BUS.register(new ClientEvents());
         MinecraftForge.EVENT_BUS.register(new SpecialRenderInit());

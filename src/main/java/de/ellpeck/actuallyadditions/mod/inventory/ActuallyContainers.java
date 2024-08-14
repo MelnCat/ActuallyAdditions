@@ -7,11 +7,14 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.function.Supplier;
+
 public class ActuallyContainers {
     public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, ActuallyAdditions.MODID);
 
-    public static final RegistryObject<MenuType<SackContainer>> BAG_CONTAINER = CONTAINERS.register("bag_container", () -> IForgeMenuType.create(SackContainer::fromNetwork));
-    public static final RegistryObject<MenuType<ContainerBioReactor>> BIO_REACTOR_CONTAINER = CONTAINERS.register("bioreactor_container", () -> IForgeMenuType.create(ContainerBioReactor::fromNetwork));
+
+    public static final RegistryObject<MenuType<SackContainer>> SACK_CONTAINER = CONTAINERS.register("sack_container", () -> IForgeMenuType.create(SackContainer::fromNetwork));
+    public static final RegistryObject<MenuType<VoidSackContainer>> VOID_SACK_CONTAINER = CONTAINERS.register("void_sack_container", () -> IForgeMenuType.create(VoidSackContainer::new));    public static final RegistryObject<MenuType<ContainerBioReactor>> BIO_REACTOR_CONTAINER = CONTAINERS.register("bioreactor_container", () -> IForgeMenuType.create(ContainerBioReactor::fromNetwork));
     public static final RegistryObject<MenuType<ContainerBreaker>> BREAKER_CONTAINER = CONTAINERS.register("breaker_container", () -> IForgeMenuType.create(ContainerBreaker::fromNetwork));
     public static final RegistryObject<MenuType<ContainerCanolaPress>> CANOLA_PRESS_CONTAINER = CONTAINERS.register("canola_press_container", () -> IForgeMenuType.create(ContainerCanolaPress::fromNetwork));
     public static final RegistryObject<MenuType<ContainerCoalGenerator>> COAL_GENERATOR_CONTAINER = CONTAINERS.register("coal_generator_container", () -> IForgeMenuType.create(ContainerCoalGenerator::fromNetwork));
