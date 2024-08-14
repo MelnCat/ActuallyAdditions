@@ -5,12 +5,14 @@ license="MIT"
 [[mods]]
     modId="actuallyadditions"
     version="${version}"
-    displayName="Actually Additions"
+    displayName="Actually §mAdditions §r§fSubtractions"
     #logoFile="logo.png"
     credits="Author: Ellpeck; Textures and Models: BootyToast, GlenthorLP, canitzp; Porters: Flanks, MrBysco, ErrorMikey; 1.20+ Textures: Ridanisaurus"
     authors="Ellpeck"
     description='''
 Do you want Automation? Wireless Transport? Better Machines? A cup o\' Coffee? Chests? Better Hoppers? Leaf Blowers? Faster Growth? Plants? Well, Actually Additions has all that and a lot more!
+[1.20.1 Unofficial Backport]
+Do not report issues to original authors.
 '''
 [[dependencies.actuallyadditions]]
     modId="forge"
