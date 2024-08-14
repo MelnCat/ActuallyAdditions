@@ -14,7 +14,6 @@ import de.ellpeck.actuallyadditions.mod.crafting.SingleItem;
 import de.ellpeck.actuallyadditions.mod.inventory.slot.SlotItemHandlerUnconditioned;
 import de.ellpeck.actuallyadditions.mod.inventory.slot.SlotOutput;
 import de.ellpeck.actuallyadditions.mod.tile.TileEntityPoweredFurnace;
-import de.ellpeck.actuallyadditions.mod.util.StackUtil;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -86,7 +85,7 @@ public class ContainerFurnaceDouble extends AbstractContainerMenu {
                 ItemStack recipeOutput = irecipe.getResultItem(player.level().registryAccess());
 
                 //Shift from Inventory
-                if (StackUtil.isValid(recipeOutput)) {
+                if (!recipeOutput.isEmpty()) {
                     if (!this.moveItemStackTo(newStack, TileEntityPoweredFurnace.SLOT_INPUT_1, TileEntityPoweredFurnace.SLOT_INPUT_1 + 1, false)) {
                         if (!this.moveItemStackTo(newStack, TileEntityPoweredFurnace.SLOT_INPUT_2, TileEntityPoweredFurnace.SLOT_INPUT_2 + 1, false)) {
                             return ItemStack.EMPTY;
@@ -106,7 +105,7 @@ public class ContainerFurnaceDouble extends AbstractContainerMenu {
                 return ItemStack.EMPTY;
             }
 
-            if (!StackUtil.isValid(newStack)) {
+            if (newStack.isEmpty()) {
                 theSlot.set(ItemStack.EMPTY);
             } else {
                 theSlot.setChanged();

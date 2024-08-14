@@ -94,6 +94,11 @@ public class SackContainer extends AbstractContainerMenu implements IButtonReact
         }
     }
 
+    public FilterSettings getFilter() {
+        return filter;
+    }
+
+    @Nonnull
     @Override
     public ItemStack quickMoveStack(@Nonnull Player player, int slot) {
         int inventoryStart = this.bagInventory.getSlots() + 4;

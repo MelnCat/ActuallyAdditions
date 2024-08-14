@@ -13,7 +13,6 @@ package de.ellpeck.actuallyadditions.mod.inventory.slot;
 import de.ellpeck.actuallyadditions.mod.items.ItemFilter;
 import de.ellpeck.actuallyadditions.mod.tile.FilterSettings;
 import de.ellpeck.actuallyadditions.mod.util.ItemStackHandlerAA;
-import de.ellpeck.actuallyadditions.mod.util.StackUtil;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
@@ -41,7 +40,7 @@ public class SlotFilter extends SlotItemHandlerUnconditioned {
     }
 
     public static boolean isFilter(ItemStack stack) {
-        return StackUtil.isValid(stack) && stack.getItem() instanceof ItemFilter;
+        return !stack.isEmpty() && stack.getItem() instanceof ItemFilter;
     }
 
     private void slotClick(Player player, ItemStack cursorItem) {
@@ -52,7 +51,7 @@ public class SlotFilter extends SlotItemHandlerUnconditioned {
             }
 
             this.set(ItemStack.EMPTY);
-        } else if (StackUtil.isValid(cursorItem)) {
+        } else if (!cursorItem.isEmpty()) {
             if (!isFilter(stackInSlot)) {
                 ItemStack s = cursorItem.copy();
                 s.setCount(1);

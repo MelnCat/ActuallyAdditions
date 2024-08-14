@@ -11,6 +11,7 @@
 package de.ellpeck.actuallyadditions.mod.items;
 
 import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import de.ellpeck.actuallyadditions.api.ActuallyTags;
 import de.ellpeck.actuallyadditions.mod.config.CommonConfig;
@@ -189,9 +190,11 @@ public class DrillItem extends ItemEnergy {
     @Nonnull
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, @Nonnull ItemStack stack) {
+        if (slot == EquipmentSlot.MAINHAND)
             return this.getEnergyStored(stack) >= ENERGY_USE
                     ? this.attributes_powered
                     : this.attributes_unpowered;
+        return ImmutableMultimap.of();
     }
 
 
