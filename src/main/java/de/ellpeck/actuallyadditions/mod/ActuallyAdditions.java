@@ -19,11 +19,9 @@ import de.ellpeck.actuallyadditions.mod.blocks.ActuallyBlocks;
 import de.ellpeck.actuallyadditions.mod.config.CommonConfig;
 import de.ellpeck.actuallyadditions.mod.config.conditions.BoolConfigCondition;
 import de.ellpeck.actuallyadditions.mod.crafting.ActuallyRecipes;
-import de.ellpeck.actuallyadditions.mod.crafting.CrusherCrafting;
 import de.ellpeck.actuallyadditions.mod.crafting.TargetNBTIngredient;
 import de.ellpeck.actuallyadditions.mod.data.WorldData;
 import de.ellpeck.actuallyadditions.mod.entity.EntityWorm;
-import de.ellpeck.actuallyadditions.mod.entity.InitEntities;
 import de.ellpeck.actuallyadditions.mod.event.CommonEvents;
 import de.ellpeck.actuallyadditions.mod.fluids.InitFluids;
 import de.ellpeck.actuallyadditions.mod.gen.ActuallyVillages;
@@ -166,8 +164,6 @@ public class    ActuallyAdditions {
         commonCapsLoaded = false; // Loader.isModLoaded("commoncapabilities");
 
         new UpdateChecker();
-        InitEntities.init(); // todo: [port] replace
-        CrusherCrafting.init();
     }
 
     private void onConfigReload(ModConfigEvent event) {
