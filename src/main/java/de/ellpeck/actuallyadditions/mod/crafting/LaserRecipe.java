@@ -2,6 +2,7 @@ package de.ellpeck.actuallyadditions.mod.crafting;
 
 import com.google.gson.JsonObject;
 import de.ellpeck.actuallyadditions.api.ActuallyAdditionsAPI;
+import de.ellpeck.actuallyadditions.mod.blocks.ActuallyBlocks;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.network.FriendlyByteBuf;
@@ -50,6 +51,11 @@ public class LaserRecipe implements Recipe<Container> {
 
     public Ingredient getInput() {
         return itemIngredient;
+    }
+
+    @Override
+    public ItemStack getToastSymbol() {
+        return new ItemStack(ActuallyBlocks.ATOMIC_RECONSTRUCTOR.get());
     }
 
     //nah
