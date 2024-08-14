@@ -65,7 +65,9 @@ public class ActuallyAdditionsData {
 
 		generator.addProvider(true, new SoundsGenerator(packOutput, helper));
 
-		generator.addProvider(true, new PachouliGenerator(packOutput));generator.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(
+		generator.addProvider(true, new PachouliGenerator(packOutput));
+        generator.addProvider(true, new GlobalLootModifierGenerator(packOutput));
+        generator.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(
 			packOutput, lookupProvider, Set.of(ActuallyAdditions.MODID)));
 	}
 

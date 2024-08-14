@@ -35,6 +35,7 @@ import de.ellpeck.actuallyadditions.mod.inventory.ActuallyContainers;
 import de.ellpeck.actuallyadditions.mod.items.ActuallyItems;
 import de.ellpeck.actuallyadditions.mod.items.ItemCoffee;
 import de.ellpeck.actuallyadditions.mod.items.Worm;
+import de.ellpeck.actuallyadditions.mod.lootmodifier.ActuallyLootModifiers;
 import de.ellpeck.actuallyadditions.mod.misc.BannerHelper;
 import de.ellpeck.actuallyadditions.mod.misc.DungeonLoot;
 import de.ellpeck.actuallyadditions.mod.misc.apiimpl.LaserRelayConnectionHandler;
@@ -75,7 +76,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.function.Supplier;
 
 @Mod(ActuallyAdditions.MODID)
-public class ActuallyAdditions {
+public class    ActuallyAdditions {
 
     public static final String MODID = ActuallyAdditionsAPI.MOD_ID;
 
@@ -115,6 +116,7 @@ public class ActuallyAdditions {
         AASounds.init(eventBus);
         ActuallyVillagers.init(eventBus);
         ActuallyPOITypes.init(eventBus);
+        ActuallyLootModifiers.init(eventBus);
         ActuallyContainers.CONTAINERS.register(eventBus);
         ENTITIES.register(eventBus);
 		BIOME_MODIFIER_SERIALIZERS.register(eventBus);

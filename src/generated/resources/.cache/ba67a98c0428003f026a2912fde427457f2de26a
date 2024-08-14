@@ -1,0 +1,4 @@
+// 1.20.1	2024-08-13T17:50:38.7907606	Global Loot Modifiers : actuallyadditions
+58d657efe5981d7417c737a802ee0789d9f6c2b4 data/actuallyadditions/loot_modifiers/bat_loot.json
+ab92f910931f0da5399ec2c6824b60e906eee096 data/actuallyadditions/loot_modifiers/dungeon_loot.json
+24211d6853742ccd8fc0116f93710ef5ee759c29 data/forge/loot_modifiers/global_loot_modifiers.json
