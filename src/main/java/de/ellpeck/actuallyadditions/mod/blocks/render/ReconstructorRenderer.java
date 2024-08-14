@@ -62,9 +62,4 @@ public class ReconstructorRenderer implements BlockEntityRenderer<TileEntityAtom
 
         matrices.popPose();
     }
-
-    @Override
-    public boolean shouldRenderOffScreen(TileEntityAtomicReconstructor tile) {
-        return tile.getProgress() > 0.0f;
-    }
 }
