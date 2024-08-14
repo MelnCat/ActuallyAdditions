@@ -117,6 +117,7 @@ public class    ActuallyAdditions {
         ActuallyVillagers.init(eventBus);
         ActuallyPOITypes.init(eventBus);
         ActuallyLootModifiers.init(eventBus);
+        BannerHelper.init(eventBus);
         ActuallyContainers.CONTAINERS.register(eventBus);
         ENTITIES.register(eventBus);
 		BIOME_MODIFIER_SERIALIZERS.register(eventBus);
@@ -165,7 +166,6 @@ public class    ActuallyAdditions {
         commonCapsLoaded = false; // Loader.isModLoaded("commoncapabilities");
 
         new UpdateChecker();
-        BannerHelper.init();
         InitEntities.init(); // todo: [port] replace
         //AAWorldGen gen = new AAWorldGen();
         ItemCoffee.initIngredients();
