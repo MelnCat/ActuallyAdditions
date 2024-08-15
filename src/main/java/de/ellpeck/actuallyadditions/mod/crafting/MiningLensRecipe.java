@@ -98,7 +98,7 @@ public class MiningLensRecipe implements Recipe<Container>, WeightedEntry {
         public MiningLensRecipe fromJson(@Nonnull ResourceLocation pRecipeId, @Nonnull JsonObject pJson) {
             Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(pJson, "ingredient"));
             int weight = GsonHelper.getAsInt(pJson, "weight");
-            ItemStack result = GsonUtil.getItemStack(pJson, "result");
+            ItemStack result = GsonUtil.getItemWithCount(pJson, "result");
 
             return new MiningLensRecipe(pRecipeId, ingredient, weight, result);
         }

@@ -113,7 +113,7 @@ public class LaserRecipe implements Recipe<Container> {
         public LaserRecipe fromJson(@Nonnull ResourceLocation pRecipeId, @Nonnull JsonObject pJson) {
             Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(pJson, "ingredient"));
             int energy = GsonHelper.getAsInt(pJson, "energy");
-            ItemStack result = GsonUtil.getItemStack(pJson, "result");
+            ItemStack result = GsonUtil.getItemWithCount(pJson, "result");
 
             return new LaserRecipe(pRecipeId, result, ingredient, energy);
         }

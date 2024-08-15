@@ -174,7 +174,7 @@ public class EmpowererRecipe implements Recipe<Container> {
             int energy = GsonHelper.getAsInt(pJson, "energy");
             int color = GsonHelper.getAsInt(pJson, "color");
             int time = GsonHelper.getAsInt(pJson, "time");
-            ItemStack result = GsonUtil.getItemStack(pJson, "result");
+            ItemStack result = GsonUtil.getItemWithCount(pJson, "result");
 
             return new EmpowererRecipe(pRecipeId, result, base, mod1, mod2, mod3, mod4, energy, color, time);
         }

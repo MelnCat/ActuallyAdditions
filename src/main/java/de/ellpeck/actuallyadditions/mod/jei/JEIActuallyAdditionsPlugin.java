@@ -89,10 +89,12 @@ public class JEIActuallyAdditionsPlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.FERMENTING_BARREL.getItem()), FERMENTING);
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.ATOMIC_RECONSTRUCTOR.getItem()), LASER);
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.EMPOWERER.getItem()), EMPOWERER);
+        registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.DISPLAY_STAND.getItem()), EMPOWERER);
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.COFFEE_MACHINE.getItem()), COFFEE_MACHINE);
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.CANOLA_PRESS.getItem()), PRESSING);
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.CRUSHER.getItem()), CRUSHING);
         registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.CRUSHER_DOUBLE.getItem()), CRUSHING);
+        registry.addRecipeCatalyst(new ItemStack(ActuallyBlocks.ATOMIC_RECONSTRUCTOR.getItem()), MINING_LENS);
         registry.addRecipeCatalyst(new ItemStack(ActuallyItems.LENS_OF_THE_MINER.get()), MINING_LENS);
 
 //        registry.addRecipeCatalyst(new ItemStack(ActuallyItems.itemBooklet.get()), BookletRecipeCategory.NAME);

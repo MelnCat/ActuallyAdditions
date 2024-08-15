@@ -91,7 +91,7 @@ public class ColorChangeRecipe implements Recipe<Container> {
         @Override
         public ColorChangeRecipe fromJson(@Nonnull ResourceLocation pRecipeId, @Nonnull JsonObject pJson) {
             Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(pJson, "ingredient"));
-            ItemStack result = GsonUtil.getItemStack(pJson, "result");
+            ItemStack result = GsonUtil.getItemWithCount(pJson, "result");
 
             return new ColorChangeRecipe(pRecipeId, result, ingredient);
         }

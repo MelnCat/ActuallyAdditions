@@ -36,7 +36,7 @@ public class MiningLensRecipeCategory implements IRecipeCategory<MiningLensRecip
     private final ItemStack RECONSTRUCTOR = new ItemStack(ActuallyBlocks.ATOMIC_RECONSTRUCTOR.getItem());
 
     public MiningLensRecipeCategory(IGuiHelper helper) {
-        this.background = helper.drawableBuilder(AssetUtil.getGuiLocation("gui_nei_atomic_reconstructor"), 0, 0, 96, 60).setTextureSize(256,256).build();
+        this.background = helper.drawableBuilder(AssetUtil.getGuiLocation("gui_nei_atomic_reconstructor"), 0, 0, 94, 60).setTextureSize(256,256).build();
     }
 
 	@Override
@@ -69,8 +69,8 @@ public class MiningLensRecipeCategory implements IRecipeCategory<MiningLensRecip
         RegistryAccess registryAccess = level.registryAccess();
 
         builder.addSlot(RecipeIngredientRole.INPUT, 5, 19).addIngredients(recipe.getInput());
-        builder.addSlot(RecipeIngredientRole.INPUT, 27, 20).addItemStack(RECONSTRUCTOR);
-        builder.addSlot(RecipeIngredientRole.INPUT, 43, 20).addItemStack(new ItemStack(ActuallyItems.LENS_OF_THE_MINER.get()));
+        builder.addSlot(RecipeIngredientRole.INPUT, 25, 20).addItemStack(RECONSTRUCTOR);
+        builder.addSlot(RecipeIngredientRole.INPUT, 41, 20).addItemStack(new ItemStack(ActuallyItems.LENS_OF_THE_MINER.get()));
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 66, 19).addItemStack(recipe.getResultItem(registryAccess));
     }
@@ -80,9 +80,9 @@ public class MiningLensRecipeCategory implements IRecipeCategory<MiningLensRecip
         Minecraft mc = Minecraft.getInstance();
 
         Component component = Component.translatable("jei.actuallyadditions.mining_lens.weight");
-        guiGraphics.drawString(mc.font, component, 2, 42, 0, false);
+        guiGraphics.drawString(mc.font, component, 2, 42, 4210752, false);
 
         String weight = String.valueOf(recipe.getWeight());
-        guiGraphics.drawString(mc.font, weight, 16 - mc.font.width(weight) / 2, 52, 0, false);
+        guiGraphics.drawString(mc.font, weight, 16 - mc.font.width(weight) / 2, 52, 4210752, false);
     }
 }

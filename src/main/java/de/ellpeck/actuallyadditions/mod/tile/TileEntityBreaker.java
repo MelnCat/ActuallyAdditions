@@ -105,12 +105,12 @@ public class TileEntityBreaker extends TileEntityInventoryBase implements MenuPr
         Block blockToBreak = stateToBreak.getBlock();
 
         if (!this.isPlacer && blockToBreak != Blocks.AIR && !(blockToBreak instanceof IFluidBlock) && stateToBreak.getDestroySpeed(this.level, breakCoords) >= 0.0F) {
-            List<ItemStack> drops = Block.getDrops(stateToBreak, (ServerLevel) this.level, breakCoords, this.level.getBlockEntity(breakCoords));
             FakePlayer fake = FakePlayerFactory.getMinecraft((ServerLevel) this.level);
             if (fake.connection == null) {
                 fake.connection = new NetHandlerSpaghettiServer(fake);
             }
-            if (stateToBreak.canHarvestBlock(this.level, breakCoords, fake)) { //TODO might double check this is right mikey
+            List<ItemStack> drops = Block.getDrops(stateToBreak, (ServerLevel) this.level, breakCoords, this.level.getBlockEntity(breakCoords), fake, this.inv.getStackInSlot(0));
+            if (!stateToBreak.requiresCorrectToolForDrops() || this.inv.getStackInSlot(0).isCorrectToolForDrops(stateToBreak)) { //TODO might double check this is right mikey
                 if (StackUtil.canAddAll(this.inv, drops, false)) {
                     this.level.destroyBlock(breakCoords, false);
                     StackUtil.addAll(this.inv, drops, false);

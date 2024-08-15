@@ -39,6 +39,7 @@ public class TileEntityPlacer extends TileEntityBreaker {
 	public static <T extends BlockEntity> void serverTick(Level level, BlockPos pos, BlockState state, T t) {
 		if (t instanceof TileEntityPlacer tile) {
 			tile.serverTick();
+			TileEntityBreaker.serverTick(level, pos, state, t);
 		}
 	}
 }
