@@ -19,7 +19,7 @@ import net.minecraftforge.common.loot.LootModifier;
 
 public class SolidXpLootModifier extends LootModifier {
 	public static final Supplier<Codec<SolidXpLootModifier>> CODEC = Suppliers.memoize(() ->
-			RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, SolidXpLootModifier::new)));
+		RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, SolidXpLootModifier::new)));
 
 	public SolidXpLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);

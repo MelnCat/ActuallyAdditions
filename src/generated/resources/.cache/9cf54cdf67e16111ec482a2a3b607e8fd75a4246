@@ -1,4 +1,4 @@
-// 1.20.1	2024-08-13T20:07:26.7507956	Item Recipes
+// 1.20.1	2024-08-14T21:25:11.1811038	Item Recipes
 04119c9f71a93d6c45d47246706fa224822959f0 data/actuallyadditions/recipes/advanced_coil.json
 3b2562135f11981fa20bc3588e2cb884a9307c3e data/actuallyadditions/recipes/advanced_leaf_blower.json
 03e73d9726655a6ad8cb23f8e214ac278aadf0f2 data/actuallyadditions/recipes/basic_coil.json
@@ -93,6 +93,7 @@ c0e69d8b79573ea3113616df9dbbac0b29be4705 data/actuallyadditions/recipes/laser_wr
 08020150e683afcccc285d06bacca85526b258fc data/actuallyadditions/recipes/leaf_blo_pattern.json
 201252b77e76a97dc966f04a3d024d775ef6b355 data/actuallyadditions/recipes/lens.json
 1fafe233864d0a6917fd84579d7c5a3cccf25c2a data/actuallyadditions/recipes/lens_of_disenchanting.json
+65b69fddaeeda791ba0b2ef72ce6d690c1476a9d data/actuallyadditions/recipes/lens_of_disruption.json
 41bad4f9930c6d52064f1c2a3b7d69d067239b88 data/actuallyadditions/recipes/lens_of_the_killer.json
 16f113bd476377354e53d5f0cfbfa55761337c40 data/actuallyadditions/recipes/lens_of_the_miner.json
 9c59763d7c18df2173dab694d0be2682db45f1c5 data/actuallyadditions/recipes/netherite_aiot.json

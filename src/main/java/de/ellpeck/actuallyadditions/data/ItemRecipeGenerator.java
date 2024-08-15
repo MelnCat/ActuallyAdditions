@@ -166,6 +166,13 @@ public class ItemRecipeGenerator extends RecipeProvider {
 			.requires(ActuallyItems.LENS_OF_CERTAIN_DEATH.get())
 			.requires(StrictNBTIngredient.of(enchantedBook)).save(consumer);
 
+		//Disruption Lens
+		Recipe.shaped(ActuallyItems.LENS_OF_DISRUPTION.get())
+			.pattern("BBB")
+			.pattern("BLB")
+			.pattern("BBB")
+			.define('L', ActuallyItems.LENS.get())
+			.define('B', Items.BEDROCK).save(consumer);
 
 		//Filter
 		Recipe.shaped(ActuallyItems.FILTER.get())

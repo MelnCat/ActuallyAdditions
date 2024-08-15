@@ -1,4 +1,4 @@
-// 1.20.1	2024-08-13T21:00:27.7610533	Item Models: actuallyadditions
+// 1.20.1	2024-08-14T20:55:24.9341513	Item Models: actuallyadditions
 34463d3d2ae3fafaaea338e7ffc03cd139d3cfeb assets/actuallyadditions/models/item/advanced_coil.json
 24594fc68e66011dc2d7b79b92c94b387e710318 assets/actuallyadditions/models/item/advanced_leaf_blower.json
 ba2d814e269cdef72e1045f200b3c20ed6961517 assets/actuallyadditions/models/item/atomic_reconstructor.json
@@ -168,6 +168,7 @@ e3504dd0c16703f516932406b6ac26fdac7f30b1 assets/actuallyadditions/models/item/le
 2e4e43cce27b360d81a776811bb9b194a195a98d assets/actuallyadditions/models/item/lens_of_color.json
 ac8af809a857f6b099b1141a4b3f302f24a41c87 assets/actuallyadditions/models/item/lens_of_detonation.json
 a263a311f5111b5c5a115db9a44883d4c966c7ac assets/actuallyadditions/models/item/lens_of_disenchanting.json
+56975b2f8ef941f652980f2b794b16fc967aff2f assets/actuallyadditions/models/item/lens_of_disruption.json
 fb524bde62c59b985c38549240bd30a4cd58101d assets/actuallyadditions/models/item/lens_of_the_killer.json
 195a38d18111b07d2b2eec3bde56a12cf7bb31d7 assets/actuallyadditions/models/item/lens_of_the_miner.json
 2052ba8678a2cb0784b0a87b77b8724e24fb2d03 assets/actuallyadditions/models/item/long_range_breaker.json

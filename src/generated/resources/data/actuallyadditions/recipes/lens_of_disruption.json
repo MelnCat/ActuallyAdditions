@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:bedrock"
+    },
+    "L": {
+      "item": "actuallyadditions:lens"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "BLB",
+    "BBB"
+  ],
+  "result": {
+    "item": "actuallyadditions:lens_of_disruption"
+  },
+  "show_notification": true
+}

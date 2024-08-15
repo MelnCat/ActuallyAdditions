@@ -34,6 +34,7 @@ import de.ellpeck.actuallyadditions.mod.items.lens.LensColor;
 import de.ellpeck.actuallyadditions.mod.items.lens.LensDeath;
 import de.ellpeck.actuallyadditions.mod.items.lens.LensDetonation;
 import de.ellpeck.actuallyadditions.mod.items.lens.LensDisenchanting;
+import de.ellpeck.actuallyadditions.mod.items.lens.LensDisruption;
 import de.ellpeck.actuallyadditions.mod.items.lens.LensKiller;
 import de.ellpeck.actuallyadditions.mod.items.lens.LensMining;
 import net.minecraft.resources.ResourceLocation;
@@ -116,6 +117,7 @@ public final class ActuallyAdditionsAPI {
     public static final Lens lensColor = new LensColor();
     public static final Lens lensDisenchanting = new LensDisenchanting();
     public static final Lens lensMining = new LensMining();
+    public static final Lens lensDisruption = new LensDisruption();
 
     /**
      * Adds an ore with a specific weight to the list of ores that the lens of the miner will generate inside of stone.

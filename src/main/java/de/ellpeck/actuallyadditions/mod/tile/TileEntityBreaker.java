@@ -26,6 +26,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -112,6 +113,7 @@ public class TileEntityBreaker extends TileEntityInventoryBase implements MenuPr
             List<ItemStack> drops = Block.getDrops(stateToBreak, (ServerLevel) this.level, breakCoords, this.level.getBlockEntity(breakCoords), fake, this.inv.getStackInSlot(0));
             if (!stateToBreak.requiresCorrectToolForDrops() || this.inv.getStackInSlot(0).isCorrectToolForDrops(stateToBreak)) { //TODO might double check this is right mikey
                 if (StackUtil.canAddAll(this.inv, drops, false)) {
+                    this.inv.getStackInSlot(0).hurtAndBreak(1, fake, e -> {});
                     this.level.destroyBlock(breakCoords, false);
                     StackUtil.addAll(this.inv, drops, false);
                     this.setChanged();

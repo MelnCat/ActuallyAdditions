@@ -1,5 +1,5 @@
-// 1.20.1	2024-08-14T00:24:18.6084421	Global Loot Modifiers : actuallyadditions
+// 1.20.1	2024-08-14T20:02:25.2846167	Global Loot Modifiers : actuallyadditions
 58d657efe5981d7417c737a802ee0789d9f6c2b4 data/actuallyadditions/loot_modifiers/bat_loot.json
 ab92f910931f0da5399ec2c6824b60e906eee096 data/actuallyadditions/loot_modifiers/dungeon_loot.json
-c30210a2a528992045b5760c81cad83ea34e75ef data/actuallyadditions/loot_modifiers/solid_xp_drop.json
+285dfc5986dea985d57f81aac48d023879a7005c data/actuallyadditions/loot_modifiers/solid_xp_drop.json
 811b33cfe0d8f457371edc607558763755ffb668 data/forge/loot_modifiers/global_loot_modifiers.json
