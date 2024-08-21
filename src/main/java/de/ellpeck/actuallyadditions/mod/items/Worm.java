@@ -20,6 +20,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -61,19 +62,20 @@ public class Worm extends ItemBase {
 
     public static void onHoe(BlockEvent.BlockToolModificationEvent event) {
         if (event.getToolAction() == ToolActions.HOE_TILL) {
-            Level level = event.getPlayer().level();
+            LevelAccessor level = event.getLevel();
 
-            if (level.isClientSide || !CommonConfig.Other.WORMS.get() || event.getResult() == Event.Result.DENY)
+            if (level.isClientSide() || !CommonConfig.Other.WORMS.get() || event.getResult() == Event.Result.DENY)
                 return;
 
             BlockPos pos = event.getContext().getClickedPos();
             if (level.isEmptyBlock(pos.above())) {
                 BlockState state = level.getBlockState(pos);
-                if (state.getBlock() == Blocks.GRASS_BLOCK && level.random.nextFloat() >= 0.95F) {
-                    ItemStack stack = new ItemStack(ActuallyItems.WORM.get(), level.random.nextInt(2) + 1);
-                    ItemEntity item = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, stack);
-
-                    level.addFreshEntity(item);
+                if (state.getBlock() == Blocks.GRASS_BLOCK && level.getRandom().nextFloat() >= 0.95F) {
+                    ItemStack stack = new ItemStack(ActuallyItems.WORM.get(), level.getRandom().nextInt(2) + 1);
+                    if (level instanceof Level l) {
+                        ItemEntity item = new ItemEntity(l, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, stack);
+                        level.addFreshEntity(item);
+                    }
                 }
             }
         }
