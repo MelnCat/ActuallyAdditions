@@ -32,6 +32,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -50,20 +52,11 @@ public class ItemBooklet extends ItemBase implements IHudDisplay {
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
-//        if (context.getPlayer().isShiftKeyDown()) {
-//            BlockState state = context.getLevel().getBlockState(context.getClickedPos());
-//            Block block = state.getBlock();
-//            ItemStack blockStack = new ItemStack(block);
-//            IBookletPage page = BookletUtils.findFirstPageForStack(blockStack);
-//            if (page != null) {
-//                if (context.getLevel().isClientSide) {
-//                    forcedPage = page;
-//                }
-//                this.use(context.getLevel(), context.getPlayer(), context.getHand());
-//                return ActionResultType.SUCCESS;
-//            }
-//        }
-        return InteractionResult.FAIL;
+        BlockState state = context.getLevel().getBlockState(context.getClickedPos());
+        Block block = state.getBlock();
+        ItemStack blockStack = new ItemStack(block);
+        this.use(context.getLevel(), context.getPlayer(), context.getHand());
+        return InteractionResult.SUCCESS;
     }
 
     @Override
@@ -77,7 +70,11 @@ public class ItemBooklet extends ItemBase implements IHudDisplay {
                 advancements.award(advancement, "right_click");
             }
         } else {
-            vazkii.patchouli.api.PatchouliAPI.get().openBookGUI(new ResourceLocation(ActuallyAdditions.MODID, "booklet"));
+           try {
+               vazkii.patchouli.api.PatchouliAPI.get().openBookGUI(new ResourceLocation(ActuallyAdditions.MODID, "booklet"));
+           } catch (NoClassDefFoundError e) {
+               player.sendSystemMessage(Component.literal("Patchouli is not installed. Please install it to use the guidebook."));
+           }
         }
 //        player.openGui(ActuallyAdditions.INSTANCE, GuiHandler.GuiTypes.BOOK.ordinal(), world, (int) player.posX, (int) player.posY, (int) player.posZ);
 //
