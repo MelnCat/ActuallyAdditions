@@ -63,10 +63,10 @@ public class JEIActuallyAdditionsPlugin implements IModPlugin {
 
     @Override
     public void registerItemSubtypes(@Nonnull ISubtypeRegistration reg) {
-        ActuallyItems.ITEMS.getEntries().forEach(entry -> {
+        /*ActuallyItems.ITEMS.getEntries().forEach(entry -> {
             if (entry.get() instanceof ItemEnergy)
                 reg.useNbtForSubtypes(entry.get());
-        });
+        });*/
     }
 
     @Override
