@@ -16,6 +16,7 @@ import de.ellpeck.actuallyadditions.mod.blocks.ActuallyBlocks;
 import de.ellpeck.actuallyadditions.mod.crafting.CrushingRecipe;
 import de.ellpeck.actuallyadditions.mod.inventory.CrusherContainer;
 import de.ellpeck.actuallyadditions.mod.network.gui.IButtonReactor;
+import de.ellpeck.actuallyadditions.mod.recipe.CrusherRecipeRegistry;
 import de.ellpeck.actuallyadditions.mod.util.ItemStackHandlerAA.IAcceptor;
 import de.ellpeck.actuallyadditions.mod.util.ItemStackHandlerAA.IRemover;
 import de.ellpeck.actuallyadditions.mod.util.StackUtil;
@@ -198,7 +199,7 @@ public class TileEntityCrusher extends TileEntityInventoryBase implements IButto
     }
 
     public static Optional<CrushingRecipe> getRecipeForInput(ItemStack itemStack) {
-        return ActuallyAdditionsAPI.CRUSHER_RECIPES.stream().filter($ -> $.matches(itemStack)).findFirst();
+        return Optional.ofNullable(CrusherRecipeRegistry.getRecipeFromInput(itemStack));
     }
     public boolean canCrushOn(int theInput, int theFirstOutput, int theSecondOutput) {
         ItemStack inputStack = this.inv.getStackInSlot(theInput);

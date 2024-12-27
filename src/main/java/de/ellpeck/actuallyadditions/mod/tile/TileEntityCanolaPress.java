@@ -12,6 +12,7 @@ package de.ellpeck.actuallyadditions.mod.tile;
 
 import de.ellpeck.actuallyadditions.api.ActuallyAdditionsAPI;
 import de.ellpeck.actuallyadditions.mod.blocks.ActuallyBlocks;
+import de.ellpeck.actuallyadditions.mod.crafting.ActuallyRecipes;
 import de.ellpeck.actuallyadditions.mod.crafting.PressingRecipe;
 import de.ellpeck.actuallyadditions.mod.crafting.SingleItem;
 import de.ellpeck.actuallyadditions.mod.fluids.OutputOnlyFluidTank;
@@ -38,6 +39,7 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -139,7 +141,8 @@ public class TileEntityCanolaPress extends TileEntityInventoryBase implements Me
     }
 
     public static Optional<PressingRecipe> getRecipeForInput(ItemStack stack) {
-        return ActuallyAdditionsAPI.PRESSING_RECIPES.stream().filter(recipe -> recipe.matches(new SingleItem(stack), null)).findFirst();
+        return ServerLifecycleHooks.getCurrentServer().getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.PRESSING.get())
+            .stream().filter(recipe -> recipe.matches(new SingleItem(stack), null)).findFirst();
     }
 
     @Override

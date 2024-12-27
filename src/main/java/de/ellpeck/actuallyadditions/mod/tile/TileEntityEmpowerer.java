@@ -29,6 +29,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class TileEntityEmpowerer extends TileEntityInventoryBase {
 
@@ -168,12 +170,11 @@ public class TileEntityEmpowerer extends TileEntityInventoryBase {
         if (type == NBTType.SYNC && compound.contains("CurrentRecipe")) {
             if (!compound.getString("CurrentRecipe").isEmpty()) {
                 ResourceLocation id = new ResourceLocation(compound.getString("CurrentRecipe"));
-                for (EmpowererRecipe empowererRecipe : ActuallyAdditionsAPI.EMPOWERER_RECIPES) {
-                    if (empowererRecipe.getId().equals(id)) {
-                        this.currentRecipe = empowererRecipe;
-                        break;
-                    }
-                }
+                Optional<EmpowererRecipe> found = Stream.concat(
+                    level.getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.EMPOWERING.get()).stream(),
+                    ActuallyAdditionsAPI.EMPOWERER_RECIPES.stream()
+                ).filter(x -> x.getId().equals(id)).findFirst();
+	            found.ifPresent(empowererRecipe -> currentRecipe = empowererRecipe);
             }
             else
                 this.currentRecipe = null;

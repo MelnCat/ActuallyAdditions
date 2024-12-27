@@ -40,7 +40,6 @@ import de.ellpeck.actuallyadditions.mod.misc.apiimpl.MethodHandler;
 import de.ellpeck.actuallyadditions.mod.network.PacketHandler;
 import de.ellpeck.actuallyadditions.mod.particle.ActuallyParticles;
 import de.ellpeck.actuallyadditions.mod.update.UpdateChecker;
-import de.ellpeck.actuallyadditions.mod.util.ResourceReloader;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -127,7 +126,6 @@ public class    ActuallyAdditions {
         MinecraftForge.EVENT_BUS.addListener(InitVillager::setupTrades);
         MinecraftForge.EVENT_BUS.register(new CommonEvents());
         MinecraftForge.EVENT_BUS.register(new DungeonLoot());
-        MinecraftForge.EVENT_BUS.addListener(ActuallyAdditions::reloadEvent);
         MinecraftForge.EVENT_BUS.addListener(Worm::onHoe);
         MinecraftForge.EVENT_BUS.addListener(ActuallyVillages::modifyVillageStructures);
         InitFluids.init(eventBus);
@@ -142,10 +140,6 @@ public class    ActuallyAdditions {
             eventBus.register(new ClientRegistryHandler());
         });
         IFarmerBehavior.initBehaviors();
-    }
-
-    private static void reloadEvent(AddReloadListenerEvent event) {
-        event.addListener(new ResourceReloader(event.getServerResources()));
     }
 
     private void setup(FMLCommonSetupEvent event) {

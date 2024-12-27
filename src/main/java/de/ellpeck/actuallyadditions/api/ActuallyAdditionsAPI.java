@@ -50,15 +50,9 @@ public final class ActuallyAdditionsAPI {
     public static final String API_ID = MOD_ID + "api";
     public static final String API_VERSION = "34";
 
+    // These are no longer used as the single source of truth. These are simply additional overrides.
     public static final List<CrushingRecipe> CRUSHER_RECIPES = new ArrayList<>();
     public static final List<EmpowererRecipe> EMPOWERER_RECIPES = new ArrayList<>();
-    public static final List<ColorChangeRecipe> COLOR_CHANGE_RECIPES = new ArrayList<>();
-    public static final List<SolidFuelRecipe> SOLID_FUEL_RECIPES = new ArrayList<>();
-    public static final List<LiquidFuelRecipe> LIQUID_FUEL_RECIPES = new ArrayList<>();
-    public static final List<PressingRecipe> PRESSING_RECIPES = new ArrayList<>();
-    public static final List<FermentingRecipe> FERMENTING_RECIPES = new ArrayList<>();
-    public static final List<LaserRecipe> CONVERSION_LASER_RECIPES = new ArrayList<>();
-    public static final List<MiningLensRecipe> MINING_LENS_RECIPES = new ArrayList<>();
 
     /**
      * Farmer behaviors are sorted when first accessed, this will not be done until after loading, but do not add behaviors at runtime.

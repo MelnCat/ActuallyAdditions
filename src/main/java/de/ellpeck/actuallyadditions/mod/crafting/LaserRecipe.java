@@ -18,6 +18,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -101,7 +102,8 @@ public class LaserRecipe implements Recipe<Container> {
     }
 
     public static Optional<LaserRecipe> getRecipeForStack(ItemStack stack) {
-        return ActuallyAdditionsAPI.CONVERSION_LASER_RECIPES.stream().filter(recipe -> recipe.matches(stack)).findFirst();
+        return ServerLifecycleHooks.getCurrentServer().getRecipeManager()
+	        .getAllRecipesFor(ActuallyRecipes.Types.LASER.get()).stream().filter(recipe -> recipe.matches(stack)).findFirst();
     }
 
     public boolean validInput(ItemStack stack) {

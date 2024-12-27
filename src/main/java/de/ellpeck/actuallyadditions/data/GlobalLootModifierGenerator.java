@@ -3,11 +3,14 @@ package de.ellpeck.actuallyadditions.data;
 import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.lootmodifier.BatLootModifier;
 import de.ellpeck.actuallyadditions.mod.lootmodifier.DungeonLootModifier;
+import de.ellpeck.actuallyadditions.mod.lootmodifier.GrassLootModifier;
 import de.ellpeck.actuallyadditions.mod.lootmodifier.SolidXpLootModifier;
 import net.minecraft.advancements.critereon.DamageSourcePredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.AnyOfCondition;
@@ -48,6 +51,13 @@ public class GlobalLootModifierGenerator extends GlobalLootModifierProvider {
 			new LootItemCondition[]{
 				LootItemEntityPropertyCondition.entityPresent(LootContext.EntityTarget.THIS).build(),
 				DamageSourceCondition.hasDamageSource(DamageSourcePredicate.Builder.damageType()).build()
+			}));
+		this.add("grass_seeds_drop", new GrassLootModifier(
+			new LootItemCondition[] {
+				AnyOfCondition.anyOf(
+					LootTableIdCondition.builder(Blocks.GRASS.getLootTable()),
+					LootTableIdCondition.builder(Blocks.TALL_GRASS.getLootTable())
+				).build()
 			}));
 	}
 }

@@ -67,7 +67,7 @@ public class TileEntityPlayerInterface extends TileEntityBase implements IEnergy
                 : new PlayerInvWrapper(player.getInventory());
         }
 
-        return LazyOptional.of(() -> this.playerHandler);
+        return this.playerHandler == null ? LazyOptional.empty() : LazyOptional.of(() -> this.playerHandler);
     }
 
     public static <T extends BlockEntity> void clientTick(Level level, BlockPos pos, BlockState state, T t) {

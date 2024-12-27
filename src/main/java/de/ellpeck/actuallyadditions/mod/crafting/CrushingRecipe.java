@@ -98,14 +98,14 @@ public class CrushingRecipe implements Recipe<Container> {
     }
 
     public ItemStack getOutputTwo() {
-        return this.outputs.get(1).stack;
+        return this.outputs.size() == 1 ? ItemStack.EMPTY : this.outputs.get(1).stack;
     }
 
     public float getFirstChance() {
         return this.outputs.get(0).chance;
     }
     public float getSecondChance() {
-        return this.outputs.get(1).chance;
+        return this.outputs.size() == 1 ? 0f : this.outputs.get(1).chance;
     }
 
     public Ingredient getInput() {

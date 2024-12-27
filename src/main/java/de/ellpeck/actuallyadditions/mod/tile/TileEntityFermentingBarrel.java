@@ -12,12 +12,14 @@ package de.ellpeck.actuallyadditions.mod.tile;
 
 import de.ellpeck.actuallyadditions.api.ActuallyAdditionsAPI;
 import de.ellpeck.actuallyadditions.mod.blocks.ActuallyBlocks;
+import de.ellpeck.actuallyadditions.mod.crafting.ActuallyRecipes;
 import de.ellpeck.actuallyadditions.mod.crafting.FermentingRecipe;
 import de.ellpeck.actuallyadditions.mod.inventory.ContainerFermentingBarrel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -32,6 +34,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -68,7 +71,8 @@ public class TileEntityFermentingBarrel extends TileEntityBase implements IShari
             tanks.readNBT(compound.getCompound("tanks"));
         }
         if (compound.contains("currentRecipe")) {
-            this.currentRecipe = ActuallyAdditionsAPI.FERMENTING_RECIPES.stream().filter(recipe -> recipe.getId().toString().equals(compound.getString("currentRecipe"))).findFirst().orElse(null);
+            this.currentRecipe = level.getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.FERMENTING.get())
+                .stream().filter(recipe -> recipe.getId().toString().equals(compound.getString("currentRecipe"))).findFirst().orElse(null);
         }
         super.readSyncableNBT(compound, type);
     }
@@ -86,7 +90,7 @@ public class TileEntityFermentingBarrel extends TileEntityBase implements IShari
             if (tile.currentRecipe == null) {
                 //No recipe currently selected, check for one every 20 ticks
                 if (tile.ticksElapsed % 20 == 0)
-                    tile.currentRecipe = ActuallyAdditionsAPI.FERMENTING_RECIPES.stream().filter(recipe -> recipe.matches(tile.tanks.getFluidInTank(0), tile.tanks.getFluidInTank(1))).findFirst().orElse(null);
+                    tile.currentRecipe = level.getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.FERMENTING.get()).stream().filter(recipe -> recipe.matches(tile.tanks.getFluidInTank(0), tile.tanks.getFluidInTank(1))).findFirst().orElse(null);
             } else {
                 if (tile.tanks.getFluidInTank(0).getAmount() >= tile.currentRecipe.getInput().getAmount() &&
                         tile.tanks.getFluidInTank(0).getFluid().isSame(tile.currentRecipe.getInput().getFluid()) &&
@@ -181,7 +185,8 @@ public class TileEntityFermentingBarrel extends TileEntityBase implements IShari
     }
 
     public static Optional<FermentingRecipe> getRecipeForInput(FluidStack stack) {
-        return ActuallyAdditionsAPI.FERMENTING_RECIPES.stream().filter(recipe -> recipe.matches(stack)).findFirst();
+        return ServerLifecycleHooks.getCurrentServer().getRecipeManager()
+            .getAllRecipesFor(ActuallyRecipes.Types.FERMENTING.get()).stream().filter(recipe -> recipe.matches(stack)).findFirst();
     }
 
 

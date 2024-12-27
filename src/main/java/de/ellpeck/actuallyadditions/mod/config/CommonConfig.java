@@ -76,7 +76,7 @@ public class CommonConfig {
         public static void build() {
             BUILDER.comment("Worldgen Settings").push("worldgenSettings");
 
-            GENERATE_QUARTZ = BUILDER.comment("Should Black Quartz generate in the world?").define("laserRelayLoss", true);
+            GENERATE_QUARTZ = BUILDER.comment("Should Black Quartz generate in the world?").define("blackQuartzGeneration", true);
 
             BUILDER.pop();
         }
@@ -89,6 +89,7 @@ public class CommonConfig {
         public static ForgeConfigSpec.BooleanValue DO_XP_DROPS;
         public static ForgeConfigSpec.BooleanValue DO_CAT_DROPS;
         public static ForgeConfigSpec.BooleanValue DO_BAT_DROPS;
+        public static ForgeConfigSpec.BooleanValue DO_SEEDS_DROPS;
         public static ForgeConfigSpec.IntValue FUR_CHANCE;
         public static ForgeConfigSpec.BooleanValue WORMS;
         public static ForgeConfigSpec.IntValue WORMS_DIE_TIME;
@@ -129,6 +130,9 @@ public class CommonConfig {
 
             DO_BAT_DROPS = BUILDER.comment("Should Bat wings drop from Bats?")
                 .define("doBatDrops", true);
+
+            DO_SEEDS_DROPS = BUILDER.comment("Should seeds (coffee beans, rice, flax, canola) drop from breaking grss?")
+                .define("doSeedsDrops", true);
 
             FUR_CHANCE = BUILDER.comment("The 1/n drop chance, per tick, for a fur ball to be dropped.")
                 .defineInRange("furDropChance", 5000, 1, Integer.MAX_VALUE);

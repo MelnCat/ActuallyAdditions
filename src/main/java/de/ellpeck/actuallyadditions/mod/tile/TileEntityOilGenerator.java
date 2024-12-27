@@ -13,6 +13,7 @@ package de.ellpeck.actuallyadditions.mod.tile;
 import de.ellpeck.actuallyadditions.api.ActuallyAdditionsAPI;
 import de.ellpeck.actuallyadditions.mod.blocks.ActuallyBlocks;
 import de.ellpeck.actuallyadditions.mod.config.CommonConfig;
+import de.ellpeck.actuallyadditions.mod.crafting.ActuallyRecipes;
 import de.ellpeck.actuallyadditions.mod.crafting.LiquidFuelRecipe;
 import de.ellpeck.actuallyadditions.mod.inventory.ContainerOilGenerator;
 import net.minecraft.core.BlockPos;
@@ -34,6 +35,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -71,14 +73,10 @@ public class TileEntityOilGenerator extends TileEntityBase implements ISharingEn
     }
 
     private static LiquidFuelRecipe getRecipeForFluid(FluidStack fluid) {
-        if (fluid != null) {
-            for (LiquidFuelRecipe recipe : ActuallyAdditionsAPI.LIQUID_FUEL_RECIPES) {
-                if (recipe != null && recipe.matches(fluid)) {
-                    return recipe;
-                }
-            }
-        }
-        return null;
+        return ServerLifecycleHooks.getCurrentServer().getRecipeManager()
+            .getAllRecipesFor(ActuallyRecipes.Types.LIQUID_FUEL.get())
+            .stream()
+            .filter(x -> x.matches(fluid)).findFirst().orElse(null);
     }
 
     @OnlyIn(Dist.CLIENT)

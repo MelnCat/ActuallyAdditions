@@ -12,6 +12,7 @@ package de.ellpeck.actuallyadditions.mod.items.base;
 
 import de.ellpeck.actuallyadditions.mod.items.ActuallyItems;
 import de.ellpeck.actuallyadditions.mod.tile.CustomEnergyStorage;
+import de.ellpeck.actuallyadditions.mod.tile.CustomItemEnergyStorage;
 import de.ellpeck.actuallyadditions.mod.util.AssetUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -98,8 +99,8 @@ public abstract class ItemEnergy extends ItemBase {
 
     public void setEnergy(ItemStack stack, int energy) {
         stack.getCapability(ForgeCapabilities.ENERGY, null).ifPresent(cap -> {
-            if (cap instanceof CustomEnergyStorage) {
-                ((CustomEnergyStorage) cap).setEnergyStored(energy);
+            if (cap instanceof CustomItemEnergyStorage) {
+                ((CustomItemEnergyStorage) cap).setEnergyStored(energy);
             }
         });
     }
@@ -107,14 +108,14 @@ public abstract class ItemEnergy extends ItemBase {
     @Deprecated
     public int receiveEnergyInternal(ItemStack stack, int maxReceive, boolean simulate) {
         return stack.getCapability(ForgeCapabilities.ENERGY)
-            .map(cap -> ((CustomEnergyStorage) cap).receiveEnergyInternal(maxReceive, simulate))
+            .map(cap -> ((CustomItemEnergyStorage) cap).receiveEnergyInternal(maxReceive, simulate))
             .orElse(0);
     }
 
     public int extractEnergyInternal(ItemStack stack, int maxExtract, boolean simulate) {
         return stack.getCapability(ForgeCapabilities.ENERGY)
-            .map(cap -> cap instanceof CustomEnergyStorage
-                ? ((CustomEnergyStorage) cap).extractEnergyInternal(maxExtract, simulate)
+            .map(cap -> cap instanceof CustomItemEnergyStorage
+                ? ((CustomItemEnergyStorage) cap).extractEnergyInternal(maxExtract, simulate)
                 : 0)
             .orElse(0);
     }
@@ -149,17 +150,14 @@ public abstract class ItemEnergy extends ItemBase {
         return new EnergyCapabilityProvider(stack, this);
     }
 
-    private static class EnergyCapabilityProvider implements ICapabilitySerializable<CompoundTag> {
+    private static class EnergyCapabilityProvider implements ICapabilityProvider {
 
-        public final CustomEnergyStorage storage;
-        private final LazyOptional<CustomEnergyStorage> energyCapability;
-
-        private final ItemStack stack;
+        public final CustomItemEnergyStorage storage;
+        private final LazyOptional<CustomItemEnergyStorage> energyCapability;
 
         public EnergyCapabilityProvider(ItemStack stack, ItemEnergy item) {
-            this.storage = new CustomEnergyStorage(item.maxPower, item.transfer, item.transfer);
+            this.storage = new CustomItemEnergyStorage(stack, item.maxPower, item.transfer, item.transfer);
             this.energyCapability = LazyOptional.of(() -> this.storage);
-            this.stack = stack;
         }
 
         @Nonnull
@@ -171,18 +169,5 @@ public abstract class ItemEnergy extends ItemBase {
             return LazyOptional.empty();
         }
 
-        @Override
-        public CompoundTag serializeNBT() {
-            if (this.storage.isDirty())
-                stack.getOrCreateTag().putInt("Energy", this.storage.getEnergyStored());
-            this.storage.clearDirty();
-            return new CompoundTag();
-        }
-
-        @Override
-        public void deserializeNBT(CompoundTag nbt) {
-            if (stack.getOrCreateTag().contains("Energy"))
-                this.storage.setEnergyStored(stack.getOrCreateTag().getInt("Energy"));
-        }
     }
 }
