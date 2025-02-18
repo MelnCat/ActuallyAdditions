@@ -13,6 +13,7 @@ package de.ellpeck.actuallyadditions.mod.items.lens;
 import de.ellpeck.actuallyadditions.api.ActuallyAdditionsAPI;
 import de.ellpeck.actuallyadditions.api.internal.IAtomicReconstructor;
 import de.ellpeck.actuallyadditions.api.lens.Lens;
+import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.config.CommonConfig;
 import de.ellpeck.actuallyadditions.mod.crafting.ActuallyRecipes;
 import de.ellpeck.actuallyadditions.mod.crafting.MiningLensRecipe;
@@ -22,7 +23,6 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.server.ServerLifecycleHooks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +85,7 @@ public class LensMining extends Lens {
                 Block hitBlock = hitState.getBlock();
                 ItemStack item = new ItemStack(hitBlock.asItem());
 
-	            for (MiningLensRecipe r : ServerLifecycleHooks.getCurrentServer().getRecipeManager()
+	            for (MiningLensRecipe r : ActuallyAdditions.getRecipeManager()
 		            .getAllRecipesFor(ActuallyRecipes.Types.MINING_LENS.get())) {
 		            if (r.matches(item))
 			            ores.add(r);

@@ -11,6 +11,7 @@
 package de.ellpeck.actuallyadditions.mod.tile;
 
 import de.ellpeck.actuallyadditions.api.ActuallyAdditionsAPI;
+import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.blocks.ActuallyBlocks;
 import de.ellpeck.actuallyadditions.mod.crafting.ActuallyRecipes;
 import de.ellpeck.actuallyadditions.mod.crafting.EmpowererRecipe;
@@ -26,7 +27,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.server.ServerLifecycleHooks;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -47,7 +47,7 @@ public class TileEntityEmpowerer extends TileEntityInventoryBase {
     }
 
     public static boolean isPossibleInput(ItemStack stack) {
-        for (EmpowererRecipe r : ServerLifecycleHooks.getCurrentServer().getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.EMPOWERING.get())) {
+        for (EmpowererRecipe r : ActuallyAdditions.getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.EMPOWERING.get())) {
             if (r.getInput().test(stack)) {
                 return true;
             }
@@ -57,7 +57,7 @@ public class TileEntityEmpowerer extends TileEntityInventoryBase {
 
     @Nullable
     public static EmpowererRecipe findMatchingRecipe(ItemStack base, ItemStack stand1, ItemStack stand2, ItemStack stand3, ItemStack stand4) {
-        for (EmpowererRecipe r : ServerLifecycleHooks.getCurrentServer().getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.EMPOWERING.get())) {
+        for (EmpowererRecipe r : ActuallyAdditions.getRecipeManager().getAllRecipesFor(ActuallyRecipes.Types.EMPOWERING.get())) {
             if (r.matches(base, stand1, stand2, stand3, stand4)) {
                 return r;
             }

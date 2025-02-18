@@ -11,6 +11,7 @@
 package de.ellpeck.actuallyadditions.mod.recipe;
 
 import de.ellpeck.actuallyadditions.api.ActuallyAdditionsAPI;
+import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.crafting.ActuallyRecipes;
 import de.ellpeck.actuallyadditions.mod.crafting.CrushingRecipe;
 import net.minecraft.world.item.ItemStack;
@@ -113,7 +114,7 @@ public final class CrusherRecipeRegistry {
 	//
 	public static CrushingRecipe getRecipeFromInput(ItemStack input) {
 		return Stream.concat(
-				ServerLifecycleHooks.getCurrentServer()
+				ActuallyAdditions
 					.getRecipeManager()
 					.getAllRecipesFor(ActuallyRecipes.Types.CRUSHING.get())
 					.stream(),
