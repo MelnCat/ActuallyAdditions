@@ -11,6 +11,7 @@
 package de.ellpeck.actuallyadditions.mod.tile;
 
 import de.ellpeck.actuallyadditions.api.ActuallyAdditionsAPI;
+import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.blocks.ActuallyBlocks;
 import de.ellpeck.actuallyadditions.mod.crafting.ActuallyRecipes;
 import de.ellpeck.actuallyadditions.mod.crafting.FermentingRecipe;
@@ -34,7 +35,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.server.ServerLifecycleHooks;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -185,7 +185,7 @@ public class TileEntityFermentingBarrel extends TileEntityBase implements IShari
     }
 
     public static Optional<FermentingRecipe> getRecipeForInput(FluidStack stack) {
-        return ServerLifecycleHooks.getCurrentServer().getRecipeManager()
+        return ActuallyAdditions.getRecipeManager()
             .getAllRecipesFor(ActuallyRecipes.Types.FERMENTING.get()).stream().filter(recipe -> recipe.matches(stack)).findFirst();
     }
 

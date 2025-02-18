@@ -104,8 +104,8 @@ dependencies {
     compileOnly fg.deobf("xyz.brassgoggledcoders:PatchouliProvider:${patchouli_provider_version}")
     runtimeOnly fg.deobf("xyz.brassgoggledcoders:PatchouliProvider:${patchouli_provider_version}")
 
-    runtimeOnly fg.deobf("curse.maven:jade-324717:5390389")
-    runtimeOnly fg.deobf("curse.maven:mekanism-268560:5125665")
+    runtimeOnly fg.deobf("curse.maven:jade-324717:6106101")
+    runtimeOnly fg.deobf("curse.maven:mekanism-268560:6123077")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
