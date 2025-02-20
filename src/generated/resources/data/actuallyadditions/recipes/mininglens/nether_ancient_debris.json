@@ -3,6 +3,7 @@
   "ingredient": {
     "tag": "forge:netherrack"
   },
+  "output_type": "item",
   "result": {
     "item": "minecraft:ancient_debris"
   },

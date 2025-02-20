@@ -1,0 +1,9 @@
+{
+	"type": "actuallyadditions:mining_lens",
+	"ingredient": {
+		"tag": "forge:netherrack"
+	},
+	"result": "forge:ores/cobalt",
+	"output_type": "tag",
+	"weight": 50
+}

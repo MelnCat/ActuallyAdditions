@@ -60,7 +60,9 @@ public class MiningLensGenerator extends RecipeProvider {
             folderRecipe("mininglens", "deepslate_" + getItemName(output)),
                 Ingredient.of(Items.DEEPSLATE),
                 weight,
-                output
+                output,
+                null,
+                MiningLensRecipe.OutputType.ITEM
         ));
     }
 
@@ -69,7 +71,9 @@ public class MiningLensGenerator extends RecipeProvider {
                 folderRecipe("mininglens", prefix + "_" + getItemName(output)),
                 Ingredient.of(tag),
                 weight,
-                output
+                output,
+                null,
+                MiningLensRecipe.OutputType.ITEM
         ));
     }
 

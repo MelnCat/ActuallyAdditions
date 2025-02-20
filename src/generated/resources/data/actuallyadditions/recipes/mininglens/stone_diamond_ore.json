@@ -3,6 +3,7 @@
   "ingredient": {
     "tag": "forge:stone"
   },
+  "output_type": "item",
   "result": {
     "item": "minecraft:diamond_ore"
   },

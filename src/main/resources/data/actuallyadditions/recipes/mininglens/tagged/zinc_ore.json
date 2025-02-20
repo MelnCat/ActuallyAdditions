@@ -1,0 +1,9 @@
+{
+	"type": "actuallyadditions:mining_lens",
+	"ingredient": {
+		"tag": "forge:stone"
+	},
+	"result": "forge:ores/zinc",
+	"output_type": "tag",
+	"weight": 1000
+}

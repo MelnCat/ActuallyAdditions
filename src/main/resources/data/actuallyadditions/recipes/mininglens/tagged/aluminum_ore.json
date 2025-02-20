@@ -1,0 +1,9 @@
+{
+	"type": "actuallyadditions:mining_lens",
+	"ingredient": {
+		"tag": "forge:stone"
+	},
+	"result": "forge:ores/aluminum",
+	"output_type": "tag",
+	"weight": 250
+}
