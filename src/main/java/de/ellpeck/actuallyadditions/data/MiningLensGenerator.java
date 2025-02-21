@@ -89,7 +89,7 @@ public class MiningLensGenerator extends RecipeProvider {
 
     private void buildTagOre(Consumer<FinishedRecipe> consumer, TagKey<Item> tag, String prefix, int weight, TagKey<Item> output) {
         consumer.accept(new MiningLensRecipe.Result(
-            folderRecipe("mininglens", prefix + "_" + output.location().getPath()),
+            folderRecipe("mininglens", prefix + "_" + output.location().getPath().replaceAll("/", "_")),
             Ingredient.of(tag),
             weight,
             null,

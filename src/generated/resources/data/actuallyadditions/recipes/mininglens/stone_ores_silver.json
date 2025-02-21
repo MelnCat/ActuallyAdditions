@@ -1,0 +1,9 @@
+{
+  "type": "actuallyadditions:mining_lens",
+  "ingredient": {
+    "tag": "forge:stone"
+  },
+  "output_type": "tag",
+  "tag": "forge:ores/silver",
+  "weight": 1000
+}
