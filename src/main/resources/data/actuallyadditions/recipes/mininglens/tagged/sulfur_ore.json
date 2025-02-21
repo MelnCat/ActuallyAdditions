@@ -1,9 +1,0 @@
-{
-	"type": "actuallyadditions:mining_lens",
-	"ingredient": {
-		"tag": "forge:stone"
-	},
-	"result": "forge:ores/sulfur",
-	"output_type": "tag",
-	"weight": 1000
-}

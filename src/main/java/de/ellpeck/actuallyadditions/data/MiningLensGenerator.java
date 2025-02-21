@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.blocks.ActuallyBlocks;
 import de.ellpeck.actuallyadditions.mod.crafting.MiningLensRecipe;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -17,6 +18,8 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
+import javax.imageio.spi.RegisterableService;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
@@ -66,15 +69,37 @@ public class MiningLensGenerator extends RecipeProvider {
         ));
     }
 
+    private void buildStoneOre(Consumer<FinishedRecipe> consumer, int weight, TagKey<Item> output) {
+        buildTagOre(consumer, Tags.Items.STONE, "stone", weight, output);
+    }
+    private void buildNetherOre(Consumer<FinishedRecipe> consumer, int weight, TagKey<Item> output) {
+        buildTagOre(consumer, Tags.Items.NETHERRACK, "nether", weight, output);
+    }
+
     private void buildTagOre(Consumer<FinishedRecipe> consumer, TagKey<Item> tag, String prefix, int weight, ItemLike output) {
         consumer.accept(new MiningLensRecipe.Result(
-                folderRecipe("mininglens", prefix + "_" + getItemName(output)),
-                Ingredient.of(tag),
-                weight,
-                output,
-                null,
-                MiningLensRecipe.OutputType.ITEM
+            folderRecipe("mininglens", prefix + "_" + getItemName(output)),
+            Ingredient.of(tag),
+            weight,
+            output,
+            null,
+            MiningLensRecipe.OutputType.ITEM
         ));
+    }
+
+    private void buildTagOre(Consumer<FinishedRecipe> consumer, TagKey<Item> tag, String prefix, int weight, TagKey<Item> output) {
+        consumer.accept(new MiningLensRecipe.Result(
+            folderRecipe("mininglens", prefix + "_" + output.location().getPath()),
+            Ingredient.of(tag),
+            weight,
+            null,
+            output,
+            MiningLensRecipe.OutputType.TAG
+        ));
+    }
+    
+    private TagKey<Item> oreTag(String name) {
+        return TagKey.create(Registries.ITEM, Objects.requireNonNull(ResourceLocation.tryBuild("forge", "ores/" + name)));
     }
 
     private void buildMiningLens(Consumer<FinishedRecipe> consumer) {
@@ -99,5 +124,16 @@ public class MiningLensGenerator extends RecipeProvider {
         buildDeepSlateOre(consumer, 250, Items.DEEPSLATE_LAPIS_ORE);
         buildDeepSlateOre(consumer, 200, Items.DEEPSLATE_REDSTONE_ORE);
         buildDeepSlateOre(consumer, 30, Items.DEEPSLATE_EMERALD_ORE);
+
+        buildStoneOre(consumer, 250, oreTag("aluminum"));
+        buildNetherOre(consumer, 50, oreTag("cobalt"));
+        buildStoneOre(consumer, 2000, oreTag("lead"));
+        buildStoneOre(consumer, 2000, oreTag("nickel"));
+        buildStoneOre(consumer, 1000, oreTag("silver"));
+        buildStoneOre(consumer, 1000, oreTag("sulfur"));
+        buildStoneOre(consumer, 2000, oreTag("tin"));
+        buildStoneOre(consumer, 1200, oreTag("yellorite"));
+        buildStoneOre(consumer, 1000, oreTag("zinc"));
+        buildStoneOre(consumer, 500, oreTag("uranium"));
     }
 }
