@@ -200,7 +200,7 @@ public class MiningLensRecipe implements Recipe<Container>, WeightedEntry {
 				resultObject.addProperty("item", ForgeRegistries.ITEMS.getKey(output.asItem()).toString());
 				pJson.add("result", resultObject);
 			} else if (outputType == OutputType.TAG) {
-				pJson.add("tag", TagKey.codec(Registries.ITEM).encodeStart(JsonOps.INSTANCE, outputTag).getOrThrow(false, e -> {
+				pJson.add("result", TagKey.codec(Registries.ITEM).encodeStart(JsonOps.INSTANCE, outputTag).getOrThrow(false, e -> {
 					throw new IllegalStateException(e);
 				}));
 			}

@@ -4,6 +4,6 @@
     "tag": "forge:stone"
   },
   "output_type": "tag",
-  "tag": "forge:ores/sulfur",
+  "result": "forge:ores/sulfur",
   "weight": 1000
 }

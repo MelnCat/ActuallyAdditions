@@ -4,6 +4,6 @@
     "tag": "forge:stone"
   },
   "output_type": "tag",
-  "tag": "forge:ores/nickel",
+  "result": "forge:ores/nickel",
   "weight": 2000
 }

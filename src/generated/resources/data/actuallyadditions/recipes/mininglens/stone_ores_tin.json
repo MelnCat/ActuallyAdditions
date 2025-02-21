@@ -4,6 +4,6 @@
     "tag": "forge:stone"
   },
   "output_type": "tag",
-  "tag": "forge:ores/tin",
+  "result": "forge:ores/tin",
   "weight": 2000
 }

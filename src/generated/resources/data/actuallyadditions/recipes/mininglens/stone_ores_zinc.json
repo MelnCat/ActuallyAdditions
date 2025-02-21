@@ -4,6 +4,6 @@
     "tag": "forge:stone"
   },
   "output_type": "tag",
-  "tag": "forge:ores/zinc",
+  "result": "forge:ores/zinc",
   "weight": 1000
 }
