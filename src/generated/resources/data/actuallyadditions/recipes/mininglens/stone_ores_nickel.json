@@ -1,9 +1,25 @@
 {
-  "type": "actuallyadditions:mining_lens",
-  "ingredient": {
-    "tag": "forge:stone"
-  },
-  "output_type": "tag",
-  "result": "forge:ores/nickel",
-  "weight": 2000
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ores/nickel"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "actuallyadditions:mining_lens",
+        "ingredient": {
+          "tag": "forge:stone"
+        },
+        "output_type": "tag",
+        "result": "forge:ores/nickel",
+        "weight": 2000
+      }
+    }
+  ]
 }

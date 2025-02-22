@@ -16,6 +16,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.crafting.ConditionalRecipe;
+import net.minecraftforge.common.crafting.conditions.NotCondition;
+import net.minecraftforge.common.crafting.conditions.TagEmptyCondition;
 import org.jetbrains.annotations.Nullable;
 
 import javax.imageio.spi.RegisterableService;
@@ -87,24 +90,32 @@ public class MiningLensGenerator extends RecipeProvider {
         ));
     }
 
-    private void buildTagOre(Consumer<FinishedRecipe> consumer, TagKey<Item> tag, String prefix, int weight, TagKey<Item> output) {
-        consumer.accept(new MiningLensRecipe.Result(
-            folderRecipe("mininglens", prefix + "_" + output.location().getPath().replaceAll("/", "_")),
-            Ingredient.of(tag),
-            weight,
-            null,
-            output,
-            MiningLensRecipe.OutputType.TAG
-        ));
-    }
-    
-    private TagKey<Item> oreTag(String name) {
-        return TagKey.create(Registries.ITEM, Objects.requireNonNull(ResourceLocation.tryBuild("forge", "ores/" + name)));
-    }
+	private void buildTagOre(Consumer<FinishedRecipe> consumer, TagKey<Item> tag, String prefix, int weight, TagKey<Item> output) {
+		var id = folderRecipe("mininglens", prefix + "_" + output.location().getPath().replaceAll("/", "_"));
+		ConditionalRecipe.builder()
+			.addCondition(
+				new NotCondition(
+					new TagEmptyCondition(output.location())
+				)
+			)
+			.addRecipe(new MiningLensRecipe.Result(
+				id,
+				Ingredient.of(tag),
+				weight,
+				null,
+				output,
+				MiningLensRecipe.OutputType.TAG
+			))
+			.build(consumer, id);
+	}
 
-    private void buildMiningLens(Consumer<FinishedRecipe> consumer) {
-        buildStoneOre(consumer, 5000, Items.COAL_ORE);
-        buildStoneOre(consumer, 5000, Items.COPPER_ORE);
+	private TagKey<Item> oreTag(String name) {
+		return TagKey.create(Registries.ITEM, Objects.requireNonNull(ResourceLocation.tryBuild("forge", "ores/" + name)));
+	}
+
+	private void buildMiningLens(Consumer<FinishedRecipe> consumer) {
+		buildStoneOre(consumer, 5000, Items.COAL_ORE);
+		buildStoneOre(consumer, 5000, Items.COPPER_ORE);
         buildStoneOre(consumer, 3000, Items.IRON_ORE);
         buildStoneOre(consumer, 500, Items.GOLD_ORE);
         buildNetherOre(consumer, 500, Items.NETHER_GOLD_ORE);

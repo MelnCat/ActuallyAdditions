@@ -1,9 +1,25 @@
 {
-  "type": "actuallyadditions:mining_lens",
-  "ingredient": {
-    "tag": "forge:netherrack"
-  },
-  "output_type": "tag",
-  "result": "forge:ores/cobalt",
-  "weight": 50
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ores/cobalt"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "actuallyadditions:mining_lens",
+        "ingredient": {
+          "tag": "forge:netherrack"
+        },
+        "output_type": "tag",
+        "result": "forge:ores/cobalt",
+        "weight": 50
+      }
+    }
+  ]
 }

@@ -1,9 +1,25 @@
 {
-  "type": "actuallyadditions:mining_lens",
-  "ingredient": {
-    "tag": "forge:stone"
-  },
-  "output_type": "tag",
-  "result": "forge:ores/aluminum",
-  "weight": 250
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ores/aluminum"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "actuallyadditions:mining_lens",
+        "ingredient": {
+          "tag": "forge:stone"
+        },
+        "output_type": "tag",
+        "result": "forge:ores/aluminum",
+        "weight": 250
+      }
+    }
+  ]
 }

@@ -1,9 +1,25 @@
 {
-  "type": "actuallyadditions:mining_lens",
-  "ingredient": {
-    "tag": "forge:stone"
-  },
-  "output_type": "tag",
-  "result": "forge:ores/uranium",
-  "weight": 500
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ores/uranium"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "actuallyadditions:mining_lens",
+        "ingredient": {
+          "tag": "forge:stone"
+        },
+        "output_type": "tag",
+        "result": "forge:ores/uranium",
+        "weight": 500
+      }
+    }
+  ]
 }
