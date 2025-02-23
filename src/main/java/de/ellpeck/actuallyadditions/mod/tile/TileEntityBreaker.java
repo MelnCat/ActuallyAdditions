@@ -107,13 +107,16 @@ public class TileEntityBreaker extends TileEntityInventoryBase implements MenuPr
 
         if (!this.isPlacer && blockToBreak != Blocks.AIR && !(blockToBreak instanceof IFluidBlock) && stateToBreak.getDestroySpeed(this.level, breakCoords) >= 0.0F) {
             FakePlayer fake = FakePlayerFactory.getMinecraft((ServerLevel) this.level);
-            if (fake.connection == null) {
-                fake.connection = new NetHandlerSpaghettiServer(fake);
+            ItemStack tool = this.inv.getStackInSlot(0);
+            fake.getInventory().items.set(fake.getInventory().selected, tool);
+            List<ItemStack> drops = Block.getDrops(stateToBreak, (ServerLevel) this.level, breakCoords, this.level.getBlockEntity(breakCoords), fake, tool);
+            if (!stateToBreak.canHarvestBlock(level, breakCoords, fake)) {
+                fake.getInventory().items.set(fake.getInventory().selected, Items.NETHERITE_PICKAXE.getDefaultInstance());
+                tool = null;
             }
-            List<ItemStack> drops = Block.getDrops(stateToBreak, (ServerLevel) this.level, breakCoords, this.level.getBlockEntity(breakCoords), fake, this.inv.getStackInSlot(0));
-            if (!stateToBreak.requiresCorrectToolForDrops() || this.inv.getStackInSlot(0).isCorrectToolForDrops(stateToBreak)) { //TODO might double check this is right mikey
+            if (stateToBreak.canHarvestBlock(level, breakCoords, fake)) { //TODO might double check this is right mikey
                 if (StackUtil.canAddAll(this.inv, drops, false)) {
-                    this.inv.getStackInSlot(0).hurtAndBreak(1, fake, e -> {});
+                    if (tool != null) tool.hurtAndBreak(1, fake, e -> {});
                     this.level.destroyBlock(breakCoords, false);
                     StackUtil.addAll(this.inv, drops, false);
                     this.setChanged();

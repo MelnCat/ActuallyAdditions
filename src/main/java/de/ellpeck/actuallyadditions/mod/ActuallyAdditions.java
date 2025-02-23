@@ -193,7 +193,15 @@ public class    ActuallyAdditions {
 
     public static RecipeManager getRecipeManager() {
         if (FMLLoader.getDist().isClient()) {
-            return Minecraft.getInstance().getConnection().getRecipeManager();
+            var connection = Minecraft.getInstance().getConnection();
+            if (connection == null) {
+                var level = Minecraft.getInstance().level;
+                if (level == null) {
+                    return ServerLifecycleHooks.getCurrentServer().getRecipeManager();
+                }
+                return level.getRecipeManager();
+            }
+            return connection.getRecipeManager();
         } else {
             return ServerLifecycleHooks.getCurrentServer().getRecipeManager();
         }

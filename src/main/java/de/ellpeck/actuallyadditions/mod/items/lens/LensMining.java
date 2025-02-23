@@ -85,7 +85,7 @@ public class LensMining extends Lens {
                 
                 List<MiningLensRecipe> ores = ActuallyAdditions.getRecipeManager()
                     .getAllRecipesFor(ActuallyRecipes.Types.MINING_LENS.get()).stream()
-                    .filter(x -> x.shouldUse() && x.matches(item)).toList();
+                    .filter(x -> x.matches(item) && !x.getResultItem(tile.getWorldObject().registryAccess()).isEmpty()).toList();
 
 
 /*                if (hitBlock.is(Tags.Blocks.STONE)) { //TODO maybe?

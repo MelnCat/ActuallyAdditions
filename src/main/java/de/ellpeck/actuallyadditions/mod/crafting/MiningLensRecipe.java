@@ -26,6 +26,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -96,13 +97,9 @@ public class MiningLensRecipe implements Recipe<Container>, WeightedEntry {
 	}
 
 	@Override
-	public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
+	public @NotNull ItemStack getResultItem(RegistryAccess pRegistryAccess) {
 		if (outputType == OutputType.ITEM) return output;
-		else return new ItemStack(getOutputTag().orElseThrow().get(0).get());
-	}
-
-	public boolean shouldUse() {
-		return getOutputTag().isPresent();
+		else return getOutputTag().map(x -> new ItemStack(x.get(0).get())).orElse(ItemStack.EMPTY);
 	}
 
 	private Optional<HolderSet.Named<Item>> getOutputTag() {
