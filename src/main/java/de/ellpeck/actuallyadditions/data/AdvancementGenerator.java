@@ -36,8 +36,6 @@ public class AdvancementGenerator extends ForgeAdvancementProvider {
 					.addCriterion("right_click", new ImpossibleTrigger.TriggerInstance())
 					.save(consumer, "actuallyadditions:root");
 
-			//TODO: Underwater Treasure Chest Advancement?
-
 			Advancement phantomFace = Advancement.Builder.advancement()
 					.parent(root)
 					.display(new DisplayInfo(ActuallyBlocks.PHANTOM_ITEMFACE.get().asItem().getDefaultInstance(),
