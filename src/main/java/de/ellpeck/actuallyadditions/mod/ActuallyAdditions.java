@@ -22,8 +22,10 @@ import de.ellpeck.actuallyadditions.mod.crafting.ActuallyRecipes;
 import de.ellpeck.actuallyadditions.mod.crafting.TargetNBTIngredient;
 import de.ellpeck.actuallyadditions.mod.data.WorldData;
 import de.ellpeck.actuallyadditions.mod.entity.EntityWorm;
+import de.ellpeck.actuallyadditions.mod.entity.InitEntities;
 import de.ellpeck.actuallyadditions.mod.event.CommonEvents;
 import de.ellpeck.actuallyadditions.mod.fluids.InitFluids;
+import de.ellpeck.actuallyadditions.mod.gen.ActuallyBiomeModifiers;
 import de.ellpeck.actuallyadditions.mod.gen.ActuallyVillages;
 import de.ellpeck.actuallyadditions.mod.gen.modifier.BoolConfigFeatureBiomeModifier;
 import de.ellpeck.actuallyadditions.mod.gen.village.ActuallyPOITypes;
@@ -90,18 +92,6 @@ public class    ActuallyAdditions {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
-    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MODID);
-    public static final RegistryObject<EntityType<EntityWorm>> ENTITY_WORM = ENTITIES.register("worm", () -> EntityType.Builder.of(EntityWorm::new, MobCategory.MISC).build(MODID + ":worm"));
-    public static final DeferredRegister<Codec<? extends BiomeModifier>> BIOME_MODIFIER_SERIALIZERS = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, MODID);
-    public static final Supplier<Codec<BoolConfigFeatureBiomeModifier>> BOOL_CONFIG_MODIFIER = BIOME_MODIFIER_SERIALIZERS.register("bool_config_feature_modifier", () ->
-        RecordCodecBuilder.create(builder -> builder.group(
-            Biome.LIST_CODEC.fieldOf("biomes").forGetter(BoolConfigFeatureBiomeModifier::biomes),
-            PlacedFeature.LIST_CODEC.fieldOf("features").forGetter(BoolConfigFeatureBiomeModifier::features),
-            GenerationStep.Decoration.CODEC.fieldOf("step").forGetter(BoolConfigFeatureBiomeModifier::step),
-            Codec.STRING.fieldOf("boolConfig").forGetter(BoolConfigFeatureBiomeModifier::boolConfig)
-        ).apply(builder, BoolConfigFeatureBiomeModifier::new))
-    );
-
     public static boolean commonCapsLoaded;
 
     public ActuallyAdditions() {
@@ -119,8 +109,9 @@ public class    ActuallyAdditions {
         ActuallyLootModifiers.init(eventBus);
         BannerHelper.init(eventBus);
         ActuallyContainers.CONTAINERS.register(eventBus);
-        ENTITIES.register(eventBus);
-		BIOME_MODIFIER_SERIALIZERS.register(eventBus);
+        InitEntities.init(eventBus);
+        InitFluids.init(eventBus);
+        ActuallyBiomeModifiers.init(eventBus);
         eventBus.addListener(this::onConfigReload);
         ActuallyParticles.init(eventBus);
         ActuallyTags.init();
@@ -132,7 +123,6 @@ public class    ActuallyAdditions {
         MinecraftForge.EVENT_BUS.register(new DungeonLoot());
         MinecraftForge.EVENT_BUS.addListener(Worm::onHoe);
         MinecraftForge.EVENT_BUS.addListener(ActuallyVillages::modifyVillageStructures);
-        InitFluids.init(eventBus);
 
         eventBus.addListener(this::setup);
 

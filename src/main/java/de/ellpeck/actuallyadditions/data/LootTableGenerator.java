@@ -31,7 +31,6 @@ import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
-import net.neoforged.neoforge.registries.DeferredItem;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -215,7 +214,7 @@ public class LootTableGenerator extends LootTableProvider {
             dropNBT(blockSupplier, $ -> $.apply(CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY).copy("Energy", "BlockEntityTag.Energy")));
         }
 
-        private void registerCrystal(Supplier<? extends Block> crystalCluster, DeferredItem<? extends Item> crystalShard) {
+        private void registerCrystal(Supplier<? extends Block> crystalCluster, Supplier<? extends Item> crystalShard) {
             this.add(crystalCluster.get(), block ->
                     this.createSingleItemTableWithSilkTouch(block, crystalShard.get(), UniformGenerator.between(2.0F, 8.0F)));
         }
