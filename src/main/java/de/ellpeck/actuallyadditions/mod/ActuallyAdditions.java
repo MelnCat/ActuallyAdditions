@@ -108,13 +108,13 @@ public class    ActuallyAdditions {
         ActuallyPOITypes.init(eventBus);
         ActuallyLootModifiers.init(eventBus);
         BannerHelper.init(eventBus);
-        ActuallyContainers.CONTAINERS.register(eventBus);
+        ActuallyContainers.init(eventBus);
         InitEntities.init(eventBus);
         InitFluids.init(eventBus);
         ActuallyBiomeModifiers.init(eventBus);
-        eventBus.addListener(this::onConfigReload);
         ActuallyParticles.init(eventBus);
         ActuallyTags.init();
+        eventBus.addListener(this::onConfigReload);
 
         MinecraftForge.EVENT_BUS.addListener(this::serverStarted);
         MinecraftForge.EVENT_BUS.addListener(this::serverStopped);
