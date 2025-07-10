@@ -112,7 +112,6 @@ public class TileEntityLaserRelayEnergy extends TileEntityLaserRelay {
         return transmitted;
     }
 
-    // TODO: [port] this is super hacky, review and fix up 
     @Override
     public LazyOptional<IEnergyStorage> getEnergyStorage(Direction facing) {
         return LazyOptional.of(() -> this.energyStorages[facing == null
