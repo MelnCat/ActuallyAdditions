@@ -25,6 +25,7 @@ import de.ellpeck.actuallyadditions.mod.util.WorldUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -53,6 +54,7 @@ import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
@@ -100,9 +102,23 @@ public class DrillItem extends ItemEnergy {
      *
      * @param stack The Drill
      */
-    public static void loadSlotsFromNBT(IItemHandlerModifiable slots, ItemStack stack) {
+    public static void loadSlotsFromNBT(ItemStackHandler slots, ItemStack stack) {
         CompoundTag compound = stack.getOrCreateTag();
-        TileEntityInventoryBase.loadSlots(slots, compound);
+        var items = compound.getList("Items", 10);
+        // Compatibility with old saves
+        if (!items.isEmpty() && !items.getCompound(0).contains("Slot")) {
+            if (slots != null && slots.getSlots() > 0) {
+                ListTag tagList = compound.getList("Items", 10);
+                for (int i = 0; i < slots.getSlots(); i++) {
+                    CompoundTag tagCompound = tagList.getCompound(i);
+                    slots.setStackInSlot(i, tagCompound.contains("id")
+                        ? ItemStack.of(tagCompound)
+                        : ItemStack.EMPTY);
+                }
+            }
+        }
+        else
+            slots.deserializeNBT(compound.getCompound("Items"));
     }
 
     /**
@@ -111,10 +127,9 @@ public class DrillItem extends ItemEnergy {
      * @param slots The Slots
      * @param stack The Drill
      */
-    public static void writeSlotsToNBT(IItemHandler slots, ItemStack stack) {
+    public static void writeSlotsToNBT(ItemStackHandler slots, ItemStack stack) {
         CompoundTag compound = stack.getOrCreateTag();
-
-        TileEntityInventoryBase.saveSlots(slots, compound);
+        compound.put("Items", slots.serializeNBT());
         stack.setTag(compound);
     }
 

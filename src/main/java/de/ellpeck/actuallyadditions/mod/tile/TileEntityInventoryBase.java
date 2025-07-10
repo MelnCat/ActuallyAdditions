@@ -28,118 +28,104 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 public abstract class TileEntityInventoryBase extends TileEntityBase {
 
-    public final ItemStackHandlerAA inv;
-    public final LazyOptional<IItemHandler> lazyInv;
+	public final ItemStackHandlerAA inv;
+	public final LazyOptional<IItemHandler> lazyInv;
 
-    public TileEntityInventoryBase(BlockEntityType<?> type, BlockPos pos, BlockState state, int slots) {
-        super(type, pos, state);
-        this.inv = new TileStackHandler(slots);
-        this.lazyInv = LazyOptional.of(() -> this.inv);
-    }
+	public TileEntityInventoryBase(BlockEntityType<?> type, BlockPos pos, BlockState state, int slots) {
+		super(type, pos, state);
+		this.inv = new TileStackHandler(slots);
+		this.lazyInv = LazyOptional.of(() -> this.inv);
+	}
 
-    public static void saveSlots(IItemHandler slots, CompoundTag compound) {
-        if (slots != null && slots.getSlots() > 0) {
-            ListTag tagList = new ListTag();
-            for (int i = 0; i < slots.getSlots(); i++) {
-                ItemStack slot = slots.getStackInSlot(i);
-                CompoundTag tagCompound = new CompoundTag();
-                if (StackUtil.isValid(slot)) {
-                    slot.save(tagCompound);
-                }
-                tagList.add(tagCompound);
-            }
-            compound.put("Items", tagList);
-        }
-    }
+	@Override
+	public void writeSyncableNBT(CompoundTag compound, NBTType type) {
+		super.writeSyncableNBT(compound, type);
+		if (type == NBTType.SAVE_TILE || type == NBTType.SYNC && this.shouldSyncSlots()) {
+			compound.put("Items", this.inv.serializeNBT());
+		}
+	}
 
-    public static void loadSlots(IItemHandlerModifiable slots, CompoundTag compound) {
-        if (slots != null && slots.getSlots() > 0) {
-            ListTag tagList = compound.getList("Items", 10);
-            for (int i = 0; i < slots.getSlots(); i++) {
-                CompoundTag tagCompound = tagList.getCompound(i);
-                slots.setStackInSlot(i, tagCompound.contains("id")
-                    ? ItemStack.of(tagCompound)
-                    : ItemStack.EMPTY);
-            }
-        }
-    }
+	@Override
+	public LazyOptional<IItemHandler> getItemHandler(Direction facing) {
+		return this.lazyInv;
+	}
 
-    @Override
-    public void writeSyncableNBT(CompoundTag compound, NBTType type) {
-        super.writeSyncableNBT(compound, type);
-        if (type == NBTType.SAVE_TILE || type == NBTType.SYNC && this.shouldSyncSlots()) {
-            saveSlots(this.inv, compound);
-        }
-    }
+	public IAcceptor getAcceptor() {
+		return ItemStackHandlerAA.ACCEPT_TRUE;
+	}
 
-    @Override
-    public LazyOptional<IItemHandler> getItemHandler(Direction facing) {
-        return this.lazyInv;
-    }
+	public IRemover getRemover() {
+		return ItemStackHandlerAA.REMOVE_TRUE;
+	}
 
-    public IAcceptor getAcceptor() {
-        return ItemStackHandlerAA.ACCEPT_TRUE;
-    }
+	public int getMaxStackSize(int slot) {
+		return 64;
+	}
 
-    public IRemover getRemover() {
-        return ItemStackHandlerAA.REMOVE_TRUE;
-    }
+	public boolean shouldSyncSlots() {
+		return false;
+	}
 
-    public int getMaxStackSize(int slot) {
-        return 64;
-    }
+	@Override
+	public void setChanged() {
+		super.setChanged();
 
-    public boolean shouldSyncSlots() {
-        return false;
-    }
+		if (this.shouldSyncSlots()) {
+			this.sendUpdate();
+		}
+	}
 
-    @Override
-    public void setChanged() {
-        super.setChanged();
+	@Override
+	public int getComparatorStrength() {
+		return ItemHandlerHelper.calcRedstoneFromInventory(this.inv);
+	}
 
-        if (this.shouldSyncSlots()) {
-            this.sendUpdate();
-        }
-    }
+	@Override
+	public void readSyncableNBT(CompoundTag compound, NBTType type) {
+		super.readSyncableNBT(compound, type);
+		if (type == NBTType.SAVE_TILE || type == NBTType.SYNC && this.shouldSyncSlots()) {
+			var items = compound.getList("Items", 10);
+			// Compatibility with old saves
+			if (!items.isEmpty() && !items.getCompound(0).contains("Slot")) {
+				if (this.inv != null && this.inv.getSlots() > 0) {
+					ListTag tagList = compound.getList("Items", 10);
+					for (int i = 0; i < this.inv.getSlots(); i++) {
+						CompoundTag tagCompound = tagList.getCompound(i);
+						this.inv.setStackInSlot(i, tagCompound.contains("id")
+							? ItemStack.of(tagCompound)
+							: ItemStack.EMPTY);
+					}
+				}
+			}
+			else this.inv.deserializeNBT(compound.getCompound("Items"));
+		}
+	}
 
-    @Override
-    public int getComparatorStrength() {
-        return ItemHandlerHelper.calcRedstoneFromInventory(this.inv);
-    }
+	protected class TileStackHandler extends ItemStackHandlerAA {
 
-    @Override
-    public void readSyncableNBT(CompoundTag compound, NBTType type) {
-        super.readSyncableNBT(compound, type);
-        if (type == NBTType.SAVE_TILE || type == NBTType.SYNC && this.shouldSyncSlots()) {
-            loadSlots(this.inv, compound);
-        }
-    }
+		protected TileStackHandler(int slots) {
+			super(slots);
+		}
 
-    protected class TileStackHandler extends ItemStackHandlerAA {
+		@Override
+		public IAcceptor getAcceptor() {
+			return TileEntityInventoryBase.this.getAcceptor();
+		}
 
-        protected TileStackHandler(int slots) {
-            super(slots);
-        }
+		@Override
+		public IRemover getRemover() {
+			return TileEntityInventoryBase.this.getRemover();
+		}
 
-        @Override
-        public IAcceptor getAcceptor() {
-            return TileEntityInventoryBase.this.getAcceptor();
-        }
+		@Override
+		public int getSlotLimit(int slot) {
+			return TileEntityInventoryBase.this.getMaxStackSize(slot);
+		}
 
-        @Override
-        public IRemover getRemover() {
-            return TileEntityInventoryBase.this.getRemover();
-        }
-
-        @Override
-        public int getSlotLimit(int slot) {
-            return TileEntityInventoryBase.this.getMaxStackSize(slot);
-        }
-
-        @Override
-        protected void onContentsChanged(int slot) {
-            super.onContentsChanged(slot);
-            TileEntityInventoryBase.this.setChanged();
-        }
-    }
+		@Override
+		protected void onContentsChanged(int slot) {
+			super.onContentsChanged(slot);
+			TileEntityInventoryBase.this.setChanged();
+		}
+	}
 }
