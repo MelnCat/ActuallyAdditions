@@ -79,7 +79,7 @@ public class TileEntityItemInterfaceHopping extends TileEntityItemInterface {
 
                                     LazyOptional<IItemHandler> handler = tile.itemHandler.getNormalHandler();
                                     handler.ifPresent(cap -> {
-                                        System.out.println(cap.getSlots());
+                                        //System.out.println(cap.getSlots());
                                         for (int i = 0; i < cap.getSlots(); i++) {
                                             ItemStack left = cap.insertItem(i, item.getItem(), false);
                                             item.setItem(left);

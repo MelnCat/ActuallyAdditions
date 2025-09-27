@@ -8,7 +8,11 @@ import de.ellpeck.actuallyadditions.mod.config.CommonConfig;
 import de.ellpeck.actuallyadditions.mod.items.ActuallyItems;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ambient.Bat;
+import net.minecraft.world.entity.animal.Pig;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParam;
@@ -29,6 +33,7 @@ public class SolidXpLootModifier extends LootModifier {
 	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
 		RandomSource random = context.getRandom();
 		if (CommonConfig.Other.DO_XP_DROPS.get()) {
+			if (!(context.getParam(LootContextParams.THIS_ENTITY) instanceof Mob)) return generatedLoot;
 			int looting = context.getLootingModifier();
 			if (random.nextInt(10) <= looting * 2) {
 				generatedLoot.add(new ItemStack(ActuallyItems.SOLIDIFIED_EXPERIENCE.get(), random.nextInt(2 + looting) + 1));

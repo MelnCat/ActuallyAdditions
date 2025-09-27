@@ -94,7 +94,7 @@ public class DungeonLootModifier extends LootModifier {
 				}
 			}
 			if (addDrillCore) {
-				System.out.println("Deciding to add drill core or not");
+				//System.out.println("Deciding to add drill core or not");
 				if (random.nextInt(10) == 0) {
 					generatedLoot.add(new ItemStack(ActuallyItems.DRILL_CORE.get()));
 				}
