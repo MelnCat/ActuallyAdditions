@@ -9,7 +9,7 @@
       "item": "actuallyadditions:ring"
     },
     "S": {
-      "tag": "c:seeds"
+      "tag": "forge:seeds"
     }
   },
   "pattern": [
@@ -18,7 +18,7 @@
     "SIS"
   ],
   "result": {
-    "count": 1,
-    "id": "actuallyadditions:ring_of_growth"
-  }
+    "item": "actuallyadditions:ring_of_growth"
+  },
+  "show_notification": true
 }
