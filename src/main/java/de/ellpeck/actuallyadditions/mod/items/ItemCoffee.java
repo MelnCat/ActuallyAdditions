@@ -13,6 +13,7 @@ package de.ellpeck.actuallyadditions.mod.items;
 import de.ellpeck.actuallyadditions.api.ActuallyAdditionsAPI;
 import de.ellpeck.actuallyadditions.api.recipe.CoffeeIngredient;
 import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
+import de.ellpeck.actuallyadditions.mod.crafting.ActuallyRecipes;
 import de.ellpeck.actuallyadditions.mod.crafting.CoffeeIngredientRecipe;
 import de.ellpeck.actuallyadditions.mod.items.base.ItemBase;
 import net.minecraft.ChatFormatting;
@@ -44,12 +45,9 @@ public class ItemCoffee extends ItemBase { //TODO: Do we want to change the satu
 
     @Nullable
     public static CoffeeIngredientRecipe getIngredientRecipeFromStack(ItemStack stack) {
-	    for (CoffeeIngredientRecipe recipeHolder : ActuallyAdditionsAPI.COFFEE_MACHINE_INGREDIENTS) {
-		    if (recipeHolder.getIngredient().test(stack)) {
-			    return recipeHolder;
-		    }
-	    }
-	    return null;
+		return ActuallyAdditions.getRecipeManager()
+			.getAllRecipesFor(ActuallyRecipes.Types.COFFEE_INGREDIENT.get()).stream()
+			.filter(x -> x.matches(stack)).findFirst().orElse(null);
     }
 
     public static void applyPotionEffectsFromStack(ItemStack stack, LivingEntity player) {
