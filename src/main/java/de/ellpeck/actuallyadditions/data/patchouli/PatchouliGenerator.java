@@ -74,6 +74,12 @@ public class PatchouliGenerator extends PatchouliBookProvider {
 			.addImagePage(ActuallyAdditions.modLoc("textures/gui/booklet/page_engineer_house.png"))
 			.setText("booklet.actuallyadditions.chapter.engineer_house.text.2").build();
 
+		gettingStarted.addEntry("empowerer", prefix("chapter.empowerer"), bookStack)
+			.addTextPage(prefix("chapter.empowerer.text.1")).build()
+			.addImagePage(ActuallyAdditions.modLoc("textures/gui/booklet/page_empowerer.png"))
+			.setText("booklet.actuallyadditions.chapter.empowerer.text.2").build()
+			.addTextPage(prefix("chapter.empowerer.text.4")).build();
+
 		EntryBuilder crystalsBuilder = gettingStarted.addEntry("crystals", prefix("chapter.crystals"), bookStack)
 			.addTextPage(prefix("chapter.crystals.text.1")).build()
 			.addTextPage(prefix("chapter.crystals.text.2")).build()

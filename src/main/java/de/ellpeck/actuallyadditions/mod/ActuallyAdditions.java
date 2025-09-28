@@ -41,6 +41,7 @@ import de.ellpeck.actuallyadditions.mod.misc.apiimpl.LaserRelayConnectionHandler
 import de.ellpeck.actuallyadditions.mod.misc.apiimpl.MethodHandler;
 import de.ellpeck.actuallyadditions.mod.network.PacketHandler;
 import de.ellpeck.actuallyadditions.mod.particle.ActuallyParticles;
+import de.ellpeck.actuallyadditions.mod.tooltip.TooltipEvents;
 import de.ellpeck.actuallyadditions.mod.update.UpdateChecker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -132,6 +133,7 @@ public class    ActuallyAdditions {
             eventBus.addListener(ActuallyAdditionsClient::setupSpecialRenders);
             eventBus.addListener(ActuallyAdditionsClient::registerParticleFactories);;
             eventBus.register(new ClientRegistryHandler());
+            eventBus.register(new TooltipEvents());
         });
         IFarmerBehavior.initBehaviors();
     }
