@@ -1,0 +1,22 @@
+{
+  "category": "actuallyadditions:getting_started",
+  "icon": "actuallyadditions:booklet",
+  "name": "booklet.actuallyadditions.chapter.empowerer",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "booklet.actuallyadditions.chapter.empowerer.text.1"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "actuallyadditions:textures/gui/booklet/page_empowerer.png"
+      ],
+      "text": "booklet.actuallyadditions.chapter.empowerer.text.2"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "booklet.actuallyadditions.chapter.empowerer.text.4"
+    }
+  ]
+}
