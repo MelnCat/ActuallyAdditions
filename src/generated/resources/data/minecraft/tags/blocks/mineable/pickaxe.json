@@ -86,6 +86,7 @@
     "actuallyadditions:laser_relay_fluids",
     "actuallyadditions:laser_relay_item",
     "actuallyadditions:laser_relay_item_advanced",
-    "actuallyadditions:greenhouse_glass"
+    "actuallyadditions:greenhouse_glass",
+    "actuallyadditions:fluid_placer"
   ]
 }

@@ -353,7 +353,7 @@ public final class AssetUtil {
         Matrix4f matrix = matrixStack.last().pose();
 
         RenderSystem.setShader(GameRenderer::getPositionColorLightmapShader);
-        Tesselator.getInstance().getBuilder().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR_LIGHTMAP);
+        Tesselator.getInstance().getBuilder().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
 
         TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(FORGE_WHITE);
         float minU = sprite.getU0();

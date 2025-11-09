@@ -121,7 +121,8 @@ public class BlockTagsGenerator extends BlockTagsProvider {
                 ActuallyBlocks.LASER_RELAY_FLUIDS.get(),
                 ActuallyBlocks.LASER_RELAY_ITEM.get(),
                 ActuallyBlocks.LASER_RELAY_ITEM_ADVANCED.get(),
-                ActuallyBlocks.GREENHOUSE_GLASS.get()
+                ActuallyBlocks.GREENHOUSE_GLASS.get(),
+                ActuallyBlocks.FLUID_PLACER.get()
         );
 
         tag(BlockTags.NEEDS_STONE_TOOL).add(
