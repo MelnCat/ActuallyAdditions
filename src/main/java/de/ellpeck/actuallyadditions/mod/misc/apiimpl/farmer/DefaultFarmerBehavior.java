@@ -20,12 +20,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -36,8 +38,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.common.util.FakePlayerFactory;
 
 import java.util.ArrayList;
@@ -199,17 +204,14 @@ public class DefaultFarmerBehavior implements IFarmerBehavior {
 //                    : InteractionResult.FAIL;
 //            } TODO: Fire event for hoe use?
 
-            if (world.isEmptyBlock(pos.above())) {
-                BlockState state = world.getBlockState(pos);
-                if (state.is(Blocks.GRASS_BLOCK) || state.is(Blocks.DIRT_PATH)) {
-                    world.setBlockAndUpdate(pos, Blocks.FARMLAND.defaultBlockState());
-                    return InteractionResult.SUCCESS;
-                }
-
-                if (state.is(BlockTags.DIRT)) {
-                    world.setBlockAndUpdate(pos, Blocks.FARMLAND.defaultBlockState());
-                    return InteractionResult.SUCCESS;
-                }
+	        if (world.isEmptyBlock(pos.above())) {
+		        BlockState state = world.getBlockState(pos);
+		        BlockState modified = state.getToolModifiedState(
+			        new UseOnContext(world, null, InteractionHand.MAIN_HAND, new ItemStack(Items.NETHERITE_HOE), new BlockHitResult(new Vec3(0.5, 0.5, 0.5), Direction.UP, pos, false)),
+			        ToolActions.HOE_TILL, true);
+				if (modified != null) {
+					world.setBlockAndUpdate(pos, modified);
+				}
             }
             return InteractionResult.PASS;
         }
