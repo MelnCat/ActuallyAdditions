@@ -56,6 +56,7 @@ public class TileEntityVerticalDigger extends TileEntityInventoryBase implements
     public boolean onlyMineOres;
     public int checkX;
     public int checkY = -1;
+	public boolean recalculateY = true;
     public int checkZ;
     private int oldEnergy;
     private int oldCheckX;
@@ -73,7 +74,8 @@ public class TileEntityVerticalDigger extends TileEntityInventoryBase implements
         if (type != NBTType.SAVE_BLOCK) {
             compound.putInt("CheckX", this.checkX);
             compound.putInt("CheckY", this.checkY);
-            compound.putInt("CheckZ", this.checkZ);
+	        compound.putInt("CheckZ", this.checkZ);
+	        compound.putBoolean("RecalculateY", recalculateY);
         }
         if (type != NBTType.SAVE_BLOCK || this.onlyMineOres) {
             compound.putBoolean("OnlyOres", this.onlyMineOres);
@@ -103,15 +105,16 @@ public class TileEntityVerticalDigger extends TileEntityInventoryBase implements
             tile.serverTick();
 
             if (!tile.isRedstonePowered && tile.ticksElapsed % 5 == 0) {
-                if (tile.checkY != 0) {
+                if (tile.checkY > level.dimensionType().minY()) {
                     int range = TileEntityPhantomface.upgradeRange(DEFAULT_RANGE, level, pos);
-                    if (tile.checkY < 0) {
+                    if (tile.recalculateY) {
                         tile.checkY = tile.worldPosition.getY() - 1;
                         tile.checkX = -range;
                         tile.checkZ = -range;
+	                    tile.recalculateY = false;
                     }
 
-                    if (tile.checkY > 0) {
+                    if (tile.checkY > level.dimensionType().minY()) {
                         if (tile.mine()) {
                             tile.checkX++;
                             if (tile.checkX > range) {
@@ -229,6 +232,7 @@ public class TileEntityVerticalDigger extends TileEntityInventoryBase implements
         } else if (buttonID == 1) {
             this.checkX = 0;
             this.checkY = -1;
+			this.recalculateY = true;
             this.checkZ = 0;
         }
     }

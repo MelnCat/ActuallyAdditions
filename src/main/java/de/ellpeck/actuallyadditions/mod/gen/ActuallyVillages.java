@@ -3,6 +3,8 @@ package de.ellpeck.actuallyadditions.mod.gen;
 import com.mojang.datafixers.util.Pair;
 import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.blocks.ActuallyBlocks;
+import de.ellpeck.actuallyadditions.mod.config.CommonConfig;
+import de.ellpeck.actuallyadditions.mod.config.values.ConfigBoolValues;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
@@ -65,27 +67,29 @@ public class ActuallyVillages {
 		Registry<StructureTemplatePool> templatePoolRegistry = event.getServer().registryAccess().registry(Registries.TEMPLATE_POOL).orElseThrow();
 		Registry<StructureProcessorList> processorListRegistry = event.getServer().registryAccess().registry(Registries.PROCESSOR_LIST).orElseThrow();
 
-		//Add Engineer house to villages
-		addBuildingToPool(templatePoolRegistry, processorListRegistry,
+
+		if (CommonConfig.Worldgen.GENERATE_ENGINEER_HOUSE.get()) {
+			//Add Engineer house to villages
+			addBuildingToPool(templatePoolRegistry, processorListRegistry,
 				new ResourceLocation("minecraft:village/plains/houses"),
 				ActuallyAdditions.MODID + ":andrew_period_house", 10);
 
-		addBuildingToPool(templatePoolRegistry, processorListRegistry,
+			addBuildingToPool(templatePoolRegistry, processorListRegistry,
 				new ResourceLocation("minecraft:village/snowy/houses"),
 				ActuallyAdditions.MODID + ":andrew_period_house", 10);
 
-		addBuildingToPool(templatePoolRegistry, processorListRegistry,
+			addBuildingToPool(templatePoolRegistry, processorListRegistry,
 				new ResourceLocation("minecraft:village/savanna/houses"),
 				ActuallyAdditions.MODID + ":andrew_period_house", 10);
 
-		addBuildingToPool(templatePoolRegistry, processorListRegistry,
+			addBuildingToPool(templatePoolRegistry, processorListRegistry,
 				new ResourceLocation("minecraft:village/taiga/houses"),
 				ActuallyAdditions.MODID + ":andrew_period_house", 10);
 
-		addBuildingToPool(templatePoolRegistry, processorListRegistry,
+			addBuildingToPool(templatePoolRegistry, processorListRegistry,
 				new ResourceLocation("minecraft:village/desert/houses"),
 				ActuallyAdditions.MODID + ":andrew_period_house", 50);
-
+		}  
 		//Add Actually Additions crops to village farms
 		StructureProcessor cropProcessor = new RuleProcessor(List.of(
 				new ProcessorRule(new RandomBlockMatchTest(Blocks.WHEAT, 0.30F), AlwaysTrueTest.INSTANCE, ActuallyBlocks.RICE.get().defaultBlockState()),

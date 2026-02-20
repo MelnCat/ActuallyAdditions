@@ -71,12 +71,14 @@ public class CommonConfig {
     }
 
     public static class Worldgen {
-        public static ForgeConfigSpec.BooleanValue GENERATE_QUARTZ;
+	    public static ForgeConfigSpec.BooleanValue GENERATE_QUARTZ;
+	    public static ForgeConfigSpec.BooleanValue GENERATE_ENGINEER_HOUSE;
 
         public static void build() {
             BUILDER.comment("Worldgen Settings").push("worldgenSettings");
 
-            GENERATE_QUARTZ = BUILDER.comment("Should Black Quartz generate in the world?").define("blackQuartzGeneration", true);
+	        GENERATE_QUARTZ = BUILDER.comment("Should Black Quartz generate in the world?").define("blackQuartzGeneration", true);
+	        GENERATE_ENGINEER_HOUSE = BUILDER.comment("Should engineer houses be generated in villages?").define("engineerHouseGeneration", true);
 
             BUILDER.pop();
         }
