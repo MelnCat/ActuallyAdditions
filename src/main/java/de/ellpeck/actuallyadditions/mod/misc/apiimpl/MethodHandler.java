@@ -31,7 +31,12 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -39,6 +44,7 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class MethodHandler implements IMethodHandler {
@@ -239,6 +245,20 @@ public class MethodHandler implements IMethodHandler {
                                 ItemEntity inputLeft = new ItemEntity(tile.getWorldObject(), item.getX(), item.getY(), item.getZ(), stackCopy);
                                 tile.getWorldObject().addFreshEntity(inputLeft);
                             }
+							
+	                        if (recipe.get().getResultItem(tile.getWorldObject().registryAccess()).getItem() == Items.ENCHANTED_BOOK) {
+		                        tile.extractEnergy(recipe.get().getEnergy() * itemsPossible);
+		                        for (Map.Entry<Enchantment, Integer> entry : EnchantmentHelper.getEnchantments(stack).entrySet()) {
+			                        ItemStack outputCopy = recipe.get().getResultItem(tile.getWorldObject().registryAccess()).copy();
+			                        outputCopy.setCount(itemsPossible);
+									EnchantedBookItem.addEnchantment(outputCopy, new EnchantmentInstance(entry.getKey(), entry.getValue()));
+
+			                        ItemEntity newItem = new ItemEntity(tile.getWorldObject(), item.getX(), item.getY(), item.getZ(), outputCopy);
+			                        newItem.getPersistentData().putBoolean("aa_cnv", true);
+			                        tile.getWorldObject().addFreshEntity(newItem);
+		                        }
+								break;
+							}
 
                             ItemStack outputCopy = recipe.get().getResultItem(tile.getWorldObject().registryAccess()).copy();
                             outputCopy.setCount(itemsPossible);

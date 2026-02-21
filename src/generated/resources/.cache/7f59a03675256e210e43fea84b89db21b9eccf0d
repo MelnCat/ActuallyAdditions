@@ -1,4 +1,4 @@
-// 1.20.1	2024-08-13T18:02:56.4433183	Laser Recipes
+// 1.20.1	2026-02-20T20:03:28.1381075	Laser Recipes
 4967c8919720a63508019a3f391b628a36835a21 data/actuallyadditions/recipes/laser/crystalize_diamatine_crystal.json
 64f310e4da3eab4cff7b926126037d407bab56fd data/actuallyadditions/recipes/laser/crystalize_diamatine_crystal_block.json
 a65531dec5a7af3350ecee1685f6e3b557c212a9 data/actuallyadditions/recipes/laser/crystalize_emeradic_crystal.json
@@ -12,6 +12,7 @@ e4230a9a44e53ad82484f0556880e5a73e4eab05 data/actuallyadditions/recipes/laser/cr
 86ccbca78335b93382ae57076c42535c79314582 data/actuallyadditions/recipes/laser/crystalize_void_crystal.json
 3da32ddf55b6202b76a6ea061c405635ac74d193 data/actuallyadditions/recipes/laser/crystalize_void_crystal_block.json
 c9799357ec49a5cd4f26485bb1da0fb8fba82e37 data/actuallyadditions/recipes/laser/crystallized_canola_seed.json
+4bec482e668c1736312891cbda13bb85407de7e8 data/actuallyadditions/recipes/laser/enchanted_book.json
 4fad7df1418bb4d4597107af27b9468a6959a2bf data/actuallyadditions/recipes/laser/ethetic_green_block.json
 7c68dcb8b22e3b02d7e0b491be833d688a6875a8 data/actuallyadditions/recipes/laser/ethetic_white_block.json
 13ff594c66502cc923f8f0a7431d0e3616279a54 data/actuallyadditions/recipes/laser/laser_relay.json

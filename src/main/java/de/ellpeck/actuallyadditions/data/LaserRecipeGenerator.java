@@ -74,7 +74,9 @@ public class LaserRecipeGenerator extends RecipeProvider {
         laserRecipe(consumer, Items.PRISMARINE_SHARD, Items.QUARTZ, 30000);
         laserRecipe(consumer, ActuallyItems.CRYSTALLIZED_CANOLA_SEED.get(), ActuallyItems.CANOLA_SEEDS.get(), 2000);
         laserRecipe(consumer, ActuallyBlocks.ETHETIC_WHITE_BLOCK.getItem(), Items.QUARTZ_BLOCK, 10);
-        laserRecipe(consumer, ActuallyBlocks.ETHETIC_GREEN_BLOCK.getItem(), Items.CHISELED_QUARTZ_BLOCK, 10);
+	    laserRecipe(consumer, ActuallyBlocks.ETHETIC_GREEN_BLOCK.getItem(), Items.CHISELED_QUARTZ_BLOCK, 10);
+
+		laserRecipe(consumer, Items.ENCHANTED_BOOK, Items.ENCHANTED_BOOK, 155000);
 
     }
 
