@@ -33,6 +33,10 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.fluids.IFluidBlock;
@@ -43,117 +47,120 @@ import java.util.List;
 
 public class TileEntityBreaker extends TileEntityInventoryBase implements MenuProvider {
 
-    public boolean isPlacer;
-    private int currentTime;
+	public boolean isPlacer;
+	private int currentTime;
 
-    public TileEntityBreaker(BlockEntityType<?> type, BlockPos pos, BlockState state, int slots) {
-        super(type, pos, state, slots);
-    }
+	public TileEntityBreaker(BlockEntityType<?> type, BlockPos pos, BlockState state, int slots) {
+		super(type, pos, state, slots);
+	}
 
-    public TileEntityBreaker(BlockPos pos, BlockState state) {
-        super(ActuallyBlocks.BREAKER.getTileEntityType(), pos, state, 9);
-        this.isPlacer = false;
-    }
+	public TileEntityBreaker(BlockPos pos, BlockState state) {
+		super(ActuallyBlocks.BREAKER.getTileEntityType(), pos, state, 9);
+		this.isPlacer = false;
+	}
 
-    @Override
-    public void writeSyncableNBT(CompoundTag compound, NBTType type) {
-        super.writeSyncableNBT(compound, type);
-        if (type != NBTType.SAVE_BLOCK) {
-            compound.putInt("CurrentTime", this.currentTime);
-        }
-    }
+	@Override
+	public void writeSyncableNBT(CompoundTag compound, NBTType type) {
+		super.writeSyncableNBT(compound, type);
+		if (type != NBTType.SAVE_BLOCK) {
+			compound.putInt("CurrentTime", this.currentTime);
+		}
+	}
 
-    @Override
-    public void readSyncableNBT(CompoundTag compound, NBTType type) {
-        super.readSyncableNBT(compound, type);
-        if (type != NBTType.SAVE_BLOCK) {
-            this.currentTime = compound.getInt("CurrentTime");
-        }
-    }
+	@Override
+	public void readSyncableNBT(CompoundTag compound, NBTType type) {
+		super.readSyncableNBT(compound, type);
+		if (type != NBTType.SAVE_BLOCK) {
+			this.currentTime = compound.getInt("CurrentTime");
+		}
+	}
 
-    public static <T extends BlockEntity> void clientTick(Level level, BlockPos pos, BlockState state, T t) {
-        if (t instanceof TileEntityBreaker tile) {
-            tile.clientTick();
-        }
-    }
+	public static <T extends BlockEntity> void clientTick(Level level, BlockPos pos, BlockState state, T t) {
+		if (t instanceof TileEntityBreaker tile) {
+			tile.clientTick();
+		}
+	}
 
-    public static <T extends BlockEntity> void serverTick(Level level, BlockPos pos, BlockState state, T t) {
-        if (t instanceof TileEntityBreaker tile) {
-            tile.serverTick();
-        }
-    }
+	public static <T extends BlockEntity> void serverTick(Level level, BlockPos pos, BlockState state, T t) {
+		if (t instanceof TileEntityBreaker tile) {
+			tile.serverTick();
+		}
+	}
 
-    @Override
-    protected void serverTick() {
-        super.serverTick();
-        if (!isRedstonePowered && !isPulseMode) {
-            if (currentTime > 0) {
-                currentTime--;
-                if (currentTime <= 0) {
-                    doWork();
-                }
-            } else {
-                currentTime = 15;
-            }
-        }
-    }
+	@Override
+	protected void serverTick() {
+		super.serverTick();
+		if (!isRedstonePowered && !isPulseMode) {
+			if (currentTime > 0) {
+				currentTime--;
+				if (currentTime <= 0) {
+					doWork();
+				}
+			} else {
+				currentTime = 15;
+			}
+		}
+	}
 
-    @Override
-    public IAcceptor getAcceptor() {
-        return (slot, stack, automation) -> !automation;
-    }
+	@Override
+	public IAcceptor getAcceptor() {
+		return (slot, stack, automation) -> !automation;
+	}
 
-    private void doWork() {
-        Direction side = WorldUtil.getDirectionByPistonRotation(this.level.getBlockState(this.worldPosition));
-        BlockPos breakCoords = this.worldPosition.relative(side);
-        BlockState stateToBreak = this.level.getBlockState(breakCoords);
-        Block blockToBreak = stateToBreak.getBlock();
+	private void doWork() {
+		Direction side = WorldUtil.getDirectionByPistonRotation(this.level.getBlockState(this.worldPosition));
+		BlockPos breakCoords = this.worldPosition.relative(side);
+		BlockState stateToBreak = this.level.getBlockState(breakCoords);
+		Block blockToBreak = stateToBreak.getBlock();
 
-        if (!this.isPlacer && blockToBreak != Blocks.AIR && !(blockToBreak instanceof IFluidBlock) && stateToBreak.getDestroySpeed(this.level, breakCoords) >= 0.0F) {
-            FakePlayer fake = FakePlayerFactory.getMinecraft((ServerLevel) this.level);
-            ItemStack tool = this.inv.getStackInSlot(0);
-            fake.getInventory().items.set(fake.getInventory().selected, tool);
-            List<ItemStack> drops = Block.getDrops(stateToBreak, (ServerLevel) this.level, breakCoords, this.level.getBlockEntity(breakCoords), fake, tool);
-            if (!stateToBreak.canHarvestBlock(level, breakCoords, fake)) {
-                fake.getInventory().items.set(fake.getInventory().selected, Items.NETHERITE_PICKAXE.getDefaultInstance());
-                tool = null;
-            }
-            if (stateToBreak.canHarvestBlock(level, breakCoords, fake)) { //TODO might double check this is right mikey
-                if (StackUtil.canAddAll(this.inv, drops, false)) {
-                    if (tool != null) tool.hurtAndBreak(1, fake, e -> {});
-                    this.level.destroyBlock(breakCoords, false);
-                    StackUtil.addAll(this.inv, drops, false);
-                    this.setChanged();
-                }
-            }
-        } else if (this.isPlacer) {
-            int slot = StackUtil.findFirstFilled(this.inv);
-            if (slot == -1) {
-                return;
-            }
-            this.inv.setStackInSlot(slot, WorldUtil.useItemAtSide(side, this.level, this.worldPosition, this.inv.getStackInSlot(slot)));
-        }
-    }
+		if (!this.isPlacer && blockToBreak != Blocks.AIR && !(blockToBreak instanceof IFluidBlock) && stateToBreak.getDestroySpeed(this.level, breakCoords) >= 0.0F) {
+			ItemStack tool = this.inv.getStackInSlot(0);
+			LootParams.Builder builder = new LootParams.Builder((ServerLevel) this.level)
+				.withParameter(LootContextParams.ORIGIN, breakCoords.getCenter())
+				.withParameter(LootContextParams.TOOL, tool)
+				.withOptionalParameter(LootContextParams.BLOCK_ENTITY, this.level.getBlockEntity(breakCoords));
+			
+			List<ItemStack> drops = stateToBreak.getDrops(builder);
+			if (!tool.isCorrectToolForDrops(stateToBreak) && stateToBreak.requiresCorrectToolForDrops()) {
+				tool = new ItemStack(Items.NETHERITE_PICKAXE);
+				builder.withParameter(LootContextParams.TOOL, tool);
+				drops = stateToBreak.getDrops(builder);
+			}
+			if (tool.isCorrectToolForDrops(stateToBreak) || !stateToBreak.requiresCorrectToolForDrops()) { //TODO might double check this is right mikey
+				if (StackUtil.canAddAll(this.inv, drops, false)) {
+					this.level.destroyBlock(breakCoords, false);
+					StackUtil.addAll(this.inv, drops, false);
+					this.setChanged();
+				}
+			}
+		} else if (this.isPlacer) {
+			int slot = StackUtil.findFirstFilled(this.inv);
+			if (slot == -1) {
+				return;
+			}
+			this.inv.setStackInSlot(slot, WorldUtil.useItemAtSide(side, this.level, this.worldPosition, this.inv.getStackInSlot(slot)));
+		}
+	}
 
-    @Override
-    public boolean isRedstoneToggle() {
-        return true;
-    }
+	@Override
+	public boolean isRedstoneToggle() {
+		return true;
+	}
 
-    @Override
-    public void activateOnPulse() {
-        this.doWork();
-    }
+	@Override
+	public void activateOnPulse() {
+		this.doWork();
+	}
 
-    @Nonnull
-    @Override
-    public Component getDisplayName() {
-        return Component.translatable(isPlacer ? "container.actuallyadditions.placer" : "container.actuallyadditions.breaker");
-    }
+	@Nonnull
+	@Override
+	public Component getDisplayName() {
+		return Component.translatable(isPlacer ? "container.actuallyadditions.placer" : "container.actuallyadditions.breaker");
+	}
 
-    @Nullable
-    @Override
-    public AbstractContainerMenu createMenu(int windowId, Inventory playerInventory, Player playerEntity) {
-        return new ContainerBreaker(windowId, playerInventory, this);
-    }
+	@Nullable
+	@Override
+	public AbstractContainerMenu createMenu(int windowId, Inventory playerInventory, Player playerEntity) {
+		return new ContainerBreaker(windowId, playerInventory, this);
+	}
 }
